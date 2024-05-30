@@ -85,6 +85,11 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
     return;
   }
 
+  if (teamsInCurrentRound % 2 !== 0) {
+    // TODO: Handle odd number of teams for cases like 6, 12 and so on
+    throw new Error("INVALID_TEAM_COUNT");
+  }
+
   for (let i = 0; i < topTeams.length; i += 2) {
     const team1 = topTeams[i];
     const team2 = topTeams[i + 1];
