@@ -1,0 +1,24 @@
+{
+  "state": {
+    "meta": {
+      "round": 0,
+      "winnerTeamId": 0,
+      "startTime": 0,
+      "endTime": 0
+    },
+    "matches": [],
+    "teams": [
+      { "id": 1, "name": "team1", "captainId": 1 },
+      { "id": 2, "name": "team2", "captainId": 2 },
+      { "id": 3, "name": "team3", "captainId": 3 },
+      { "id": 4, "name": "team4", "captainId": 4 }
+    ],
+    "players": [
+      { "id": 1, "name": "player1", "teamId": 1 },
+      { "id": 2, "name": "player2", "teamId": 2 },
+      { "id": 3, "name": "player3", "teamId": 3 },
+      { "id": 4, "name": "player4", "teamId": 4 }
+    ],
+    "logs": []
+  }
+}
