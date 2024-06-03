@@ -1,0 +1,262 @@
+{
+	"info": {
+		"_postman_id": "dd0f99b6-2f66-437a-a04d-bfdbafad28d2",
+		"name": "Unification MRU",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34601608",
+		"_collection_link": "https://bold-escape-336243.postman.co/workspace/Stackr-Labs~794fc07d-d3f9-42f5-8511-d02508a0161e/collection/34601608-dd0f99b6-2f66-437a-a04d-bfdbafad28d2?action=share&source=collection_link&creator=34601608"
+	},
+	"item": [
+		{
+			"name": "Get App Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{LOCAL_URL}}/info",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get State",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{LOCAL_URL}}",
+					"host": [
+						"{{LOCAL_URL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Player Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{LOCAL_URL}}/players/2",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"players",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Leaderboard",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{LOCAL_URL}}/leaderboard",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"leaderboard"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start Tourney",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{LOCAL_URL}}/startTournament",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"startTournament"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Start Match",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{LOCAL_URL}}/startMatch",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"startMatch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Record Goal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"matchId\": 1,\n    \"playerId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{LOCAL_URL}}/recordGoal",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"recordGoal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Goal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"matchId\": 1,\n    \"playerId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{LOCAL_URL}}/removeGoal",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"removeGoal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Log Penalty",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"matchId\": 1,\n    \"playerId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{LOCAL_URL}}/logPenalty",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"logPenalty"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "End Match",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{LOCAL_URL}}/endMatch",
+					"host": [
+						"{{LOCAL_URL}}"
+					],
+					"path": [
+						"endMatch"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "LOCAL_URL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}

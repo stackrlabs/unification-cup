@@ -201,6 +201,8 @@ const removeGoal: STF<League, GoalRequest> = {
     const { match, teamId } = getValidMatchAndTeam(state, matchId, playerId);
 
     match.scores[teamId] -= 1;
+
+    // TODO: do we want visibility here? or we can simply remove the last logged goal with this playerId and matchId
     state.logs.push({
       playerId,
       matchId,

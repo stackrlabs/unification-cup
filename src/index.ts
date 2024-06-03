@@ -51,6 +51,22 @@ const main = async () => {
     throw new Error("League machine not initialized yet");
   }
 
+  app.get('/info', (_req: Request, res: Response) => {
+    const transitionToSchema = mru.getStfSchemaMap();
+    res.send({
+      signingInstructions: "signTypedData(domain, schema.types, inputs)",
+      domain: stackrConfig.domain,
+      transitionToSchema,
+      schemas: Object.values(schemas).reduce((acc, schema) => {
+        acc[schema.identifier] = {
+          primaryType: schema.EIP712TypedData.primaryType,
+          types: schema.EIP712TypedData.types,
+        };
+        return acc;
+      }, {} as Record<string, any>)
+    });
+  })
+
   // TODO: Break this route into a separate routes and handle validation pre-STF only
   app.post("/:reducerName", async (req: Request, res: Response) => {
     const { reducerName } = req.params;
