@@ -19,6 +19,15 @@ dotenv.config();
 import { MicroRollup } from "@stackr/sdk";
 import { signAsOperator } from "./utils.ts";
 
+export const stfSchemaMap = {
+  startMatch: schemas.startMatch,
+  endMatch: schemas.endMatch,
+  recordGoal: schemas.recordGoal,
+  removeGoal: schemas.recordGoal,
+  logPenalty: schemas.recordGoal,
+  startTournament: schemas.startTournament,
+};
+
 const main = async () => {
   /**
    * Initialize the MicroRollup instance
@@ -27,12 +36,7 @@ const main = async () => {
     config: stackrConfig,
     actionSchemas: Object.values(schemas),
     stateMachines: [leagueMachine],
-    stfSchemaMap: {
-      startMatch: schemas.startMatch,
-      endMatch: schemas.endMatch,
-      recordGoal: schemas.recordGoal,
-      startTournament: schemas.startTournament,
-    },
+    stfSchemaMap,
     isSandbox: process.env.NODE_ENV === "sandbox",
   });
 
@@ -53,7 +57,7 @@ const main = async () => {
     const actionReducer = transitions[reducerName];
 
     if (!actionReducer) {
-      res.status(400).send({ message: "̦̦no reducer for action" });
+      res.status(400).send({ message: "NO_REDUCER_FOR_ACTION" });
       return;
     }
 
@@ -69,6 +73,34 @@ const main = async () => {
       res.status(400).send({ error: e.message });
     }
     return;
+  });
+
+  app.get("/player-leaderboard", (_req: Request, res: Response) => {
+    const playerWiseGoals = machine.state.logs.reduce((acc, log) => {
+      if (!acc[log.playerId]) {
+        acc[log.playerId] = 0;
+      }
+      if (log.action === LogAction.GOAL) {
+        acc[log.playerId] += 1;
+      }
+      if (log.action === LogAction.DELETED_GOAL) {
+        acc[log.playerId] -= 1;
+      }
+      return acc;
+
+    }, {} as Record<string, number>);
+
+    const sortedPlayersWithDetails = Object.keys(playerWiseGoals)
+      .map((pId) => {
+        const playerInfo = machine.state.players.find((p) => p.id === +pId);
+        return {
+          ...playerInfo,
+          goals: playerWiseGoals[pId],
+        };
+      })
+      .sort((a, b) => b.goals - a.goals);
+
+    res.send(sortedPlayersWithDetails);
   });
 
   app.get("/leaderboard", (req: Request, res: Response) => {
@@ -89,22 +121,39 @@ const main = async () => {
   /**
    * Get Player information by ID
    */
-  app.get("/player/:id", (req: Request, res: Response) => {
+  app.get("/players/:id", (req: Request, res: Response) => {
     const { id } = req.params;
     const player = machine.state.players.find((p) => p.id === +id);
     if (!player) {
       return res.status(404).send({ message: "PLAYER_NOT_FOUND" });
     }
 
+    const penalties = machine.state.logs
+      .filter(
+        ({ playerId, action }) =>
+          playerId === player.id && action === LogAction.PENALTY
+      )
+      .map(({ playerId, ...rest }) => ({ ...rest })) || [];
+
     const goals =
       machine.state.logs
         .filter(
           ({ playerId, action }) =>
-            playerId === player.id && action === LogAction.GOAL
+            playerId === player.id && action === LogAction.GOAL || action === LogAction.DELETED_GOAL
         )
-        .map(({ timestamp, matchId }) => ({ timestamp, matchId })) || [];
+        .map(({ playerId, ...rest }) => ({ ...rest })) || [];
 
-    return res.send({ ...player, goalCount: goals.length, goals });
+      const goalCount = goals.reduce((acc, goal) => {
+        if (goal.action === LogAction.GOAL) {
+          acc += 1;
+        } else {
+          acc -= 1;
+        }
+        return acc;
+      }, 0);
+
+
+    return res.send({ ...player, goalCount, goals, penalties, penaltiesCount: penalties.length });
   });
 
   app.get("/", (_req: Request, res: Response) => {

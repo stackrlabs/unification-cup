@@ -42,7 +42,7 @@ const stackrConfig: StackrConfig = {
   },
   registryContract: process.env.REGISTRY_CONTRACT as string,
   preferredDA: DA.AVAIL,
-  logLevel: "log",
+  logLevel: "debug",
 };
 
 export { stackrConfig };

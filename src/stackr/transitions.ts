@@ -3,6 +3,8 @@ import { League, LeagueState } from "./state";
 
 export enum LogAction {
   GOAL = "GOAL",
+  DELETED_GOAL = "DELETED_GOAL",
+  PENALTY = "PENALTY",
 }
 
 type MatchRequest = {
@@ -102,6 +104,39 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
   }
 };
 
+
+const getValidMatchAndTeam = (state: LeagueState, matchId: number, playerId: number) => {
+  if (hasTournamentEnded(state)) {
+    throw new Error("TOURNAMENT_ENDED");
+  }
+
+  const match = state.matches.find((m) => m.id === matchId);
+  if (!match) {
+    throw new Error("MATCH_NOT_FOUND");
+  }
+
+  if (!match.startTime) {
+    throw new Error("MATCH_NOT_STARTED");
+  }
+
+  if (match.endTime) {
+    throw new Error("MATCH_ENDED");
+  }
+
+  const player = state.players.find((p) => p.id === playerId);
+  if (!player) {
+    throw new Error("PLAYER_NOT_FOUND");
+  }
+
+  const teams = Object.keys(match.scores);
+  const teamId = player.teamId;
+  if (!teams.includes(String(teamId))) {
+    throw new Error("INVALID_TEAM");
+  }
+
+  return { match, teamId };
+}
+
 // State Transition Functions
 const startTournament: STF<League, MatchRequest> = {
   handler: ({ state, block }) => {
@@ -141,34 +176,12 @@ const startMatch: STF<League, MatchRequest> = {
 
 const recordGoal: STF<League, GoalRequest> = {
   handler: ({ state, inputs, block }) => {
+    const { matchId, playerId } = inputs;
     if (hasTournamentEnded(state)) {
       throw new Error("TOURNAMENT_ENDED");
     }
 
-    const { matchId, playerId } = inputs;
-    const match = state.matches.find((m) => m.id === matchId);
-    if (!match) {
-      throw new Error("MATCH_NOT_FOUND");
-    }
-
-    if (!match.startTime) {
-      throw new Error("MATCH_NOT_STARTED");
-    }
-
-    if (match.endTime) {
-      throw new Error("MATCH_ENDED");
-    }
-
-    const player = state.players.find((p) => p.id === playerId);
-    if (!player) {
-      throw new Error("PLAYER_NOT_FOUND");
-    }
-
-    const teams = Object.keys(match.scores);
-    const teamId = player.teamId;
-    if (!teams.includes(String(teamId))) {
-      throw new Error("INVALID_TEAM");
-    }
+    const { match, teamId } = getValidMatchAndTeam(state, matchId, playerId);
 
     match.scores[teamId] += 1;
     state.logs.push({
@@ -181,6 +194,39 @@ const recordGoal: STF<League, GoalRequest> = {
     return state;
   },
 };
+
+const removeGoal: STF<League, GoalRequest> = {
+  handler: ({ state, inputs, block }) => {
+    const { matchId, playerId } = inputs;
+    const { match, teamId } = getValidMatchAndTeam(state, matchId, playerId);
+
+    match.scores[teamId] -= 1;
+    state.logs.push({
+      playerId,
+      matchId,
+      timestamp: block.timestamp,
+      action: LogAction.DELETED_GOAL,
+    });
+
+    return state;
+  },
+};
+
+const logPenalty: STF<League, GoalRequest> = {
+  handler: ({ state, inputs, block }) => {
+    const { matchId, playerId } = inputs;
+    getValidMatchAndTeam(state, matchId, playerId);
+
+    state.logs.push({
+      playerId,
+      matchId,
+      timestamp: block.timestamp,
+      action: LogAction.PENALTY,
+    });
+
+    return state;
+  },
+}
 
 const endMatch: STF<League, MatchRequest> = {
   handler: ({ state, inputs, block }) => {
@@ -211,6 +257,8 @@ const endMatch: STF<League, MatchRequest> = {
 export const transitions: Transitions<League> = {
   startMatch,
   endMatch,
+  removeGoal,
+  logPenalty,
   recordGoal,
   startTournament,
 };
