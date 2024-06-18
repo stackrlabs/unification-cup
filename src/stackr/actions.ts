@@ -13,6 +13,11 @@ const startMatchSchema = new ActionSchema("startMatch", {
   ...baseTimeStamp,
 });
 
+const addOvertimeSchema = new ActionSchema("overtimeSchema", {
+  id: SolidityType.UINT,
+  ...baseTimeStamp,
+});
+
 const endMatchSchema = new ActionSchema("endMatch", {
   id: SolidityType.UINT,
   ...baseTimeStamp,
@@ -26,6 +31,7 @@ const recordGoalSchema = new ActionSchema("recordGoal", {
 
 export const schemas = {
   startMatch: startMatchSchema,
+  addOvertime: addOvertimeSchema,
   endMatch: endMatchSchema,
   recordGoal: recordGoalSchema,
   startTournament: startTournamentSchema,

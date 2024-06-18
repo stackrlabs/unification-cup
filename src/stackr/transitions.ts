@@ -16,6 +16,15 @@ type GoalRequest = {
   playerId: number;
 };
 
+export type LeaderboardEntry = {
+  won: number;
+  lost: number;
+  points: number;
+  id: number;
+  name: string;
+  captainId: number;
+};
+
 const areAllMatchesComplete = (state: LeagueState) => {
   return state.matches.every((m) => m.endTime);
 };
@@ -24,35 +33,41 @@ const hasTournamentEnded = (state: LeagueState) => {
   return state.meta.winnerTeamId !== 0 && state.meta.endTime !== 0;
 };
 
-export const getPointsByTeam = (state: LeagueState) => {
-  const { matches } = state;
+export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
+  const { teams, matches } = state;
   const completedMatches = matches.filter((m) => m.endTime);
 
-  if (completedMatches.length === 0) {
-    return state.teams.reduce((acc, team) => {
-      acc[team.id] = 0;
-      return acc;
-    }, {} as Record<string, number>);
-  }
+  const leaderboard = teams.map((team) => {
+    return {
+      ...team,
+      won: 0,
+      lost: 0,
+      points: 0,
+    };
+  });
 
-  return completedMatches.reduce((acc, match) => {
-    const [a, b] = Object.keys(match.scores);
-    acc[a] = acc[a] || 0;
-    acc[b] = acc[b] || 0;
+  completedMatches.forEach((match) => {
+    const { scores, hadOvertime } = match;
+    const [a, b] = Object.keys(scores);
+    const winner = scores[a] > scores[b] ? a : b;
+    const loser = scores[a] > scores[b] ? b : a;
 
-    const diff = Math.abs(match.scores[a] - match.scores[b]);
-    if (diff === 0) {
-      acc[a] += 1;
-      acc[b] += 1;
-      return acc;
+    const winnerIndex = leaderboard.findIndex((l) => l.id === +winner);
+    const loserIndex = leaderboard.findIndex((l) => l.id === +loser);
+
+    leaderboard[winnerIndex].won += 1;
+    leaderboard[loserIndex].lost += 1;
+
+    if (hadOvertime) {
+      leaderboard[winnerIndex].points += 2;
+      leaderboard[loserIndex].points += 1;
+      return;
     }
 
-    const winner = match.scores[a] > match.scores[b] ? a : b;
-    acc[winner] = acc[winner] + 2;
-    // + diff * 0.1;
+    leaderboard[winnerIndex].points += 3;
+  });
 
-    return acc;
-  }, {} as Record<string, number>);
+  return leaderboard.sort((a, b) => b.points - a.points);
 };
 
 const getTopNTeams = (state: LeagueState, n?: number) => {
@@ -60,10 +75,8 @@ const getTopNTeams = (state: LeagueState, n?: number) => {
     n = state.teams.length;
   }
 
-  const teamByPoints = getPointsByTeam(state);
-  return Object.keys(teamByPoints)
-    .sort((a, b) => teamByPoints[b] - teamByPoints[a])
-    .slice(0, n);
+  const leaderboard = getLeaderboard(state);
+  return leaderboard.slice(0, n).map((l) => l.id);
 };
 
 const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
@@ -82,7 +95,7 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
   const topTeams = getTopNTeams(state, teamsInCurrentRound);
 
   if (teamsInCurrentRound === 1) {
-    state.meta.winnerTeamId = parseInt(topTeams[0]);
+    state.meta.winnerTeamId = topTeams[0];
     state.meta.endTime = blockTime;
     return;
   }
@@ -100,12 +113,16 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
       scores: { [team1]: 0, [team2]: 0 },
       startTime: 0,
       endTime: 0,
+      hadOvertime: false,
     });
   }
 };
 
-
-const getValidMatchAndTeam = (state: LeagueState, matchId: number, playerId: number) => {
+const getValidMatchAndTeam = (
+  state: LeagueState,
+  matchId: number,
+  playerId: number
+) => {
   if (hasTournamentEnded(state)) {
     throw new Error("TOURNAMENT_ENDED");
   }
@@ -135,7 +152,7 @@ const getValidMatchAndTeam = (state: LeagueState, matchId: number, playerId: num
   }
 
   return { match, teamId };
-}
+};
 
 // State Transition Functions
 const startTournament: STF<League, MatchRequest> = {
@@ -214,6 +231,20 @@ const removeGoal: STF<League, GoalRequest> = {
   },
 };
 
+const addOvertime: STF<League, MatchRequest> = {
+  handler: ({ state, inputs }) => {
+    const { id } = inputs;
+
+    const matchIndex = state.matches.findIndex((m) => m.id === id);
+    if (matchIndex === -1) {
+      throw new Error("MATCH_NOT_FOUND");
+    }
+
+    state.matches[matchIndex].hadOvertime = true;
+    return state;
+  },
+};
+
 const logPenalty: STF<League, GoalRequest> = {
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
@@ -228,7 +259,7 @@ const logPenalty: STF<League, GoalRequest> = {
 
     return state;
   },
-}
+};
 
 const endMatch: STF<League, MatchRequest> = {
   handler: ({ state, inputs, block }) => {
@@ -263,4 +294,5 @@ export const transitions: Transitions<League> = {
   logPenalty,
   recordGoal,
   startTournament,
+  addOvertime,
 };

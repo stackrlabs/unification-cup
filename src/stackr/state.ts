@@ -20,15 +20,16 @@ type Match = {
   scores: Record<string, number>;
   startTime: number;
   endTime: number;
+  hadOvertime: boolean;
 };
 
-type Player = {
+export type Player = {
   id: number;
   name: string;
   teamId: number;
 };
 
-type Logs = {
+export type Logs = {
   playerId: number;
   matchId?: number;
   timestamp: number;
@@ -72,6 +73,7 @@ export class League extends State<LeagueState> {
           "uint256",
           "uint256",
           "uint256",
+          "uint256",
         ],
         [
           m.id,
@@ -81,6 +83,7 @@ export class League extends State<LeagueState> {
           scores[1] || 0,
           m.startTime || 0,
           m.endTime || 0,
+          m.hadOvertime ? 1 : 0,
         ]
       );
     });
