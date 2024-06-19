@@ -4,7 +4,7 @@ import { League, LeagueState } from "./state";
 export enum LogAction {
   GOAL = "GOAL",
   DELETED_GOAL = "DELETED_GOAL",
-  PENALTY = "PENALTY",
+  PENALTY = "PENALTY", // in case of a overtime (penalty shootout)
   GOAL_SAVED = "GOAL_SAVED",
   FOUL = "FOUL",
 }

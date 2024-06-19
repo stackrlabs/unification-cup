@@ -144,7 +144,7 @@ const main = async () => {
           points:
             goals * 10 +
             teamPoints * 5 +
-            goalsSaved * 3 -
+            goalsSaved * 3 +
             penalties * 3 -
             fouls * 2,
         };
