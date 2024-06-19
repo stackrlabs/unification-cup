@@ -27,6 +27,8 @@ export const stfSchemaMap = {
   recordGoal: schemas.recordGoal,
   removeGoal: schemas.recordGoal,
   logPenalty: schemas.recordGoal,
+  logGoalSaved: schemas.recordGoal,
+  logFoul: schemas.recordGoal,
   startTournament: schemas.startTournament,
   addOvertime: schemas.addOvertime,
 };
@@ -102,18 +104,23 @@ const main = async () => {
     logs: Logs[],
     leaderboard: LeaderboardEntry[]
   ) => {
-    const playerWiseGoals = logs.reduce((acc, log) => {
+    const playerWiseStats = logs.reduce((acc, log) => {
       if (!acc[log.playerId]) {
-        acc[log.playerId] = 0;
+        acc[log.playerId] = { goals: 0, goalsSaved: 0, penalties: 0, fouls: 0 };
       }
       if (log.action === LogAction.GOAL) {
-        acc[log.playerId] += 1;
-      }
-      if (log.action === LogAction.DELETED_GOAL) {
-        acc[log.playerId] -= 1;
+        acc[log.playerId].goals += 1;
+      } else if (log.action === LogAction.DELETED_GOAL) {
+        acc[log.playerId].goals -= 1;
+      } else if (log.action === LogAction.GOAL_SAVED) {
+        acc[log.playerId].goalsSaved += 1;
+      } else if (log.action === LogAction.PENALTY) {
+        acc[log.playerId].penalties += 1;
+      } else if (log.action === LogAction.FOUL) {
+        acc[log.playerId].fouls += 1;
       }
       return acc;
-    }, {} as Record<string, number>);
+    }, {} as Record<string, { goals: number; goalsSaved: number; penalties: number; fouls: number }>);
 
     const playerWithDetails = players.map((p) => getPlayerInfo(p.id));
 
@@ -122,11 +129,24 @@ const main = async () => {
         const { id, teamId } = playerInfo;
         const teamPoints =
           leaderboard.find((l) => l.id === teamId)?.points || 0;
-        const playerGoals = playerWiseGoals[id] || 0;
+        const {
+          goals = 0,
+          goalsSaved = 0,
+          penalties = 0,
+          fouls = 0,
+        } = playerWiseStats[id];
         return {
           ...playerInfo,
-          goals: playerGoals,
-          points: playerGoals * 10 + teamPoints * 5,
+          goals,
+          goalsSaved,
+          penalties,
+          fouls,
+          points:
+            goals * 10 +
+            teamPoints * 5 +
+            goalsSaved * 3 -
+            penalties * 3 -
+            fouls * 2,
         };
       })
       .sort((a, b) => b.goals - a.goals);

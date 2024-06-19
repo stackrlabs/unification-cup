@@ -5,6 +5,8 @@ export enum LogAction {
   GOAL = "GOAL",
   DELETED_GOAL = "DELETED_GOAL",
   PENALTY = "PENALTY",
+  GOAL_SAVED = "GOAL_SAVED",
+  FOUL = "FOUL",
 }
 
 type MatchRequest = {
@@ -154,6 +156,23 @@ const getValidMatchAndTeam = (
   return { match, teamId };
 };
 
+const logPlayerAction = (
+  state: LeagueState,
+  matchId: number,
+  playerId: number,
+  action: LogAction,
+  timestamp: number
+) => {
+  getValidMatchAndTeam(state, matchId, playerId);
+
+  state.logs.push({
+    playerId,
+    matchId,
+    timestamp,
+    action,
+  });
+};
+
 // State Transition Functions
 const startTournament: STF<League, MatchRequest> = {
   handler: ({ state, block }) => {
@@ -245,22 +264,6 @@ const addOvertime: STF<League, MatchRequest> = {
   },
 };
 
-const logPenalty: STF<League, GoalRequest> = {
-  handler: ({ state, inputs, block }) => {
-    const { matchId, playerId } = inputs;
-    getValidMatchAndTeam(state, matchId, playerId);
-
-    state.logs.push({
-      playerId,
-      matchId,
-      timestamp: block.timestamp,
-      action: LogAction.PENALTY,
-    });
-
-    return state;
-  },
-};
-
 const endMatch: STF<League, MatchRequest> = {
   handler: ({ state, inputs, block }) => {
     if (hasTournamentEnded(state)) {
@@ -287,12 +290,51 @@ const endMatch: STF<League, MatchRequest> = {
   },
 };
 
+const logPenalty: STF<League, GoalRequest> = {
+  handler: ({ state, inputs, block }) => {
+    const { matchId, playerId } = inputs;
+    logPlayerAction(
+      state,
+      matchId,
+      playerId,
+      LogAction.PENALTY,
+      block.timestamp
+    );
+
+    return state;
+  },
+};
+
+const logGoalSaved: STF<League, GoalRequest> = {
+  handler: ({ state, inputs, block }) => {
+    const { matchId, playerId } = inputs;
+    logPlayerAction(
+      state,
+      matchId,
+      playerId,
+      LogAction.GOAL_SAVED,
+      block.timestamp
+    );
+    return state;
+  },
+};
+
+const logFoul: STF<League, GoalRequest> = {
+  handler: ({ state, inputs, block }) => {
+    const { matchId, playerId } = inputs;
+    logPlayerAction(state, matchId, playerId, LogAction.FOUL, block.timestamp);
+    return state;
+  },
+};
+
 export const transitions: Transitions<League> = {
   startMatch,
   endMatch,
-  removeGoal,
-  logPenalty,
   recordGoal,
+  removeGoal,
   startTournament,
   addOvertime,
+  logPenalty,
+  logGoalSaved,
+  logFoul,
 };
