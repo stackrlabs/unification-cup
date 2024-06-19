@@ -279,6 +279,14 @@ const main = async () => {
   });
 
   /**
+   * Get all Players information.
+   */
+  app.get("/players", (_req: Request, res: Response) => {
+    const { players } = machine.state;
+    return res.send(players);
+  });
+
+  /**
    * Get Player information by ID
    */
   app.get("/players/:id", (req: Request, res: Response) => {
@@ -292,14 +300,14 @@ const main = async () => {
       machine.state.logs
         .filter(
           ({ playerId, action }) =>
-            (playerId === player.id && action === LogAction.GOAL) ||
-            action === LogAction.DELETED_GOAL
+            playerId === player.id &&
+            (action === LogAction.GOAL || action === LogAction.DELETED_GOAL)
         )
         .map(({ playerId, ...rest }) => ({ ...rest })) || [];
 
     const goalCount = goals.reduce((acc, goal) => {
       if (goal.action === LogAction.GOAL) {
-        acc += 10;
+        acc += 1;
       }
       return acc;
     }, 0);
