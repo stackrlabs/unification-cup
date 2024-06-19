@@ -8,31 +8,21 @@ const startTournamentSchema = new ActionSchema("startTournament", {
   ...baseTimeStamp,
 });
 
-const startMatchSchema = new ActionSchema("startMatch", {
-  id: SolidityType.UINT,
+const matchAction = new ActionSchema("matchAction", {
+  matchId: SolidityType.UINT,
   ...baseTimeStamp,
 });
 
-const addOvertimeSchema = new ActionSchema("overtimeSchema", {
-  id: SolidityType.UINT,
-  ...baseTimeStamp,
-});
-
-const endMatchSchema = new ActionSchema("endMatch", {
-  id: SolidityType.UINT,
-  ...baseTimeStamp,
-});
-
-const recordGoalSchema = new ActionSchema("recordGoal", {
+const matchPlayerAction = new ActionSchema("matchPlayerAction", {
   matchId: SolidityType.UINT,
   playerId: SolidityType.UINT,
   ...baseTimeStamp,
 });
 
 export const schemas = {
-  startMatch: startMatchSchema,
-  addOvertime: addOvertimeSchema,
-  endMatch: endMatchSchema,
-  recordGoal: recordGoalSchema,
+  startMatch: matchAction,
+  addOvertime: matchAction,
+  endMatch: matchAction,
+  recordGoal: matchPlayerAction,
   startTournament: startTournamentSchema,
 };

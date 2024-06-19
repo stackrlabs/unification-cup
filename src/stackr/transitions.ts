@@ -10,7 +10,7 @@ export enum LogAction {
 }
 
 type MatchRequest = {
-  id: number;
+  matchId: number;
 };
 
 type GoalRequest = {
@@ -195,8 +195,8 @@ const startMatch: STF<League, MatchRequest> = {
     if (hasTournamentEnded(state)) {
       throw new Error("TOURNAMENT_ENDED");
     }
-    const { id } = inputs;
-    const match = state.matches.find((m) => m.id === id);
+    const { matchId } = inputs;
+    const match = state.matches.find((m) => m.id === matchId);
     if (!match) {
       throw new Error("MATCH_NOT_FOUND");
     }
@@ -252,9 +252,9 @@ const removeGoal: STF<League, GoalRequest> = {
 
 const addOvertime: STF<League, MatchRequest> = {
   handler: ({ state, inputs }) => {
-    const { id } = inputs;
+    const { matchId } = inputs;
 
-    const matchIndex = state.matches.findIndex((m) => m.id === id);
+    const matchIndex = state.matches.findIndex((m) => m.id === matchId);
     if (matchIndex === -1) {
       throw new Error("MATCH_NOT_FOUND");
     }
@@ -270,8 +270,8 @@ const endMatch: STF<League, MatchRequest> = {
       throw new Error("TOURNAMENT_ENDED");
     }
 
-    const { id } = inputs;
-    const match = state.matches.find((m) => m.id === id);
+    const { matchId } = inputs;
+    const match = state.matches.find((m) => m.id === matchId);
     if (!match) {
       throw new Error("MATCH_NOT_FOUND");
     }
