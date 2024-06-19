@@ -205,24 +205,19 @@ const main = async () => {
     }
   });
 
-  app.get("/current-matches", (_req: Request, res: Response) => {
+  app.get("/matches", (_req: Request, res: Response) => {
     const { matches } = machine.state;
-    const currentMatches = matches.filter(
-      (m) => m.endTime === 0 && m.startTime !== 0
-    );
-    const matchesWithInfo = currentMatches.map((match) =>
-      getMatchInfo(match.id)
-    );
+    const matchesWithInfo = matches.map((match) => getMatchInfo(match.id));
 
     return res.send(matchesWithInfo);
   });
 
-  app.get("/next-matches", (_req: Request, res: Response) => {
+  app.get("/live-matches", (_req: Request, res: Response) => {
     const { matches } = machine.state;
-    const currentMatches = matches.filter((m) => m.startTime === 0);
-    const matchesWithInfo = currentMatches.map((match) =>
-      getMatchInfo(match.id)
+    const liveMatches = matches.filter(
+      (m) => m.startTime > 0 && m.endTime === 0
     );
+    const matchesWithInfo = liveMatches.map((match) => getMatchInfo(match.id));
 
     return res.send(matchesWithInfo);
   });
