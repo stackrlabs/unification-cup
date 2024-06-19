@@ -129,12 +129,14 @@ const main = async () => {
         const { id, teamId } = playerInfo;
         const teamPoints =
           leaderboard.find((l) => l.id === teamId)?.points || 0;
-        const {
-          goals = 0,
-          goalsSaved = 0,
-          penalties = 0,
-          fouls = 0,
-        } = playerWiseStats[id];
+
+          const {
+            goals = 0,
+            goalsSaved = 0,
+            penalties = 0,
+            fouls = 0,
+          } = playerWiseStats[id] || {};
+
         return {
           ...playerInfo,
           goals,
