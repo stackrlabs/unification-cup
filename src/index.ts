@@ -19,18 +19,17 @@ dotenv.config();
 
 import { MicroRollup } from "@stackr/sdk";
 import { Logs, Player } from "./stackr/state.ts";
-import { signAsOperator } from "./utils.ts";
 
 export const stfSchemaMap = {
+  startTournament: schemas.startTournament,
   startMatch: schemas.startMatch,
-  endMatch: schemas.endMatch,
   recordGoal: schemas.recordGoal,
   removeGoal: schemas.recordGoal,
   logPenalty: schemas.recordGoal,
   logGoalSaved: schemas.recordGoal,
   logFoul: schemas.recordGoal,
-  startTournament: schemas.startTournament,
   addOvertime: schemas.addOvertime,
+  endMatch: schemas.endMatch,
 };
 
 const main = async () => {
