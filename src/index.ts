@@ -104,23 +104,34 @@ const main = async () => {
     logs: Logs[],
     leaderboard: LeaderboardEntry[]
   ) => {
-    const playerWiseStats = logs.reduce((acc, log) => {
-      if (!acc[log.playerId]) {
-        acc[log.playerId] = { goals: 0, goalsSaved: 0, penalties: 0, fouls: 0 };
-      }
-      if (log.action === LogAction.GOAL) {
-        acc[log.playerId].goals += 1;
-      } else if (log.action === LogAction.DELETED_GOAL) {
-        acc[log.playerId].goals -= 1;
-      } else if (log.action === LogAction.GOAL_SAVED) {
-        acc[log.playerId].goalsSaved += 1;
-      } else if (log.action === LogAction.PENALTY) {
-        acc[log.playerId].penalties += 1;
-      } else if (log.action === LogAction.FOUL) {
-        acc[log.playerId].fouls += 1;
-      }
-      return acc;
-    }, {} as Record<string, { goals: number; goalsSaved: number; penalties: number; fouls: number }>);
+    const playerWiseStats = logs.reduce(
+      (acc, log) => {
+        if (!acc[log.playerId]) {
+          acc[log.playerId] = {
+            goals: 0,
+            goalsSaved: 0,
+            penalties: 0,
+            fouls: 0,
+          };
+        }
+        if (log.action === LogAction.GOAL) {
+          acc[log.playerId].goals += 1;
+        } else if (log.action === LogAction.DELETED_GOAL) {
+          acc[log.playerId].goals -= 1;
+        } else if (log.action === LogAction.GOAL_SAVED) {
+          acc[log.playerId].goalsSaved += 1;
+        } else if (log.action === LogAction.PENALTY) {
+          acc[log.playerId].penalties += 1;
+        } else if (log.action === LogAction.FOUL) {
+          acc[log.playerId].fouls += 1;
+        }
+        return acc;
+      },
+      {} as Record<
+        string,
+        { goals: number; goalsSaved: number; penalties: number; fouls: number }
+      >
+    );
 
     const playerWithDetails = players.map((p) => getPlayerInfo(p.id));
 
@@ -130,12 +141,12 @@ const main = async () => {
         const teamPoints =
           leaderboard.find((l) => l.id === teamId)?.points || 0;
 
-          const {
-            goals = 0,
-            goalsSaved = 0,
-            penalties = 0,
-            fouls = 0,
-          } = playerWiseStats[id] || {};
+        const {
+          goals = 0,
+          goalsSaved = 0,
+          penalties = 0,
+          fouls = 0,
+        } = playerWiseStats[id] || {};
 
         return {
           ...playerInfo,
@@ -163,13 +174,16 @@ const main = async () => {
       signingInstructions: "signTypedData(domain, schema.types, inputs)",
       domain: stackrConfig.domain,
       transitionToSchema,
-      schemas: Object.values(schemas).reduce((acc, schema) => {
-        acc[schema.identifier] = {
-          primaryType: schema.EIP712TypedData.primaryType,
-          types: schema.EIP712TypedData.types,
-        };
-        return acc;
-      }, {} as Record<string, any>),
+      schemas: Object.values(schemas).reduce(
+        (acc, schema) => {
+          acc[schema.identifier] = {
+            primaryType: schema.EIP712TypedData.primaryType,
+            types: schema.EIP712TypedData.types,
+          };
+          return acc;
+        },
+        {} as Record<string, any>
+      ),
     });
   });
 
@@ -317,6 +331,42 @@ const main = async () => {
       goalCount,
       goals,
     });
+  });
+
+  app.get("/awards", (_req: Request, res: Response) => {
+    const { state } = machine;
+    const leaderboard = getLeaderboard(state);
+    const { logs, players } = state;
+    const sortedPlayersWithDetails = getPlayerLeaderboard(
+      players,
+      logs,
+      leaderboard
+    );
+    const goldenBall = sortedPlayersWithDetails.sort(
+      (a, b) => b.points - a.points
+    )[0];
+    const goldenBoot = sortedPlayersWithDetails.sort(
+      (a, b) => b.goals - a.goals
+    )[0];
+    const goldenGlove = sortedPlayersWithDetails.sort(
+      (a, b) => b.goalsSaved - a.goalsSaved
+    )[0];
+
+    return res.send({ goldenBall, goldenBoot, goldenGlove });
+  });
+
+  app.get("/tournament-info", (_req: Request, res: Response) => {
+    const { meta, teams } = machine.state;
+
+    const tournament = {
+      ...meta,
+      winnerTeam:
+        meta.winnerTeamId !== 0
+          ? teams.find((t) => t.id === meta.winnerTeamId)
+          : null,
+    };
+
+    return res.send({ tournament });
   });
 
   app.get("/", (_req: Request, res: Response) => {
