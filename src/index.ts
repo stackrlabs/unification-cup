@@ -342,15 +342,15 @@ const main = async () => {
       logs,
       leaderboard
     );
-    const goldenBall = sortedPlayersWithDetails.sort(
+    const [goldenBall] = sortedPlayersWithDetails.sort(
       (a, b) => b.points - a.points
-    )[0];
-    const goldenBoot = sortedPlayersWithDetails.sort(
+    );
+    const [goldenBoot] = sortedPlayersWithDetails.sort(
       (a, b) => b.goals - a.goals
-    )[0];
-    const goldenGlove = sortedPlayersWithDetails.sort(
+    );
+    const [goldenGlove] = sortedPlayersWithDetails.sort(
       (a, b) => b.goalsSaved - a.goalsSaved
-    )[0];
+    );
 
     return res.send({ goldenBall, goldenBoot, goldenGlove });
   });
@@ -359,10 +359,7 @@ const main = async () => {
     const { meta, teams } = machine.state;
     const tournament = {
       ...meta,
-      winnerTeam:
-        meta.winnerTeamId !== 0
-          ? teams.find((t) => t.id === meta.winnerTeamId)
-          : null,
+      winnerTeam: teams.find((t) => t.id === meta.winnerTeamId),
     };
 
     return res.send({ tournament });
