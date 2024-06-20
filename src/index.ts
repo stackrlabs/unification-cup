@@ -357,7 +357,6 @@ const main = async () => {
 
   app.get("/tournament-info", (_req: Request, res: Response) => {
     const { meta, teams } = machine.state;
-
     const tournament = {
       ...meta,
       winnerTeam:
