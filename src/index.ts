@@ -184,11 +184,14 @@ const main = async () => {
     }
 
     try {
-      const inputs = {
-        ...req.body,
-        timestamp: Date.now(),
-      };
-      const signedAction = await signAsOperator(reducerName, inputs);
+      const { msgSender, signature, inputs } = req.body;
+      const actionSchema = stfSchemaMap[reducerName as keyof typeof schemas];
+      // const signedAction = await signAsOperator(reducerName, inputs);
+      const signedAction = actionSchema.actionFrom({
+        msgSender,
+        signature,
+        inputs,
+      });
       const ack = await mru.submitAction(reducerName, signedAction);
       // const { errors } = await ack.waitFor(ActionConfirmationStatus.C1);
       // if (errors?.length) {
