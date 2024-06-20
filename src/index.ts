@@ -19,7 +19,7 @@ dotenv.config();
 
 import { MicroRollup } from "@stackr/sdk";
 import { Logs, Player } from "./stackr/state.ts";
-import { signAsOperator } from "./utils.ts";
+import { canAddressSubmitAction } from "./utils.ts";
 
 export const stfSchemaMap = {
   startMatch: schemas.startMatch,
@@ -199,6 +199,13 @@ const main = async () => {
 
     try {
       const { msgSender, signature, inputs } = req.body;
+
+      // reject right away if msgSender is not authorized to submit actions
+      if (!canAddressSubmitAction(mru, String(msgSender))) {
+        res.status(401).send({ error: "UNAUTHORIZED_FOR_ACTION" });
+        return;
+      }
+
       const actionSchema = stfSchemaMap[reducerName as keyof typeof schemas];
       // const signedAction = await signAsOperator(reducerName, inputs);
       const signedAction = actionSchema.actionFrom({
