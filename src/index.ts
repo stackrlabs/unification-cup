@@ -365,7 +365,7 @@ const main = async () => {
       winnerTeam: teams.find((t) => t.id === meta.winnerTeamId),
     };
 
-    return res.send({ tournament });
+    return res.send(tournament);
   });
 
   app.get("/", (_req: Request, res: Response) => {
