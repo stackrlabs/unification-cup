@@ -27,6 +27,13 @@ export type LeaderboardEntry = {
   captainId: number;
 };
 
+export const canAddressSubmitAction = (
+  state: LeagueState,
+  address: string
+): boolean => {
+  return state.admins.includes(address);
+};
+
 const areAllMatchesComplete = (state: LeagueState) => {
   return state.matches.every((m) => m.endTime);
 };

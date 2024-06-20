@@ -1,17 +1,7 @@
-import { MicroRollupResponse } from "@stackr/sdk";
 import { ethers } from "ethers";
-import { stfSchemaMap } from ".";
-import { stackrConfig } from "../stackr.config";
 import { schemas } from "./stackr/actions";
-import { LeagueMachine } from "./stackr/machines";
-
-export const canAddressSubmitAction = (
-  mru: MicroRollupResponse,
-  address: string
-): boolean => {
-  const { admins } = mru.stateMachines.getFirst<LeagueMachine>().state;
-  return admins.includes(address);
-};
+import { stackrConfig } from "../stackr.config";
+import { stfSchemaMap } from ".";
 
 /**
  * Sign and submit action as operator
@@ -19,7 +9,7 @@ export const canAddressSubmitAction = (
  * @param inputs
  * @returns signed action
  */
-export const signAsOperator = async (schemaName: string, inputs: any) => {
+const signAsOperator = async (schemaName: string, inputs: any) => {
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY as string);
   const actionSchema = stfSchemaMap[schemaName as keyof typeof schemas];
 
@@ -36,3 +26,5 @@ export const signAsOperator = async (schemaName: string, inputs: any) => {
     inputs,
   });
 };
+
+export { signAsOperator };

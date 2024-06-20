@@ -9,6 +9,7 @@ import {
   STATE_MACHINES,
 } from "./stackr/machines.ts";
 import {
+  canAddressSubmitAction,
   getLeaderboard,
   LeaderboardEntry,
   LogAction,
@@ -19,7 +20,6 @@ dotenv.config();
 
 import { MicroRollup } from "@stackr/sdk";
 import { Logs, Player } from "./stackr/state.ts";
-import { canAddressSubmitAction } from "./utils.ts";
 
 export const stfSchemaMap = {
   startTournament: schemas.startTournament,
@@ -201,7 +201,7 @@ const main = async () => {
       const { msgSender, signature, inputs } = req.body;
 
       // reject right away if msgSender is not authorized to submit actions
-      if (!canAddressSubmitAction(mru, String(msgSender))) {
+      if (!canAddressSubmitAction(machine.state, String(msgSender))) {
         res.status(401).send({ error: "UNAUTHORIZED_FOR_ACTION" });
         return;
       }
