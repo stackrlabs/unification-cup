@@ -67,12 +67,6 @@ export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
     leaderboard[winnerIndex].won += 1;
     leaderboard[loserIndex].lost += 1;
 
-    if (hadOvertime) {
-      leaderboard[winnerIndex].points += 2;
-      leaderboard[loserIndex].points += 1;
-      return;
-    }
-
     leaderboard[winnerIndex].points += 3;
   });
 
