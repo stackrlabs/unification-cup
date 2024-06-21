@@ -9,6 +9,7 @@ import {
   STATE_MACHINES,
 } from "./stackr/machines.ts";
 import {
+  canAddressSubmitAction,
   getLeaderboard,
   LeaderboardEntry,
   LogAction,
@@ -198,6 +199,13 @@ const main = async () => {
 
     try {
       const { msgSender, signature, inputs } = req.body;
+
+      // reject right away if msgSender is not authorized to submit actions
+      if (!canAddressSubmitAction(machine.state, String(msgSender))) {
+        res.status(401).send({ error: "UNAUTHORIZED_FOR_ACTION" });
+        return;
+      }
+
       const actionSchema = stfSchemaMap[reducerName as keyof typeof schemas];
       // const signedAction = await signAsOperator(reducerName, inputs);
       const signedAction = actionSchema.actionFrom({
