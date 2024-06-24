@@ -13,7 +13,7 @@ const stackrConfig: StackrConfig = {
   },
   sequencer: {
     blockSize: 16,
-    blockTime: 10,
+    blockTime: 1_000,
   },
   syncer: {
     slotTime: 1000,

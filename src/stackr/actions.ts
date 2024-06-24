@@ -19,10 +19,16 @@ const matchPlayerAction = new ActionSchema("matchPlayerAction", {
   ...baseTimeStamp,
 });
 
+const teamActionSchema = new ActionSchema("teamAction", {
+  teamId: SolidityType.UINT,
+  ...baseTimeStamp,
+});
+
 export const schemas = {
   startMatch: matchAction,
-  addOvertime: matchAction,
+  // addOvertime: matchAction,
   endMatch: matchAction,
   recordGoal: matchPlayerAction,
   startTournament: startTournamentSchema,
+  logByes: teamActionSchema,
 };

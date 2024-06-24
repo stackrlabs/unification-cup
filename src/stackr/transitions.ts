@@ -13,6 +13,10 @@ type MatchRequest = {
   matchId: number;
 };
 
+type TeamRequest = {
+  teamId: number;
+};
+
 type GoalRequest = {
   matchId: number;
   playerId: number;
@@ -31,7 +35,9 @@ export const canAddressSubmitAction = (
   state: LeagueState,
   address: string
 ): boolean => {
-  return state.admins.includes(address);
+  // TODO: Implement this
+  // return state.admins.includes(address);
+  return true;
 };
 
 const areAllMatchesComplete = (state: LeagueState) => {
@@ -43,7 +49,7 @@ const hasTournamentEnded = (state: LeagueState) => {
 };
 
 export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
-  const { teams, matches } = state;
+  const { teams, matches, meta } = state;
   const completedMatches = matches.filter((m) => m.endTime);
 
   const leaderboard = teams.map((team) => {
@@ -55,8 +61,15 @@ export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
     };
   });
 
+  if (meta.byes.length) {
+    meta.byes.forEach((bye) => {
+      const teamIndex = leaderboard.findIndex((l) => l.id === bye.teamId);
+      leaderboard[teamIndex].points += 1;
+    });
+  }
+
   completedMatches.forEach((match) => {
-    const { scores, hadOvertime } = match;
+    const { scores } = match;
     const [a, b] = Object.keys(scores);
     const winner = scores[a] > scores[b] ? a : b;
     const loser = scores[a] > scores[b] ? b : a;
@@ -79,33 +92,43 @@ const getTopNTeams = (state: LeagueState, n?: number) => {
   }
 
   const leaderboard = getLeaderboard(state);
-  return leaderboard.slice(0, n).map((l) => l.id);
+  return leaderboard.slice(0, n);
 };
 
 const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
-  if (!areAllMatchesComplete(state)) {
+  const { meta, teams } = state;
+  if (!areAllMatchesComplete(state) || !!meta.endTime) {
     return;
   }
 
-  // Increment round
-  state.meta.round += 1;
-
-  const { meta, teams } = state;
-
   const totalTeams = teams.length;
-  const teamsInCurrentRound = totalTeams / Math.pow(2, meta.round - 1);
+  const teamsInCurrentRound = Math.ceil(totalTeams / Math.pow(2, meta.round));
 
   const topTeams = getTopNTeams(state, teamsInCurrentRound);
 
   if (teamsInCurrentRound === 1) {
-    state.meta.winnerTeamId = topTeams[0];
+    state.meta.winnerTeamId = topTeams[0].id;
     state.meta.endTime = blockTime;
     return;
   }
 
   if (teamsInCurrentRound % 2 !== 0) {
-    // TODO: Handle odd number of teams for cases like 6, 12 and so on
-    throw new Error("INVALID_TEAM_COUNT");
+    const allTeamsHaveSamePoints =
+      topTeams[0].points === topTeams[teamsInCurrentRound - 1].points;
+
+    if (allTeamsHaveSamePoints) {
+      return;
+    }
+
+    const oneTeamHasHigherPoints =
+      topTeams[0].points > topTeams[1].points &&
+      topTeams[0].points > topTeams[2].points;
+    // plan the match the rest of even teams
+    if (oneTeamHasHigherPoints) {
+      topTeams.shift();
+    } else {
+      topTeams.pop();
+    }
   }
 
   for (let i = 0; i < topTeams.length; i += 2) {
@@ -113,12 +136,14 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
     const team2 = topTeams[i + 1];
     state.matches.push({
       id: state.matches.length + 1,
-      scores: { [team1]: 0, [team2]: 0 },
+      scores: { [team1.id]: 0, [team2.id]: 0 },
       startTime: 0,
       endTime: 0,
-      hadOvertime: false,
     });
   }
+
+  // Increment round
+  state.meta.round += 1;
 };
 
 const getValidMatchAndTeam = (
@@ -251,19 +276,19 @@ const removeGoal: STF<League, GoalRequest> = {
   },
 };
 
-const addOvertime: STF<League, MatchRequest> = {
-  handler: ({ state, inputs }) => {
-    const { matchId } = inputs;
+// const addOvertime: STF<League, MatchRequest> = {
+//   handler: ({ state, inputs }) => {
+//     const { matchId } = inputs;
 
-    const matchIndex = state.matches.findIndex((m) => m.id === matchId);
-    if (matchIndex === -1) {
-      throw new Error("MATCH_NOT_FOUND");
-    }
+//     const matchIndex = state.matches.findIndex((m) => m.id === matchId);
+//     if (matchIndex === -1) {
+//       throw new Error("MATCH_NOT_FOUND");
+//     }
 
-    state.matches[matchIndex].hadOvertime = true;
-    return state;
-  },
-};
+//     state.matches[matchIndex].hadOvertime = true;
+//     return state;
+//   },
+// };
 
 const endMatch: STF<League, MatchRequest> = {
   handler: ({ state, inputs, block }) => {
@@ -328,13 +353,22 @@ const logFoul: STF<League, GoalRequest> = {
   },
 };
 
+const logByes: STF<League, TeamRequest> = {
+  handler: ({ state, inputs, block }) => {
+    const { teamId } = inputs;
+    state.meta.byes.push({ teamId, round: state.meta.round });
+    computeMatchFixtures(state, block.timestamp);
+    return state;
+  },
+};
+
 export const transitions: Transitions<League> = {
   startMatch,
   endMatch,
   recordGoal,
   removeGoal,
   startTournament,
-  addOvertime,
+  logByes,
   logPenalty,
   logGoalSaved,
   logFoul,

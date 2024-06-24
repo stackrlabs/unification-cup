@@ -5,7 +5,8 @@
       "round": 0,
       "winnerTeamId": 0,
       "startTime": 0,
-      "endTime": 0
+      "endTime": 0,
+      "byes": []
     },
     "matches": [],
     "teams": [
@@ -38,16 +39,6 @@
           "id": 6,
           "name": "Tottenham",
           "captainId": 56
-        },
-        {
-          "id": 7,
-          "name": "Everton",
-          "captainId": 67
-        },
-        {
-          "id": 8,
-          "name": "West Ham United",
-          "captainId": 78
         }
     ],
     "players": [
@@ -116,29 +107,11 @@
         {"id": 63, "name": "Pierre-Emile Højbjerg", "teamId": 6},
         {"id": 64, "name": "Rodrigo Bentancur", "teamId": 6},
         {"id": 65, "name": "Heung-min Son", "teamId": 6},
-        {"id": 66, "name": "Harry Kane", "teamId": 6},
-        {"id": 67, "name": "Jordan Pickford", "teamId": 7},
-        {"id": 68, "name": "Asmir Begović", "teamId": 7},
-        {"id": 69, "name": "Seamus Coleman", "teamId": 7},
-        {"id": 70, "name": "Michael Keane", "teamId": 7},
-        {"id": 71, "name": "James Tarkowski", "teamId": 7},
-        {"id": 72, "name": "Ben Godfrey", "teamId": 7},
-        {"id": 73, "name": "Vitaliy Mykolenko", "teamId": 7},
-        {"id": 74, "name": "Abdoulaye Doucouré", "teamId": 7},
-        {"id": 75, "name": "Amadou Onana", "teamId": 7},
-        {"id": 76, "name": "Alex Iwobi", "teamId": 7},
-        {"id": 77, "name": "Dominic Calvert-Lewin", "teamId": 7},
-        {"id": 78, "name": "Łukasz Fabiański", "teamId": 8},
-        {"id": 79, "name": "Alphonse Areola", "teamId": 8},
-        {"id": 80, "name": "Kurt Zouma", "teamId": 8},
-        {"id": 81, "name": "Angelo Ogbonna", "teamId": 8},
-        {"id": 82, "name": "Craig Dawson", "teamId": 8},
-        {"id": 83, "name": "Aaron Cresswell", "teamId": 8},
-        {"id": 84, "name": "Vladimír Coufal", "teamId": 8},
-        {"id": 85, "name": "Declan Rice", "teamId": 8},
-        {"id": 86, "name": "Tomáš Souček", "teamId": 8},
-        {"id": 87, "name": "Jarrod Bowen", "teamId": 8},
-        {"id": 88, "name": "Michail Antonio", "teamId": 8}
+        {
+          "id": 66,
+          "name": "Harry Kane",
+          "teamId": 6
+        }
     ],
     "logs": []
   }

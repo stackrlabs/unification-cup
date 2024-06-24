@@ -29,8 +29,8 @@ export const stfSchemaMap = {
   logPenalty: schemas.recordGoal,
   logGoalSaved: schemas.recordGoal,
   logFoul: schemas.recordGoal,
-  addOvertime: schemas.addOvertime,
   endMatch: schemas.endMatch,
+  logByes: schemas.logByes,
 };
 
 const main = async () => {

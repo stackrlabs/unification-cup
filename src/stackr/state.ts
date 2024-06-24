@@ -7,6 +7,10 @@ type TournamentMeta = {
   startTime: number;
   endTime: number;
   winnerTeamId: number;
+  byes: {
+    teamId: number;
+    round: number;
+  }[];
 };
 
 type Team = {
@@ -20,7 +24,6 @@ type Match = {
   scores: Record<string, number>;
   startTime: number;
   endTime: number;
-  hadOvertime: boolean;
 };
 
 export type Player = {
@@ -51,27 +54,27 @@ export class League extends State<LeagueState> {
   }
 
   getRootHash(): string {
-    const adminsMerkleTree = createMT(this.state.admins, (a) =>
+    const { admins, teams, players, matches, meta, logs } = this.state;
+    const adminsMerkleTree = createMT(admins, (a) =>
       solidityPacked(["string"], [a])
     );
 
-    const teamsMerkleTree = createMT(this.state.teams, (t) =>
+    const teamsMerkleTree = createMT(teams, (t) =>
       solidityPacked(
         ["uint256", "string", "uint256"],
         [t.id, t.name, t.captainId]
       )
     );
 
-    const playersMerkleTree = createMT(this.state.players, (p) =>
+    const playersMerkleTree = createMT(players, (p) =>
       solidityPacked(["uint256", "string", "uint256"], [p.id, p.name, p.teamId])
     );
 
-    const matchesMMR = createMMR(this.state.matches, (m) => {
+    const matchesMMR = createMMR(matches, (m) => {
       const teamIds = Object.keys(m.scores).map((k) => parseInt(k));
       const scores = teamIds.map((id) => m.scores[id]);
       return solidityPacked(
         [
-          "uint256",
           "uint256",
           "uint256",
           "uint256",
@@ -88,12 +91,11 @@ export class League extends State<LeagueState> {
           scores[1] || 0,
           m.startTime || 0,
           m.endTime || 0,
-          m.hadOvertime ? 1 : 0,
         ]
       );
     });
 
-    const logsMMR = createMMR(this.state.logs, (l) =>
+    const logsMMR = createMMR(logs, (l) =>
       solidityPacked(
         ["uint256", "uint256", "string", "uint256"],
         [l.playerId, l.timestamp, l.action, l.matchId || 0]
@@ -102,8 +104,15 @@ export class League extends State<LeagueState> {
 
     const metaHash = keccak256(
       solidityPacked(
-        ["uint256", "uint256", "uint256", "uint256"],
-        Object.values(this.state.meta).map((v) => v || 0)
+        ["uint256", "uint256", "uint256", "uint256", "string"],
+        Object.values(meta).map((v) => {
+          if (typeof v === "number") {
+            return v;
+          }
+          return Object.entries(v)
+            .map(([k, v]) => `${k}:${v}`)
+            .join(",");
+        })
       )
     );
 
