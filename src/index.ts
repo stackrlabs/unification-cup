@@ -18,7 +18,11 @@ import {
 
 dotenv.config();
 
-import { MicroRollup } from "@stackr/sdk";
+import {
+  ActionConfirmationStatus,
+  ActionExecutionStatus,
+  MicroRollup,
+} from "@stackr/sdk";
 import { Logs, Player } from "./stackr/state.ts";
 
 export const stfSchemaMap = {
@@ -104,34 +108,28 @@ const main = async () => {
     logs: Logs[],
     leaderboard: LeaderboardEntry[]
   ) => {
-    const playerWiseStats = logs.reduce(
-      (acc, log) => {
-        if (!acc[log.playerId]) {
-          acc[log.playerId] = {
-            goals: 0,
-            goalsSaved: 0,
-            penalties: 0,
-            fouls: 0,
-          };
-        }
-        if (log.action === LogAction.GOAL) {
-          acc[log.playerId].goals += 1;
-        } else if (log.action === LogAction.DELETED_GOAL) {
-          acc[log.playerId].goals -= 1;
-        } else if (log.action === LogAction.GOAL_SAVED) {
-          acc[log.playerId].goalsSaved += 1;
-        } else if (log.action === LogAction.PENALTY) {
-          acc[log.playerId].penalties += 1;
-        } else if (log.action === LogAction.FOUL) {
-          acc[log.playerId].fouls += 1;
-        }
-        return acc;
-      },
-      {} as Record<
-        string,
-        { goals: number; goalsSaved: number; penalties: number; fouls: number }
-      >
-    );
+    const playerWiseStats = logs.reduce((acc, log) => {
+      if (!acc[log.playerId]) {
+        acc[log.playerId] = {
+          goals: 0,
+          goalsSaved: 0,
+          penalties: 0,
+          fouls: 0,
+        };
+      }
+      if (log.action === LogAction.GOAL) {
+        acc[log.playerId].goals += 1;
+      } else if (log.action === LogAction.DELETED_GOAL) {
+        acc[log.playerId].goals -= 1;
+      } else if (log.action === LogAction.GOAL_SAVED) {
+        acc[log.playerId].goalsSaved += 1;
+      } else if (log.action === LogAction.PENALTY) {
+        acc[log.playerId].penalties += 1;
+      } else if (log.action === LogAction.FOUL) {
+        acc[log.playerId].fouls += 1;
+      }
+      return acc;
+    }, {} as Record<string, { goals: number; goalsSaved: number; penalties: number; fouls: number }>);
 
     const playerWithDetails = players.map((p) => getPlayerInfo(p.id));
 
@@ -174,16 +172,13 @@ const main = async () => {
       signingInstructions: "signTypedData(domain, schema.types, inputs)",
       domain: stackrConfig.domain,
       transitionToSchema,
-      schemas: Object.values(schemas).reduce(
-        (acc, schema) => {
-          acc[schema.identifier] = {
-            primaryType: schema.EIP712TypedData.primaryType,
-            types: schema.EIP712TypedData.types,
-          };
-          return acc;
-        },
-        {} as Record<string, any>
-      ),
+      schemas: Object.values(schemas).reduce((acc, schema) => {
+        acc[schema.identifier] = {
+          primaryType: schema.EIP712TypedData.primaryType,
+          types: schema.EIP712TypedData.types,
+        };
+        return acc;
+      }, {} as Record<string, any>),
     });
   });
 
@@ -373,6 +368,41 @@ const main = async () => {
     };
 
     return res.send(tournament);
+  });
+
+  app.get("/actions", async (_req: Request, res: Response) => {
+    const actionsAndBlocks = await mru.actions.query({
+      executionStatus: ActionExecutionStatus.ACCEPTED,
+      confirmationStatus: [
+        ActionConfirmationStatus.C2,
+        ActionConfirmationStatus.C3A,
+        ActionConfirmationStatus.C3B,
+      ],
+      block: {
+        isReverted: false,
+      },
+    });
+
+    const actions = actionsAndBlocks.map((actionAndBlock) => {
+      return {
+        name: actionAndBlock.name,
+        payload: actionAndBlock.payload,
+        hash: actionAndBlock.hash,
+        block: actionAndBlock.block
+          ? {
+              height: actionAndBlock.block.height,
+              hash: actionAndBlock.block.hash,
+              timestamp: actionAndBlock.block.timestamp,
+              status: actionAndBlock.block.status,
+              daMetadata: actionAndBlock.block.batchInfo?.daMetadata || null,
+              l1TxHash:
+                actionAndBlock.block.batchInfo?.l1TransactionHash || null,
+            }
+          : null,
+      };
+    });
+
+    return res.send(actions);
   });
 
   app.get("/", (_req: Request, res: Response) => {
