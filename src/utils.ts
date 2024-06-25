@@ -29,48 +29,67 @@ const signAsOperator = async (schemaName: string, inputs: any) => {
 };
 
 type ActionInfo = {
-  matchId?: number;
-  teamId?: number;
-  playerId?: number;
-  teamName?: string;
-  playerName?: string;
+  match?: {
+    matchId: number;
+    team1Name?: string;
+    team1Id: number;
+    team2Name?: string;
+    team2Id: number;
+  };
+  team?: {
+    teamName: string;
+    teamId: number;
+  };
+  player?: {
+    playerName: string;
+    playerId: number;
+  };
 };
 
-const getActionInfo = (
-  actionName: string,
-  payload: any,
-  state: LeagueState
-): ActionInfo | null => {
-  if (actionName === "startMatch" || actionName === "endMatch") {
-    return {
+const getActionInfo = (payload: any, state: LeagueState): ActionInfo | null => {
+  const payloadKeys = Object.keys(payload);
+  const actionInfo: ActionInfo = {};
+
+  if (payloadKeys.includes("matchId")) {
+    const match = state.matches.find((match) => match.id === payload.matchId);
+    if (!match) {
+      return null;
+    }
+    const teamIds = Object.keys(match?.scores).map((k) => parseInt(k));
+    actionInfo.match = {
       matchId: payload.matchId,
+      team1Name: state.teams.find((team) => team.id === teamIds[0])?.name,
+      team1Id: teamIds[0],
+      team2Name: state.teams.find((team) => team.id === teamIds[1])?.name,
+      team2Id: teamIds[1],
     };
-  } else if (
-    actionName === "recordGoal" ||
-    actionName === "removeGoal" ||
-    actionName === "logGoalSaved" ||
-    actionName === "logPenalty" ||
-    actionName === "logFoul"
-  ) {
-    const playerName = state.players.find(
-      (player) => player.id === payload.playerId
-    )?.name;
-    return {
-      matchId: payload.matchId,
-      playerId: payload.playerId,
-      playerName: playerName,
-    };
-  } else if (actionName === "logByes") {
-    const teamName = state.teams.find(
-      (team) => team.id === payload.teamId
-    )?.name;
-    return {
-      teamId: payload.teamId,
-      teamName: teamName,
-    };
-  } else {
-    return null;
   }
+
+  if (payloadKeys.includes("playerId")) {
+    const player = state.players.find(
+      (player) => player.id === payload.playerId
+    );
+    if (!player) {
+      return null;
+    }
+    actionInfo.player = {
+      playerName: player.name,
+      playerId: payload.playerId,
+    };
+  }
+
+  if (payloadKeys.includes("teamId")) {
+    const team = state.teams.find((team) => team.id === payload.teamId);
+    if (!team) {
+      return null;
+    }
+    actionInfo.team = {
+      teamName: team.name,
+      teamId: payload.teamId,
+    };
+  }
+
+  return Object.keys(actionInfo).length ? actionInfo : null;
 };
 
 export { signAsOperator, getActionInfo };

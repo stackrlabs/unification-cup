@@ -385,16 +385,12 @@ const main = async () => {
     });
 
     const actions = actionsAndBlocks.map((actionAndBlock) => {
-      const actionInfo = getActionInfo(
-        actionAndBlock.name,
-        actionAndBlock.payload,
-        machine.state
-      );
+      const actionInfo = getActionInfo(actionAndBlock.payload, machine.state);
       return {
         name: actionAndBlock.name,
         payload: actionAndBlock.payload,
         hash: actionAndBlock.hash,
-        actionInfo: actionInfo,
+        actionInfo,
         blockInfo: actionAndBlock.block
           ? {
               height: actionAndBlock.block.height,
