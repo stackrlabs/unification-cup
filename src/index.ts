@@ -24,6 +24,7 @@ import {
   MicroRollup,
 } from "@stackr/sdk";
 import { Logs, Player } from "./stackr/state.ts";
+import { getActionInfo } from "./utils.ts";
 
 export const stfSchemaMap = {
   startTournament: schemas.startTournament,
@@ -384,10 +385,16 @@ const main = async () => {
     });
 
     const actions = actionsAndBlocks.map((actionAndBlock) => {
+      const actionInfo = getActionInfo(
+        actionAndBlock.name,
+        actionAndBlock.payload,
+        machine.state
+      );
       return {
         name: actionAndBlock.name,
         payload: actionAndBlock.payload,
         hash: actionAndBlock.hash,
+        actionInfo: actionInfo,
         blockInfo: actionAndBlock.block
           ? {
               height: actionAndBlock.block.height,
