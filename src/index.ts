@@ -388,7 +388,7 @@ const main = async () => {
         name: actionAndBlock.name,
         payload: actionAndBlock.payload,
         hash: actionAndBlock.hash,
-        block: actionAndBlock.block
+        blockInfo: actionAndBlock.block
           ? {
               height: actionAndBlock.block.height,
               hash: actionAndBlock.block.hash,
