@@ -100,12 +100,12 @@ export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
 
   const matchWiseTeamWisePenalties = getMatchwisePenalties(state);
   completedMatches.forEach((match) => {
-    const { scores } = match;
+    const { scores, id } = match;
     const [a, b] = Object.keys(scores);
 
     const finalScores = {
-      [a]: scores[a] + matchWiseTeamWisePenalties[a] || 0,
-      [b]: scores[b] + matchWiseTeamWisePenalties[b] || 0,
+      [a]: scores[a] + matchWiseTeamWisePenalties?.[id]?.[a] || 0,
+      [b]: scores[b] + matchWiseTeamWisePenalties?.[id]?.[b] || 0,
     };
 
     const winner = finalScores[a] > finalScores[b] ? a : b;
