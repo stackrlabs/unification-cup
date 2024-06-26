@@ -55,6 +55,7 @@ const getActionInfo = (
         team2Name: state.teams.find((team) => team.id === teamIds[1])?.name,
       };
       actionInfo.matchName = `#${matchInfo.matchId} ${matchInfo.team1Name} vs ${matchInfo.team2Name}`;
+      return;
     }
 
     if (key === "playerId") {
@@ -65,6 +66,7 @@ const getActionInfo = (
         return null;
       }
       actionInfo.playerName = player.name;
+      return;
     }
 
     if (key === "teamId") {

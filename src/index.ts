@@ -372,17 +372,20 @@ const main = async () => {
   });
 
   app.get("/actions", async (_req: Request, res: Response) => {
-    const actionsAndBlocks = await mru.actions.query({
-      executionStatus: ActionExecutionStatus.ACCEPTED,
-      confirmationStatus: [
-        ActionConfirmationStatus.C2,
-        ActionConfirmationStatus.C3A,
-        ActionConfirmationStatus.C3B,
-      ],
-      block: {
-        isReverted: false,
+    const actionsAndBlocks = await mru.actions.query(
+      {
+        executionStatus: ActionExecutionStatus.ACCEPTED,
+        confirmationStatus: [
+          ActionConfirmationStatus.C2,
+          ActionConfirmationStatus.C3A,
+          ActionConfirmationStatus.C3B,
+        ],
+        block: {
+          isReverted: false,
+        },
       },
-    });
+      false
+    );
 
     const actions = actionsAndBlocks.map((actionAndBlock) => {
       const { name, payload, hash, block } = actionAndBlock;
