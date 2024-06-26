@@ -385,21 +385,26 @@ const main = async () => {
     });
 
     const actions = actionsAndBlocks.map((actionAndBlock) => {
-      const actionInfo = getActionInfo(actionAndBlock.payload, machine.state);
+      const { name, payload, hash, block } = actionAndBlock;
+      const actionInfo = getActionInfo(payload, machine.state);
+
       return {
-        name: actionAndBlock.name,
-        payload: actionAndBlock.payload,
-        hash: actionAndBlock.hash,
+        name,
+        payload,
+        hash,
         actionInfo,
-        blockInfo: actionAndBlock.block
+        blockInfo: block
           ? {
-              height: actionAndBlock.block.height,
-              hash: actionAndBlock.block.hash,
-              timestamp: actionAndBlock.block.timestamp,
-              status: actionAndBlock.block.status,
-              daMetadata: actionAndBlock.block.batchInfo?.daMetadata || null,
-              l1TxHash:
-                actionAndBlock.block.batchInfo?.l1TransactionHash || null,
+              height: block.height,
+              hash: block.hash,
+              timestamp: block.timestamp,
+              status: block.status,
+              daMetadata: {
+                blockHeight:
+                  block.batchInfo?.daMetadata.avail.blockHeight || null,
+                extIdx: block.batchInfo?.daMetadata.avail.extIdx || null,
+              },
+              l1TxHash: block.batchInfo?.l1TransactionHash || null,
             }
           : null,
       };

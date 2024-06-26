@@ -29,67 +29,50 @@ const signAsOperator = async (schemaName: string, inputs: any) => {
 };
 
 type ActionInfo = {
-  match?: {
-    matchId: number;
-    team1Name?: string;
-    team1Id: number;
-    team2Name?: string;
-    team2Id: number;
-  };
-  team?: {
-    teamName: string;
-    teamId: number;
-  };
-  player?: {
-    playerName: string;
-    playerId: number;
-  };
+  matchName?: string;
+  teamName?: string;
+  playerName?: string;
 };
 
 const getActionInfo = (payload: any, state: LeagueState): ActionInfo | null => {
   const payloadKeys = Object.keys(payload);
   const actionInfo: ActionInfo = {};
 
-  if (payloadKeys.includes("matchId")) {
-    const match = state.matches.find((match) => match.id === payload.matchId);
-    if (!match) {
-      return null;
+  payloadKeys.forEach((key) => {
+    if (key === "matchId") {
+      const match = state.matches.find((match) => match.id === payload.matchId);
+      if (!match) {
+        return null;
+      }
+      const teamIds = Object.keys(match?.scores).map((k) => parseInt(k));
+      const matchInfo = {
+        matchId: payload.matchId,
+        team1Name: state.teams.find((team) => team.id === teamIds[0])?.name,
+        team2Name: state.teams.find((team) => team.id === teamIds[1])?.name,
+      };
+      actionInfo.matchName = `#${matchInfo.matchId} ${matchInfo.team1Name} vs ${matchInfo.team2Name}`;
     }
-    const teamIds = Object.keys(match?.scores).map((k) => parseInt(k));
-    actionInfo.match = {
-      matchId: payload.matchId,
-      team1Name: state.teams.find((team) => team.id === teamIds[0])?.name,
-      team1Id: teamIds[0],
-      team2Name: state.teams.find((team) => team.id === teamIds[1])?.name,
-      team2Id: teamIds[1],
-    };
-  }
 
-  if (payloadKeys.includes("playerId")) {
-    const player = state.players.find(
-      (player) => player.id === payload.playerId
-    );
-    if (!player) {
-      return null;
+    if (key === "playerId") {
+      const player = state.players.find(
+        (player) => player.id === payload.playerId
+      );
+      if (!player) {
+        return null;
+      }
+      actionInfo.playerName = player.name;
     }
-    actionInfo.player = {
-      playerName: player.name,
-      playerId: payload.playerId,
-    };
-  }
 
-  if (payloadKeys.includes("teamId")) {
-    const team = state.teams.find((team) => team.id === payload.teamId);
-    if (!team) {
-      return null;
+    if (key === "teamId") {
+      const team = state.teams.find((team) => team.id === payload.teamId);
+      if (!team) {
+        return null;
+      }
+      actionInfo.teamName = team.name;
     }
-    actionInfo.team = {
-      teamName: team.name,
-      teamId: payload.teamId,
-    };
-  }
+  });
 
-  return Object.keys(actionInfo).length ? actionInfo : null;
+  return actionInfo;
 };
 
 export { signAsOperator, getActionInfo };
