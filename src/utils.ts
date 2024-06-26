@@ -3,6 +3,7 @@ import { schemas } from "./stackr/actions";
 import { stackrConfig } from "../stackr.config";
 import { stfSchemaMap } from ".";
 import { LeagueState } from "./stackr/state";
+import { AllowedInputTypes } from "@stackr/sdk";
 
 /**
  * Sign and submit action as operator
@@ -34,7 +35,10 @@ type ActionInfo = {
   playerName?: string;
 };
 
-const getActionInfo = (payload: any, state: LeagueState): ActionInfo | null => {
+const getActionInfo = (
+  payload: AllowedInputTypes,
+  state: LeagueState
+): ActionInfo | null => {
   const payloadKeys = Object.keys(payload);
   const actionInfo: ActionInfo = {};
 
