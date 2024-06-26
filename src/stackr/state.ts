@@ -24,6 +24,7 @@ type Match = {
   scores: Record<string, number>;
   startTime: number;
   endTime: number;
+  penaltyStartTime: number;
 };
 
 export type Player = {
@@ -82,6 +83,7 @@ export class League extends State<LeagueState> {
           "uint256",
           "uint256",
           "uint256",
+          "uint256",
         ],
         [
           m.id,
@@ -91,6 +93,7 @@ export class League extends State<LeagueState> {
           scores[1] || 0,
           m.startTime || 0,
           m.endTime || 0,
+          m.penaltyStartTime || 0,
         ]
       );
     });

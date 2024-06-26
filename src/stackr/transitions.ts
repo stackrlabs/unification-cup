@@ -4,7 +4,8 @@ import { League, LeagueState } from "./state";
 export enum LogAction {
   GOAL = "GOAL",
   DELETED_GOAL = "DELETED_GOAL",
-  PENALTY = "PENALTY", // in case of a overtime (penalty shootout)
+  PENALTY_HIT = "PENALTY_HIT", // in case of a overtime (penalty shootout)
+  PENALTY_MISS = "PENALTY_MISS", // in case of a overtime (penalty shootout)
   GOAL_SAVED = "GOAL_SAVED",
   FOUL = "FOUL",
 }
@@ -48,6 +49,35 @@ const hasTournamentEnded = (state: LeagueState) => {
   return state.meta.winnerTeamId !== 0 && state.meta.endTime !== 0;
 };
 
+const getPlayerToTeam = (state: LeagueState) => {
+  return state.players.reduce((acc, p) => {
+    acc[p.id] = p.teamId;
+    return acc;
+  }, {} as Record<number, number>);
+};
+
+const getMatchwisePenalties = (state: LeagueState) => {
+  const playerToTeamId = getPlayerToTeam(state);
+  return state.logs
+    .filter((l) => l.action === LogAction.PENALTY_HIT)
+    .reduce((acc, l) => {
+      if (!l.matchId) {
+        return acc;
+      }
+      if (!acc[l.matchId]) {
+        acc[l.matchId] = {};
+      }
+
+      const teamId = playerToTeamId[l.playerId];
+      if (!acc[l.matchId][teamId]) {
+        acc[l.matchId][teamId] = 0;
+      }
+
+      acc[l.matchId][teamId] += 1;
+      return acc;
+    }, {} as any);
+};
+
 export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
   const { teams, matches, meta } = state;
   const completedMatches = matches.filter((m) => m.endTime);
@@ -68,11 +98,18 @@ export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
     });
   }
 
+  const matchWiseTeamWisePenalties = getMatchwisePenalties(state);
   completedMatches.forEach((match) => {
     const { scores } = match;
     const [a, b] = Object.keys(scores);
-    const winner = scores[a] > scores[b] ? a : b;
-    const loser = scores[a] > scores[b] ? b : a;
+
+    const finalScores = {
+      [a]: scores[a] + matchWiseTeamWisePenalties[a] || 0,
+      [b]: scores[b] + matchWiseTeamWisePenalties[b] || 0,
+    };
+
+    const winner = finalScores[a] > finalScores[b] ? a : b;
+    const loser = finalScores[a] > finalScores[b] ? b : a;
 
     const winnerIndex = leaderboard.findIndex((l) => l.id === +winner);
     const loserIndex = leaderboard.findIndex((l) => l.id === +loser);
@@ -139,6 +176,7 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
       scores: { [team1.id]: 0, [team2.id]: 0 },
       startTime: 0,
       endTime: 0,
+      penaltyStartTime: 0,
     });
   }
 
@@ -236,7 +274,31 @@ const startMatch: STF<League, MatchRequest> = {
   },
 };
 
-const recordGoal: STF<League, GoalRequest> = {
+const startPenaltyShootout: STF<League, MatchRequest> = {
+  handler: ({ state, inputs, block }) => {
+    if (hasTournamentEnded(state)) {
+      throw new Error("TOURNAMENT_ENDED");
+    }
+    const { matchId } = inputs;
+    const match = state.matches.find((m) => m.id === matchId);
+    if (!match) {
+      throw new Error("MATCH_NOT_FOUND");
+    }
+
+    if (!match.startTime) {
+      throw new Error("MATCH_NOT_STARTED");
+    }
+
+    if (match.penaltyStartTime) {
+      throw new Error("SHOOTOUT_ALREADY_STARTED");
+    }
+
+    match.penaltyStartTime = block.timestamp;
+    return state;
+  },
+};
+
+const logGoal: STF<League, GoalRequest> = {
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
     if (hasTournamentEnded(state)) {
@@ -316,16 +378,41 @@ const endMatch: STF<League, MatchRequest> = {
   },
 };
 
-const logPenalty: STF<League, GoalRequest> = {
+const logPenaltyHit: STF<League, GoalRequest> = {
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
-    logPlayerAction(
-      state,
-      matchId,
+
+    const { match } = getValidMatchAndTeam(state, matchId, playerId);
+    if (!match.penaltyStartTime) {
+      throw new Error("PENALTY_NOT_STARTED");
+    }
+
+    state.logs.push({
       playerId,
-      LogAction.PENALTY,
-      block.timestamp
-    );
+      matchId,
+      timestamp: block.timestamp,
+      action: LogAction.PENALTY_HIT,
+    });
+
+    return state;
+  },
+};
+
+const logPenaltyMiss: STF<League, GoalRequest> = {
+  handler: ({ state, inputs, block }) => {
+    const { matchId, playerId } = inputs;
+
+    const { match } = getValidMatchAndTeam(state, matchId, playerId);
+    if (!match.penaltyStartTime) {
+      throw new Error("PENALTY_NOT_STARTED");
+    }
+
+    state.logs.push({
+      playerId,
+      matchId,
+      timestamp: block.timestamp,
+      action: LogAction.PENALTY_MISS,
+    });
 
     return state;
   },
@@ -364,12 +451,14 @@ const logByes: STF<League, TeamRequest> = {
 
 export const transitions: Transitions<League> = {
   startMatch,
+  startPenaltyShootout,
   endMatch,
-  recordGoal,
+  logGoal,
   removeGoal,
   startTournament,
   logByes,
-  logPenalty,
+  logPenaltyHit,
+  logPenaltyMiss,
   logGoalSaved,
   logFoul,
 };

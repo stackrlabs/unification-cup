@@ -29,11 +29,13 @@ import { getActionInfo } from "./utils.ts";
 export const stfSchemaMap = {
   startTournament: schemas.startTournament,
   startMatch: schemas.startMatch,
-  recordGoal: schemas.recordGoal,
-  removeGoal: schemas.recordGoal,
-  logPenalty: schemas.recordGoal,
-  logGoalSaved: schemas.recordGoal,
-  logFoul: schemas.recordGoal,
+  logGoal: schemas.logGoal,
+  logFoul: schemas.logGoal,
+  logGoalSaved: schemas.logGoal,
+  startPenaltyShootout: schemas.startMatch,
+  logPenaltyHit: schemas.logGoal,
+  logPenaltyMiss: schemas.logGoal,
+  removeGoal: schemas.logGoal,
   endMatch: schemas.endMatch,
   logByes: schemas.logByes,
 };
@@ -115,6 +117,7 @@ const main = async () => {
           goals: 0,
           goalsSaved: 0,
           penalties: 0,
+          penaltyMisses: 0,
           fouls: 0,
         };
       }
@@ -124,13 +127,15 @@ const main = async () => {
         acc[log.playerId].goals -= 1;
       } else if (log.action === LogAction.GOAL_SAVED) {
         acc[log.playerId].goalsSaved += 1;
-      } else if (log.action === LogAction.PENALTY) {
+      } else if (log.action === LogAction.PENALTY_HIT) {
         acc[log.playerId].penalties += 1;
+      } else if (log.action === LogAction.PENALTY_MISS) {
+        acc[log.playerId].penaltyMisses += 1;
       } else if (log.action === LogAction.FOUL) {
         acc[log.playerId].fouls += 1;
       }
       return acc;
-    }, {} as Record<string, { goals: number; goalsSaved: number; penalties: number; fouls: number }>);
+    }, {} as Record<string, { goals: number; goalsSaved: number; penalties: number; penaltyMisses: number; fouls: number }>);
 
     const playerWithDetails = players.map((p) => getPlayerInfo(p.id));
 
@@ -145,6 +150,7 @@ const main = async () => {
           goalsSaved = 0,
           penalties = 0,
           fouls = 0,
+          penaltyMisses = 0,
         } = playerWiseStats[id] || {};
 
         return {
@@ -156,12 +162,13 @@ const main = async () => {
           points:
             goals * 10 +
             teamPoints * 5 +
-            goalsSaved * 3 +
+            goalsSaved * 5 +
             penalties * 3 -
+            penaltyMisses * 1 -
             fouls * 2,
         };
       })
-      .sort((a, b) => b.goals - a.goals);
+      .sort((a, b) => b.points - a.points);
 
     return sortedPlayersWithDetails;
   };

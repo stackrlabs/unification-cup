@@ -28,7 +28,7 @@ export const schemas = {
   startMatch: matchAction,
   // addOvertime: matchAction,
   endMatch: matchAction,
-  recordGoal: matchPlayerAction,
+  logGoal: matchPlayerAction,
   startTournament: startTournamentSchema,
   logByes: teamActionSchema,
 };
