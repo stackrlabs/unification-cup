@@ -24,6 +24,7 @@ import {
   MicroRollup,
 } from "@stackr/sdk";
 import { Logs, Player } from "./stackr/state.ts";
+import { PlayerStats } from "./types.ts";
 import { getActionInfo } from "./utils.ts";
 
 export const stfSchemaMap = {
@@ -115,7 +116,7 @@ const main = async () => {
       if (!acc[log.playerId]) {
         acc[log.playerId] = {
           goals: 0,
-          goalsSaved: 0,
+          blocks: 0,
           penalties: 0,
           penaltyMisses: 0,
           fouls: 0,
@@ -126,7 +127,7 @@ const main = async () => {
       } else if (log.action === LogAction.DELETED_GOAL) {
         acc[log.playerId].goals -= 1;
       } else if (log.action === LogAction.BLOCK) {
-        acc[log.playerId].goalsSaved += 1;
+        acc[log.playerId].blocks += 1;
       } else if (log.action === LogAction.PENALTY_HIT) {
         acc[log.playerId].penalties += 1;
       } else if (log.action === LogAction.PENALTY_MISS) {
@@ -135,7 +136,7 @@ const main = async () => {
         acc[log.playerId].fouls += 1;
       }
       return acc;
-    }, {} as Record<string, { goals: number; goalsSaved: number; penalties: number; penaltyMisses: number; fouls: number }>);
+    }, {} as Record<string, PlayerStats>);
 
     const playerWithDetails = players.map((p) => getPlayerInfo(p.id));
 
@@ -147,7 +148,7 @@ const main = async () => {
 
         const {
           goals = 0,
-          goalsSaved = 0,
+          blocks = 0,
           penalties = 0,
           fouls = 0,
           penaltyMisses = 0,
@@ -156,13 +157,13 @@ const main = async () => {
         return {
           ...playerInfo,
           goals,
-          goalsSaved,
+          blocks,
           penalties,
           fouls,
           points:
             goals * 10 +
             teamPoints * 5 +
-            goalsSaved * 5 +
+            blocks * 5 +
             penalties * 3 -
             penaltyMisses * 1 -
             fouls * 2,
@@ -362,7 +363,7 @@ const main = async () => {
       (a, b) => b.goals - a.goals
     );
     const [goldenGlove] = sortedPlayersWithDetails.sort(
-      (a, b) => b.goalsSaved - a.goalsSaved
+      (a, b) => b.blocks - a.blocks
     );
 
     return res.send({ goldenBall, goldenBoot, goldenGlove });
@@ -383,7 +384,7 @@ const main = async () => {
       {
         executionStatus: ActionExecutionStatus.ACCEPTED,
         confirmationStatus: [
-          ActionConfirmationStatus.C1,
+          ActionConfirmationStatus.C1, // quick
           ActionConfirmationStatus.C2,
           ActionConfirmationStatus.C3A,
           ActionConfirmationStatus.C3B,
