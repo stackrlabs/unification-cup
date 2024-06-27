@@ -162,9 +162,9 @@ const main = async () => {
           fouls,
           points:
             goals * 10 +
-            teamPoints * 5 +
-            blocks * 5 +
-            penalties * 3 -
+            teamPoints * 1 +
+            blocks * 7 +
+            penalties * 5 -
             penaltyMisses * 1 -
             fouls * 2,
         };
