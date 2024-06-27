@@ -326,6 +326,17 @@ const removeGoal: STF<League, GoalRequest> = {
     if (match.scores[teamId] === 0) {
       throw new Error("NO_GOALS_TO_REMOVE");
     }
+    const correspondingGoalIdx = state.logs.findIndex(
+      (l) =>
+        l.matchId === matchId &&
+        l.playerId === playerId &&
+        l.action === LogAction.GOAL
+    );
+
+    if (correspondingGoalIdx === -1) {
+      throw new Error("NO_GOALS_TO_REMOVE");
+    }
+
     match.scores[teamId] -= 1;
     state.logs.push({
       playerId,
