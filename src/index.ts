@@ -413,8 +413,8 @@ const main = async () => {
               status: block.status,
               daMetadata: {
                 blockHeight:
-                  block.batchInfo?.daMetadata.avail.blockHeight || null,
-                extIdx: block.batchInfo?.daMetadata.avail.extIdx || null,
+                  block.batchInfo?.daMetadata?.avail?.blockHeight || null,
+                extIdx: block.batchInfo?.daMetadata?.avail?.extIdx || null,
               },
               l1TxHash: block.batchInfo?.l1TransactionHash || null,
             }

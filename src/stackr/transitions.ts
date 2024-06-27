@@ -75,7 +75,7 @@ const getMatchwisePenalties = (state: LeagueState) => {
 
       acc[l.matchId][teamId] += 1;
       return acc;
-    }, {} as any);
+    }, {} as Record<number, Record<number, number>>);
 };
 
 export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
@@ -104,8 +104,8 @@ export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
     const [a, b] = Object.keys(scores);
 
     const finalScores = {
-      [a]: scores[a] + matchWiseTeamWisePenalties?.[id]?.[a] || 0,
-      [b]: scores[b] + matchWiseTeamWisePenalties?.[id]?.[b] || 0,
+      [a]: scores[a] + (matchWiseTeamWisePenalties?.[id]?.[+a] || 0),
+      [b]: scores[b] + (matchWiseTeamWisePenalties?.[id]?.[+b] || 0),
     };
 
     const winner = finalScores[a] > finalScores[b] ? a : b;
