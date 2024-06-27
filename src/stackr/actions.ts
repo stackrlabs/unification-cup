@@ -26,7 +26,6 @@ const teamActionSchema = new ActionSchema("teamAction", {
 
 export const schemas = {
   startMatch: matchAction,
-  // addOvertime: matchAction,
   endMatch: matchAction,
   logGoal: matchPlayerAction,
   startTournament: startTournamentSchema,

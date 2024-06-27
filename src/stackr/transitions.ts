@@ -3,10 +3,10 @@ import { League, LeagueState } from "./state";
 
 export enum LogAction {
   GOAL = "GOAL",
+  BLOCK = "BLOCK",
   DELETED_GOAL = "DELETED_GOAL",
   PENALTY_HIT = "PENALTY_HIT", // in case of a overtime (penalty shootout)
   PENALTY_MISS = "PENALTY_MISS", // in case of a overtime (penalty shootout)
-  GOAL_SAVED = "GOAL_SAVED",
   FOUL = "FOUL",
 }
 
@@ -404,16 +404,10 @@ const logPenaltyMiss: STF<League, GoalRequest> = {
   },
 };
 
-const logGoalSaved: STF<League, GoalRequest> = {
+const logBlock: STF<League, GoalRequest> = {
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
-    logPlayerAction(
-      state,
-      matchId,
-      playerId,
-      LogAction.GOAL_SAVED,
-      block.timestamp
-    );
+    logPlayerAction(state, matchId, playerId, LogAction.BLOCK, block.timestamp);
     return state;
   },
 };
@@ -443,8 +437,8 @@ export const transitions: Transitions<League> = {
   removeGoal,
   startTournament,
   logByes,
+  logBlock,
+  logFoul,
   logPenaltyHit,
   logPenaltyMiss,
-  logGoalSaved,
-  logFoul,
 };

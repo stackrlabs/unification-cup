@@ -31,7 +31,7 @@ export const stfSchemaMap = {
   startMatch: schemas.startMatch,
   logGoal: schemas.logGoal,
   logFoul: schemas.logGoal,
-  logGoalSaved: schemas.logGoal,
+  logBlock: schemas.logGoal,
   startPenaltyShootout: schemas.startMatch,
   logPenaltyHit: schemas.logGoal,
   logPenaltyMiss: schemas.logGoal,
@@ -125,7 +125,7 @@ const main = async () => {
         acc[log.playerId].goals += 1;
       } else if (log.action === LogAction.DELETED_GOAL) {
         acc[log.playerId].goals -= 1;
-      } else if (log.action === LogAction.GOAL_SAVED) {
+      } else if (log.action === LogAction.BLOCK) {
         acc[log.playerId].goalsSaved += 1;
       } else if (log.action === LogAction.PENALTY_HIT) {
         acc[log.playerId].penalties += 1;
@@ -383,6 +383,7 @@ const main = async () => {
       {
         executionStatus: ActionExecutionStatus.ACCEPTED,
         confirmationStatus: [
+          ActionConfirmationStatus.C1,
           ActionConfirmationStatus.C2,
           ActionConfirmationStatus.C3A,
           ActionConfirmationStatus.C3B,
