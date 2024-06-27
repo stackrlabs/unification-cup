@@ -323,10 +323,10 @@ const removeGoal: STF<League, GoalRequest> = {
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
     const { match, teamId } = getValidMatchAndTeam(state, matchId, playerId);
-
+    if (match.scores[teamId] === 0) {
+      throw new Error("NO_GOALS_TO_REMOVE");
+    }
     match.scores[teamId] -= 1;
-
-    // TODO: do we want visibility here? or we can simply remove the last logged goal with this playerId and matchId
     state.logs.push({
       playerId,
       matchId,
@@ -337,20 +337,6 @@ const removeGoal: STF<League, GoalRequest> = {
     return state;
   },
 };
-
-// const addOvertime: STF<League, MatchRequest> = {
-//   handler: ({ state, inputs }) => {
-//     const { matchId } = inputs;
-
-//     const matchIndex = state.matches.findIndex((m) => m.id === matchId);
-//     if (matchIndex === -1) {
-//       throw new Error("MATCH_NOT_FOUND");
-//     }
-
-//     state.matches[matchIndex].hadOvertime = true;
-//     return state;
-//   },
-// };
 
 const endMatch: STF<League, MatchRequest> = {
   handler: ({ state, inputs, block }) => {
