@@ -69,178 +69,178 @@ describe("Unification League MRU with 4 teams", async () => {
   };
 
   // start tests
-  // it("should be able complete a tournament", async () => {
-  //   expect(machine.state.teams.length).to.equal(4);
+  it("should be able complete a tournament", async () => {
+    expect(machine.state.teams.length).to.equal(4);
 
-  //   // 1. start tornament action
-  //   // const signedAction = await signAsOperator(reducerName, inputs);
-  //   await performAction("startTournament", {
-  //     timestamp: Date.now(),
-  //   });
-  //   await sleep(stackrConfig.sequencer.blockTime);
+    // 1. start tornament action
+    // const signedAction = await signAsOperator(reducerName, inputs);
+    await performAction("startTournament", {
+      timestamp: Date.now(),
+    });
+    await sleep(stackrConfig.sequencer.blockTime);
 
-  //   console.log("should have 2 match in the round 1");
-  //   expect(machine.state.meta.round).to.equal(1);
-  //   expect(machine.state.matches.length).to.equal(2);
+    console.log("should have 2 match in the round 1");
+    expect(machine.state.meta.round).to.equal(1);
+    expect(machine.state.matches.length).to.equal(2);
 
-  //   // start all the match one by one
-  //   // log some actions
-  //   machine.state.matches.forEach(async (match) => {
-  //     await performAction("startMatch", {
-  //       matchId: match.id,
-  //       timestamp: Date.now(),
-  //     });
-  //     const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
+    // start all the match one by one
+    // log some actions
+    machine.state.matches.forEach(async (match) => {
+      await performAction("startMatch", {
+        matchId: match.id,
+        timestamp: Date.now(),
+      });
+      const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
 
-  //     const team1Id = teamIds[0];
-  //     const players1 = machine.state.players.filter(
-  //       (p) => p.teamId === team1Id
-  //     );
-  //     if (!players1) {
-  //       throw new Error("Player not found");
-  //     }
+      const team1Id = teamIds[0];
+      const players1 = machine.state.players.filter(
+        (p) => p.teamId === team1Id
+      );
+      if (!players1) {
+        throw new Error("Player not found");
+      }
 
-  //     const team2Id = teamIds[1];
-  //     const players2 = machine.state.players.filter(
-  //       (p) => p.teamId === team2Id
-  //     );
-  //     if (!players2) {
-  //       throw new Error("Player not found");
-  //     }
+      const team2Id = teamIds[1];
+      const players2 = machine.state.players.filter(
+        (p) => p.teamId === team2Id
+      );
+      if (!players2) {
+        throw new Error("Player not found");
+      }
 
-  //     // first team score a goal
-  //     await performAction("logGoal", {
-  //       matchId: match.id,
-  //       playerId: players1[0].id,
-  //       timestamp: Date.now(),
-  //     });
+      // first team score a goal
+      await performAction("logGoal", {
+        matchId: match.id,
+        playerId: players1[0].id,
+        timestamp: Date.now(),
+      });
 
-  //     // second team score a goal
-  //     await performAction("logGoal", {
-  //       matchId: match.id,
-  //       playerId: players2[0].id,
-  //       timestamp: Date.now(),
-  //     });
+      // second team score a goal
+      await performAction("logGoal", {
+        matchId: match.id,
+        playerId: players2[0].id,
+        timestamp: Date.now(),
+      });
 
-  //     // first team score another goal
-  //     await performAction("logGoal", {
-  //       matchId: match.id,
-  //       playerId: players1[1].id,
-  //       timestamp: Date.now(),
-  //     });
+      // first team score another goal
+      await performAction("logGoal", {
+        matchId: match.id,
+        playerId: players1[1].id,
+        timestamp: Date.now(),
+      });
 
-  //     // second team saves a goal
-  //     await performAction("logBlock", {
-  //       matchId: match.id,
-  //       playerId: players2[1].id,
-  //       timestamp: Date.now(),
-  //     });
+      // second team saves a goal
+      await performAction("logBlock", {
+        matchId: match.id,
+        playerId: players2[1].id,
+        timestamp: Date.now(),
+      });
 
-  //     // first team does a foul
-  //     await performAction("logFoul", {
-  //       matchId: match.id,
-  //       playerId: players1[1].id,
-  //       timestamp: Date.now(),
-  //     });
+      // first team does a foul
+      await performAction("logFoul", {
+        matchId: match.id,
+        playerId: players1[1].id,
+        timestamp: Date.now(),
+      });
 
-  //     // end the game
-  //     await performAction("endMatch", {
-  //       matchId: match.id,
-  //       timestamp: Date.now(),
-  //     });
-  //   });
+      // end the game
+      await performAction("endMatch", {
+        matchId: match.id,
+        timestamp: Date.now(),
+      });
+    });
 
-  //   await sleep(stackrConfig.sequencer.blockTime);
+    await sleep(stackrConfig.sequencer.blockTime);
 
-  //   console.log("should have 1 final match at round 2");
-  //   expect(machine.state.meta.round).to.equal(2);
-  //   expect(machine.state.matches.length).to.equal(1);
+    console.log("should have 1 final match at round 2");
+    expect(machine.state.meta.round).to.equal(2);
+    expect(machine.state.matches.length).to.equal(1);
 
-  //   machine.state.matches.forEach(async (match) => {
-  //     await performAction("startMatch", {
-  //       matchId: match.id,
-  //       timestamp: Date.now(),
-  //     });
+    machine.state.matches.forEach(async (match) => {
+      await performAction("startMatch", {
+        matchId: match.id,
+        timestamp: Date.now(),
+      });
 
-  //     const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
+      const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
 
-  //     const team1Id = teamIds[0];
-  //     const players1 = machine.state.players.filter(
-  //       (p) => p.teamId === team1Id
-  //     );
-  //     if (!players1) {
-  //       throw new Error("Player not found");
-  //     }
+      const team1Id = teamIds[0];
+      const players1 = machine.state.players.filter(
+        (p) => p.teamId === team1Id
+      );
+      if (!players1) {
+        throw new Error("Player not found");
+      }
 
-  //     const team2Id = teamIds[1];
-  //     const players2 = machine.state.players.filter(
-  //       (p) => p.teamId === team2Id
-  //     );
-  //     if (!players2) {
-  //       throw new Error("Player not found");
-  //     }
+      const team2Id = teamIds[1];
+      const players2 = machine.state.players.filter(
+        (p) => p.teamId === team2Id
+      );
+      if (!players2) {
+        throw new Error("Player not found");
+      }
 
-  //     // first team score a goal
-  //     await performAction("logGoal", {
-  //       matchId: match.id,
-  //       playerId: players1[0].id,
-  //       timestamp: Date.now(),
-  //     });
+      // first team score a goal
+      await performAction("logGoal", {
+        matchId: match.id,
+        playerId: players1[0].id,
+        timestamp: Date.now(),
+      });
 
-  //     // second team score a goal
-  //     await performAction("logGoal", {
-  //       matchId: match.id,
-  //       playerId: players2[0].id,
-  //       timestamp: Date.now(),
-  //     });
+      // second team score a goal
+      await performAction("logGoal", {
+        matchId: match.id,
+        playerId: players2[0].id,
+        timestamp: Date.now(),
+      });
 
-  //     // start a penalty shootout
-  //     await performAction("startPenaltyShootout", {
-  //       matchId: match.id,
-  //       timestamp: Date.now(),
-  //     });
+      // start a penalty shootout
+      await performAction("startPenaltyShootout", {
+        matchId: match.id,
+        timestamp: Date.now(),
+      });
 
-  //     // first team penalty hit
-  //     await performAction("logPenaltyHit", {
-  //       matchId: match.id,
-  //       playerId: players1[0].id,
-  //       timestamp: Date.now(),
-  //     });
+      // first team penalty hit
+      await performAction("logPenaltyHit", {
+        matchId: match.id,
+        playerId: players1[0].id,
+        timestamp: Date.now(),
+      });
 
-  //     // second team penalty hit
-  //     await performAction("logPenaltyHit", {
-  //       matchId: match.id,
-  //       playerId: players2[1].id,
-  //       timestamp: Date.now(),
-  //     });
+      // second team penalty hit
+      await performAction("logPenaltyHit", {
+        matchId: match.id,
+        playerId: players2[1].id,
+        timestamp: Date.now(),
+      });
 
-  //     // first team penalty miss
-  //     await performAction("logPenaltyMiss", {
-  //       matchId: match.id,
-  //       playerId: players1[1].id,
-  //       timestamp: Date.now(),
-  //     });
+      // first team penalty miss
+      await performAction("logPenaltyMiss", {
+        matchId: match.id,
+        playerId: players1[1].id,
+        timestamp: Date.now(),
+      });
 
-  //     // second team penalty hit
-  //     await performAction("logPenaltyHit", {
-  //       matchId: match.id,
-  //       playerId: players2[2].id,
-  //       timestamp: Date.now(),
-  //     });
+      // second team penalty hit
+      await performAction("logPenaltyHit", {
+        matchId: match.id,
+        playerId: players2[2].id,
+        timestamp: Date.now(),
+      });
 
-  //     // end the game
-  //     await performAction("endMatch", {
-  //       matchId: match.id,
-  //       timestamp: Date.now(),
-  //     });
-  //   });
+      // end the game
+      await performAction("endMatch", {
+        matchId: match.id,
+        timestamp: Date.now(),
+      });
+    });
 
-  //   await sleep(stackrConfig.sequencer.blockTime);
+    await sleep(stackrConfig.sequencer.blockTime);
 
-  //   // check final state
-  //   // should have a winner
-  //   expect(machine.state.meta.winnerTeamId).to.not.equal(0);
-  // });
+    // check final state
+    // should have a winner
+    expect(machine.state.meta.winnerTeamId).to.not.equal(0);
+  });
 });
 
 // Test cases
