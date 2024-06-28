@@ -1,0 +1,82 @@
+{
+  "state": {
+    "admins": [],
+    "meta": {
+      "round": 0,
+      "winnerTeamId": 0,
+      "startTime": 0,
+      "endTime": 0,
+      "byes": []
+    },
+    "matches": [],
+    "teams": [
+      {
+        "id": 1,
+        "name": "Liverpool",
+        "captainId": 1
+      },
+      {
+        "id": 2,
+        "name": "Manchester United",
+        "captainId": 12
+      },
+      {
+        "id": 3,
+        "name": "Chelsea",
+        "captainId": 23
+      },
+      {
+        "id": 4,
+        "name": "Arsenal",
+        "captainId": 34
+      }
+    ],
+    "players": [
+      { "id": 1, "name": "Alisson Becker", "teamId": 1 },
+      { "id": 2, "name": "Caoimhin Kelleher", "teamId": 1 },
+      { "id": 3, "name": "Adrián", "teamId": 1 },
+      { "id": 4, "name": "Virgil van Dijk", "teamId": 1 },
+      { "id": 5, "name": "Ibrahima Konaté", "teamId": 1 },
+      { "id": 6, "name": "Joe Gomez", "teamId": 1 },
+      { "id": 7, "name": "Joël Matip", "teamId": 1 },
+      { "id": 8, "name": "Andrew Robertson", "teamId": 1 },
+      { "id": 9, "name": "Trent Alexander-Arnold", "teamId": 1 },
+      { "id": 10, "name": "Kostas Tsimikas", "teamId": 1 },
+      { "id": 11, "name": "Curtis Jones", "teamId": 1 },
+      { "id": 12, "name": "David de Gea", "teamId": 2 },
+      { "id": 13, "name": "Dean Henderson", "teamId": 2 },
+      { "id": 14, "name": "Tom Heaton", "teamId": 2 },
+      { "id": 15, "name": "Harry Maguire", "teamId": 2 },
+      { "id": 16, "name": "Raphaël Varane", "teamId": 2 },
+      { "id": 17, "name": "Victor Lindelöf", "teamId": 2 },
+      { "id": 18, "name": "Luke Shaw", "teamId": 2 },
+      { "id": 19, "name": "Aaron Wan-Bissaka", "teamId": 2 },
+      { "id": 20, "name": "Alex Telles", "teamId": 2 },
+      { "id": 21, "name": "Scott McTominay", "teamId": 2 },
+      { "id": 22, "name": "Fred", "teamId": 2 },
+      { "id": 23, "name": "Édouard Mendy", "teamId": 3 },
+      { "id": 24, "name": "Kepa Arrizabalaga", "teamId": 3 },
+      { "id": 25, "name": "Marcus Bettinelli", "teamId": 3 },
+      { "id": 26, "name": "Thiago Silva", "teamId": 3 },
+      { "id": 27, "name": "César Azpilicueta", "teamId": 3 },
+      { "id": 28, "name": "Reece James", "teamId": 3 },
+      { "id": 29, "name": "Ben Chilwell", "teamId": 3 },
+      { "id": 30, "name": "Antonio Rüdiger", "teamId": 3 },
+      { "id": 31, "name": "N'Golo Kanté", "teamId": 3 },
+      { "id": 32, "name": "Jorginho", "teamId": 3 },
+      { "id": 33, "name": "Mason Mount", "teamId": 3 },
+      { "id": 34, "name": "Aaron Ramsdale", "teamId": 4 },
+      { "id": 35, "name": "Matt Turner", "teamId": 4 },
+      { "id": 36, "name": "William Saliba", "teamId": 4 },
+      { "id": 37, "name": "Ben White", "teamId": 4 },
+      { "id": 38, "name": "Gabriel Magalhães", "teamId": 4 },
+      { "id": 39, "name": "Kieran Tierney", "teamId": 4 },
+      { "id": 40, "name": "Takehiro Tomiyasu", "teamId": 4 },
+      { "id": 41, "name": "Granit Xhaka", "teamId": 4 },
+      { "id": 42, "name": "Thomas Partey", "teamId": 4 },
+      { "id": 43, "name": "Martin Ødegaard", "teamId": 4 },
+      { "id": 44, "name": "Bukayo Saka", "teamId": 4 }
+    ],
+    "logs": []
+  }
+}
