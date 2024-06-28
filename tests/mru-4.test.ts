@@ -55,7 +55,10 @@ describe("League with 4 teams", async () => {
   machine = _machine;
 
   const performAction = async (schemaName: string, inputs: any) => {
-    const signedAction1 = await signAsOperator(schemaName, inputs);
+    const signedAction1 = await signAsOperator(schemaName, {
+      ...inputs,
+      timestamp: Date.now(),
+    });
     const ack1 = await mru.submitAction(schemaName, signedAction1);
     return await ack1.waitFor(ActionConfirmationStatus.C1);
   };
@@ -65,9 +68,7 @@ describe("League with 4 teams", async () => {
   });
 
   it("should be able to start a tournament", async () => {
-    await performAction("startTournament", {
-      timestamp: Date.now(),
-    });
+    await performAction("startTournament", {});
 
     // should have 2 matches in the first round
     expect(machine.state.meta.round).to.equal(1);
@@ -78,7 +79,6 @@ describe("League with 4 teams", async () => {
     for (const match of machine.state.matches) {
       await performAction("startMatch", {
         matchId: match.id,
-        timestamp: Date.now(),
       });
       const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
 
@@ -102,41 +102,35 @@ describe("League with 4 teams", async () => {
       await performAction("logGoal", {
         matchId: match.id,
         playerId: players1[0].id,
-        timestamp: Date.now(),
       });
 
       // second team score a goal
       await performAction("logGoal", {
         matchId: match.id,
         playerId: players2[0].id,
-        timestamp: Date.now(),
       });
 
       // first team score another goal
       await performAction("logGoal", {
         matchId: match.id,
         playerId: players1[1].id,
-        timestamp: Date.now(),
       });
 
       // second team saves a goal
       await performAction("logBlock", {
         matchId: match.id,
         playerId: players2[1].id,
-        timestamp: Date.now(),
       });
 
       // first team does a foul
       await performAction("logFoul", {
         matchId: match.id,
         playerId: players1[1].id,
-        timestamp: Date.now(),
       });
 
       // end the game
       await performAction("endMatch", {
         matchId: match.id,
-        timestamp: Date.now(),
       });
 
       // check winner
@@ -167,7 +161,6 @@ describe("League with 4 teams", async () => {
     const { logs, errors } = await performAction("logGoal", {
       matchId: match.id,
       playerId: players1[0].id,
-      timestamp: Date.now(),
     });
     // check error for "MATCH_NOT_STARTED"
     expect(errors).to.not.be.null;
@@ -184,7 +177,6 @@ describe("League with 4 teams", async () => {
       const matchIdx = machine.state.matches.findIndex((m) => m.id === matchId);
       await performAction("startMatch", {
         matchId,
-        timestamp: Date.now(),
       });
 
       const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
@@ -208,21 +200,18 @@ describe("League with 4 teams", async () => {
       await performAction("logGoal", {
         matchId,
         playerId: teamOnePlayers[0].id,
-        timestamp: Date.now(),
       });
 
       // first team score another goal
       await performAction("logGoal", {
         matchId,
         playerId: teamOnePlayers[1].id,
-        timestamp: Date.now(),
       });
 
       // removing a goal
       await performAction("removeGoal", {
         matchId,
         playerId: teamOnePlayers[1].id,
-        timestamp: Date.now(),
       });
 
       // try scoring a goal from a player that is not playing
@@ -232,7 +221,6 @@ describe("League with 4 teams", async () => {
       const { logs: logs1, errors: errors1 } = await performAction("logGoal", {
         matchId: match.id,
         playerId: playersNotPlaying[0].id,
-        timestamp: Date.now(),
       });
       // check error for "PLAYER_NOT_FOUND"
       expect(errors1).to.not.be.null;
@@ -244,7 +232,6 @@ describe("League with 4 teams", async () => {
         {
           matchId: match.id,
           playerId: teamTwoPlayers[0].id,
-          timestamp: Date.now(),
         }
       );
       // check error for "PLAYER_NOT_FOUND"
@@ -255,7 +242,6 @@ describe("League with 4 teams", async () => {
       await performAction("logGoal", {
         matchId,
         playerId: teamTwoPlayers[0].id,
-        timestamp: Date.now(),
       });
 
       // have equal scores
@@ -266,7 +252,6 @@ describe("League with 4 teams", async () => {
       // start a penalty shootout
       await performAction("startPenaltyShootout", {
         matchId,
-        timestamp: Date.now(),
       });
 
       expect(machine.state.matches[matchIdx].penaltyStartTime).to.not.equal(0);
@@ -275,34 +260,29 @@ describe("League with 4 teams", async () => {
       await performAction("logPenaltyHit", {
         matchId,
         playerId: teamOnePlayers[0].id,
-        timestamp: Date.now(),
       });
 
       // second team penalty hit
       await performAction("logPenaltyHit", {
         matchId,
         playerId: teamTwoPlayers[1].id,
-        timestamp: Date.now(),
       });
 
       // first team penalty miss
       await performAction("logPenaltyMiss", {
         matchId,
         playerId: teamOnePlayers[1].id,
-        timestamp: Date.now(),
       });
 
       // second team penalty hit
       await performAction("logPenaltyHit", {
         matchId,
         playerId: teamTwoPlayers[2].id,
-        timestamp: Date.now(),
       });
 
       // end the game
       await performAction("endMatch", {
         matchId,
-        timestamp: Date.now(),
       });
 
       const incompleteMatches = machine.state.matches.filter((m) => !m.endTime);
@@ -331,7 +311,6 @@ describe("League with 4 teams", async () => {
     const { logs, errors } = await performAction("logGoal", {
       matchId: match.id,
       playerId: players1[0].id,
-      timestamp: Date.now(),
     });
     // check error for "TOURNAMENT_ENDED"
     expect(errors).to.not.be.null;
@@ -340,7 +319,6 @@ describe("League with 4 teams", async () => {
 
   it("should end the tournament", async () => {
     expect(machine.state.meta.endTime).to.not.equal(0);
-    expect(machine.state.meta.winnerTeamId).to.not.equal(0);
     expect(machine.state.meta.winnerTeamId).to.equal(3);
   });
 });
