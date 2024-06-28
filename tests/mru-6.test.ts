@@ -57,7 +57,8 @@ describe("League with 6 teams", async () => {
   const performAction = async (schemaName: string, inputs: any) => {
     const signedAction1 = await signAsOperator(schemaName, inputs);
     const ack1 = await mru.submitAction(schemaName, signedAction1);
-    await ack1.waitFor(ActionConfirmationStatus.C1);
+    const action = await ack1.waitFor(ActionConfirmationStatus.C1);
+    return action;
   };
 
   it("has 6 teams", async () => {
@@ -83,53 +84,53 @@ describe("League with 6 teams", async () => {
       const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
 
       const team1Id = teamIds[0];
-      const players1 = machine.state.players.filter(
+      const teamOnePlayers = machine.state.players.filter(
         (p) => p.teamId === team1Id
       );
-      if (!players1) {
+      if (!teamOnePlayers) {
         throw new Error("Player not found");
       }
 
       const team2Id = teamIds[1];
-      const players2 = machine.state.players.filter(
+      const teamTwoPlayers = machine.state.players.filter(
         (p) => p.teamId === team2Id
       );
-      if (!players2) {
+      if (!teamTwoPlayers) {
         throw new Error("Player not found");
       }
 
       // first team score a goal
       await performAction("logGoal", {
         matchId: match.id,
-        playerId: players1[0].id,
+        playerId: teamOnePlayers[0].id,
         timestamp: Date.now(),
       });
 
       // second team score a goal
       await performAction("logGoal", {
         matchId: match.id,
-        playerId: players2[0].id,
+        playerId: teamTwoPlayers[0].id,
         timestamp: Date.now(),
       });
 
       // first team score another goal
       await performAction("logGoal", {
         matchId: match.id,
-        playerId: players1[1].id,
+        playerId: teamOnePlayers[1].id,
         timestamp: Date.now(),
       });
 
       // second team saves a goal
       await performAction("logBlock", {
         matchId: match.id,
-        playerId: players2[1].id,
+        playerId: teamTwoPlayers[1].id,
         timestamp: Date.now(),
       });
 
       // first team does a foul
       await performAction("logFoul", {
         matchId: match.id,
-        playerId: players1[1].id,
+        playerId: teamOnePlayers[1].id,
         timestamp: Date.now(),
       });
 
@@ -138,10 +139,15 @@ describe("League with 6 teams", async () => {
         matchId: match.id,
         timestamp: Date.now(),
       });
+
+      // check winner
+      const _match = machine.state.matches.find((m) => m.id === match.id);
+      // expect(_match?.scores[team1Id]).to.equal(2);
+      // expect(_match?.scores[team2Id]).to.equal(1);
+      expect(_match?.scores[team1Id]).to.greaterThan(_match?.scores[team2Id]!);
     }
 
     // no new match scheduled for odd teams
-
     // should have 0 incomplete match at round 2
     const incompleteMatches = machine.state.matches.filter((m) => !m.endTime);
     expect(incompleteMatches.length).to.equal(0);
@@ -176,53 +182,53 @@ describe("League with 6 teams", async () => {
       const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
 
       const team1Id = teamIds[0];
-      const players1 = machine.state.players.filter(
+      const teamOnePlayers = machine.state.players.filter(
         (p) => p.teamId === team1Id
       );
-      if (!players1) {
+      if (!teamOnePlayers) {
         throw new Error("Player not found");
       }
 
       const team2Id = teamIds[1];
-      const players2 = machine.state.players.filter(
+      const teamTwoPlayers = machine.state.players.filter(
         (p) => p.teamId === team2Id
       );
-      if (!players2) {
+      if (!teamTwoPlayers) {
         throw new Error("Player not found");
       }
 
       // first team score a goal
       await performAction("logGoal", {
         matchId: match.id,
-        playerId: players1[0].id,
+        playerId: teamOnePlayers[0].id,
         timestamp: Date.now(),
       });
 
       // second team score a goal
       await performAction("logGoal", {
         matchId: match.id,
-        playerId: players2[0].id,
+        playerId: teamTwoPlayers[0].id,
         timestamp: Date.now(),
       });
 
       // first team score another goal
       await performAction("logGoal", {
         matchId: match.id,
-        playerId: players1[1].id,
+        playerId: teamOnePlayers[1].id,
         timestamp: Date.now(),
       });
 
       // second team saves a goal
       await performAction("logBlock", {
         matchId: match.id,
-        playerId: players2[1].id,
+        playerId: teamTwoPlayers[1].id,
         timestamp: Date.now(),
       });
 
       // first team does a foul
       await performAction("logFoul", {
         matchId: match.id,
-        playerId: players1[1].id,
+        playerId: teamOnePlayers[1].id,
         timestamp: Date.now(),
       });
 
@@ -231,11 +237,38 @@ describe("League with 6 teams", async () => {
         matchId: match.id,
         timestamp: Date.now(),
       });
+
+      // check winner
+      const _match = machine.state.matches.find((m) => m.id === match.id);
+      expect(_match?.scores[team1Id]).to.equal(2);
+      expect(_match?.scores[team2Id]).to.equal(1);
+      expect(_match?.scores[team1Id]).to.greaterThan(_match?.scores[team2Id]!);
     }
 
     // should have 1 incomplete match at round 3
     const incompleteMatches = machine.state.matches.filter((m) => !m.endTime);
     expect(incompleteMatches.length).to.equal(1);
+  });
+
+  it("should not be able to score goal before a match starts", async () => {
+    const match = machine.state.matches.filter((m) => !m.endTime)[0];
+    const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
+    const team1Id = teamIds[0];
+    const teamOnePlayers = machine.state.players.filter(
+      (p) => p.teamId === team1Id
+    );
+    if (!teamOnePlayers) {
+      throw new Error("Player not found");
+    }
+
+    const { logs, errors } = await performAction("logGoal", {
+      matchId: match.id,
+      playerId: teamOnePlayers[0].id,
+      timestamp: Date.now(),
+    });
+    // check error for "MATCH_NOT_STARTED"
+    expect(errors).to.not.be.null;
+    expect(errors![0].message).to.equal("MATCH_NOT_STARTED");
   });
 
   it("should be able complete a round 3", async () => {
@@ -275,6 +308,46 @@ describe("League with 6 teams", async () => {
         timestamp: Date.now(),
       });
 
+      // first team score another goal
+      await performAction("logGoal", {
+        matchId,
+        playerId: teamOnePlayers[1].id,
+        timestamp: Date.now(),
+      });
+
+      // removing a goal
+      await performAction("removeGoal", {
+        matchId,
+        playerId: teamOnePlayers[1].id,
+        timestamp: Date.now(),
+      });
+
+      // try scoring a goal from a player that is not playing
+      // const playersNotPlaying = machine.state.players.filter(
+      //   (p) => p.teamId !== team1Id || p.teamId !== team2Id
+      // );
+      // const { logs: logs1, errors: errors1 } = await performAction("logGoal", {
+      //   matchId: match.id,
+      //   playerId: playersNotPlaying[0].id,
+      //   timestamp: Date.now(),
+      // });
+      // check error for "PLAYER_NOT_FOUND"
+      // expect(errors1).to.not.be.null;
+      // expect(errors1![0].message).to.equal("PLAYER_NOT_FOUND");
+
+      // remove a goal when not scored
+      const { logs: logs2, errors: errors2 } = await performAction(
+        "removeGoal",
+        {
+          matchId: match.id,
+          playerId: teamTwoPlayers[0].id,
+          timestamp: Date.now(),
+        }
+      );
+      // check error for "PLAYER_NOT_FOUND"
+      expect(errors2).to.not.be.null;
+      expect(errors2![0].message).to.equal("NO_GOALS_TO_REMOVE");
+
       // second team score a goal
       await performAction("logGoal", {
         matchId,
@@ -293,9 +366,7 @@ describe("League with 6 teams", async () => {
         timestamp: Date.now(),
       });
 
-      expect(machine.state.matches[matchIdx].penaltyStartTime).to.not.equal(
-        undefined
-      );
+      expect(machine.state.matches[matchIdx].penaltyStartTime).to.not.equal(0);
 
       // first team penalty hit
       await performAction("logPenaltyHit", {
@@ -342,16 +413,33 @@ describe("League with 6 teams", async () => {
     }
   });
 
+  it("should not be able to score goal after a match ends", async () => {
+    const match = machine.state.matches.at(-1);
+    if (!match) {
+      throw new Error("Match not found");
+    }
+    const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
+    const team1Id = teamIds[0];
+    const teamOnePlayers = machine.state.players.filter(
+      (p) => p.teamId === team1Id
+    );
+    if (!teamOnePlayers) {
+      throw new Error("Player not found");
+    }
+
+    const { logs, errors } = await performAction("logGoal", {
+      matchId: match.id,
+      playerId: teamOnePlayers[0].id,
+      timestamp: Date.now(),
+    });
+    // check error for "TOURNAMENT_ENDED"
+    expect(errors).to.not.be.null;
+    expect(errors![0].message).to.equal("TOURNAMENT_ENDED");
+  });
+
   it("should end the tournament", async () => {
     expect(machine.state.meta.endTime).to.not.equal(0);
     expect(machine.state.meta.winnerTeamId).to.not.equal(0);
+    expect(machine.state.meta.winnerTeamId).to.equal(5);
   });
 });
-
-// Test cases
-// check winners for matches
-// check for penalty shootout winner
-// we can't remove goal for a which is not even scored
-
-// start penalty shootout in one case
-// maybe a shootout in one of the matches
