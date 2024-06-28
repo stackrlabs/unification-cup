@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "bun run src/index.ts",
-    "test": "mocha --require ts-node/register src/**/*.test.ts"
+    "test": "bun test --timeout 100000 --exit"
   },
   "dependencies": {
     "@stackr/sdk": "^0.5.1",
