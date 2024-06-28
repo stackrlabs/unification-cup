@@ -323,17 +323,17 @@ describe("League with 6 teams", async () => {
       });
 
       // try scoring a goal from a player that is not playing
-      // const playersNotPlaying = machine.state.players.filter(
-      //   (p) => p.teamId !== team1Id || p.teamId !== team2Id
-      // );
-      // const { logs: logs1, errors: errors1 } = await performAction("logGoal", {
-      //   matchId: match.id,
-      //   playerId: playersNotPlaying[0].id,
-      //   timestamp: Date.now(),
-      // });
+      const playersNotPlaying = machine.state.players.filter(
+        (p) => p.teamId !== team1Id && p.teamId !== team2Id
+      );
+      const { logs: logs1, errors: errors1 } = await performAction("logGoal", {
+        matchId: match.id,
+        playerId: playersNotPlaying[0].id,
+        timestamp: Date.now(),
+      });
       // check error for "PLAYER_NOT_FOUND"
-      // expect(errors1).to.not.be.null;
-      // expect(errors1![0].message).to.equal("PLAYER_NOT_FOUND");
+      expect(errors1).to.not.be.null;
+      expect(errors1![0].message).to.equal("INVALID_TEAM");
 
       // remove a goal when not scored
       const { logs: logs2, errors: errors2 } = await performAction(
