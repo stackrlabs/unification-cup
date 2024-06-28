@@ -69,7 +69,7 @@ describe("League with 4 teams", async () => {
       timestamp: Date.now(),
     });
 
-    console.log("should have 2 match in the round 1");
+    // should have 2 matches in the first round
     expect(machine.state.meta.round).to.equal(1);
     expect(machine.state.matches.length).to.equal(2);
   });
@@ -140,10 +140,11 @@ describe("League with 4 teams", async () => {
       });
     }
 
-    console.log("should have 1 final match at round 2");
+    // should have 3 total match at round 2
     expect(machine.state.meta.round).to.equal(2);
     expect(machine.state.matches.length).to.equal(3);
 
+    // should have 1 incomplete match at round 2
     const incompleteMatches = machine.state.matches.filter((m) => !m.endTime);
     expect(incompleteMatches.length).to.equal(1);
   });
@@ -260,9 +261,5 @@ describe("League with 4 teams", async () => {
 
 // Test cases
 // check winners for matches
-// no new match in case of odd teams , need to do bye
 // check for penalty shootout winner
 // we can't remove goal for a which is not even scored
-
-// start penalty shootout in one case
-// maybe a shootout in one of the matches
