@@ -1,0 +1,28 @@
+name: "Test MRU"
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - "*"
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    environment: Base
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+      - name: Install dependencies
+        run: bun install
+      - name: Run tests
+        env:
+          PRIVATE_KEY: ${{ vars.PRIVATE_KEY }}
+          REGISTRY_CONTRACT: ${{ vars.REGISTRY_CONTRACT }}
+          DATABASE_URI: ${{ vars.DATABASE_URI }}
+          L1_RPC: ${{ vars.L1_RPC }}
+          VULCAN_RPC: ${{ vars.VULCAN_RPC }}
+        run: bun test
