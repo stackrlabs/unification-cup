@@ -83,49 +83,49 @@ describe("League with 4 teams", async () => {
       const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
 
       const team1Id = teamIds[0];
-      const players1 = machine.state.players.filter(
+      const teamOnePlayers = machine.state.players.filter(
         (p) => p.teamId === team1Id
       );
-      if (!players1) {
-        throw new Error("Player not found");
+      if (!teamOnePlayers.length) {
+        throw new Error("Players not found");
       }
 
       const team2Id = teamIds[1];
-      const players2 = machine.state.players.filter(
+      const teamTwoPlayers = machine.state.players.filter(
         (p) => p.teamId === team2Id
       );
-      if (!players2) {
-        throw new Error("Player not found");
+      if (!teamTwoPlayers.length) {
+        throw new Error("Players not found");
       }
 
       // first team score a goal
       await performAction("logGoal", {
         matchId: match.id,
-        playerId: players1[0].id,
+        playerId: teamOnePlayers[0].id,
       });
 
       // second team score a goal
       await performAction("logGoal", {
         matchId: match.id,
-        playerId: players2[0].id,
+        playerId: teamTwoPlayers[0].id,
       });
 
       // first team score another goal
       await performAction("logGoal", {
         matchId: match.id,
-        playerId: players1[1].id,
+        playerId: teamOnePlayers[1].id,
       });
 
       // second team saves a goal
       await performAction("logBlock", {
         matchId: match.id,
-        playerId: players2[1].id,
+        playerId: teamTwoPlayers[1].id,
       });
 
       // first team does a foul
       await performAction("logFoul", {
         matchId: match.id,
-        playerId: players1[1].id,
+        playerId: teamOnePlayers[1].id,
       });
 
       // end the game
@@ -153,17 +153,20 @@ describe("League with 4 teams", async () => {
     const match = machine.state.matches.filter((m) => !m.endTime)[0];
     const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
     const team1Id = teamIds[0];
-    const players1 = machine.state.players.filter((p) => p.teamId === team1Id);
-    if (!players1) {
-      throw new Error("Player not found");
+    const teamOnePlayers = machine.state.players.filter(
+      (p) => p.teamId === team1Id
+    );
+    if (!teamOnePlayers.length) {
+      throw new Error("Players not found");
     }
 
     const { logs, errors } = await performAction("logGoal", {
       matchId: match.id,
-      playerId: players1[0].id,
+      playerId: teamOnePlayers[0].id,
     });
     // check error for "MATCH_NOT_STARTED"
-    expect(errors).to.not.be.null;
+    expect(typeof errors).to.be.equal("object");
+    expect(errors?.length).to.not.be.null;
     expect(errors![0].message).to.equal("MATCH_NOT_STARTED");
   });
 
@@ -185,15 +188,15 @@ describe("League with 4 teams", async () => {
       const teamOnePlayers = machine.state.players.filter(
         (p) => p.teamId === team1Id
       );
-      if (!teamOnePlayers) {
-        throw new Error("Player not found");
+      if (!teamOnePlayers.length) {
+        throw new Error("Players not found");
       }
 
       const teamTwoPlayers = machine.state.players.filter(
         (p) => p.teamId === team2Id
       );
-      if (!teamTwoPlayers) {
-        throw new Error("Player not found");
+      if (!teamTwoPlayers.length) {
+        throw new Error("Players not found");
       }
 
       // first team score a goal
@@ -223,7 +226,8 @@ describe("League with 4 teams", async () => {
         playerId: playersNotPlaying[0].id,
       });
       // check error for "PLAYER_NOT_FOUND"
-      expect(errors1).to.not.be.null;
+      expect(typeof errors1).to.be.equal("object");
+      expect(errors1?.length).to.not.equal(0);
       expect(errors1![0].message).to.equal("INVALID_TEAM");
 
       // remove a goal when not scored
@@ -235,7 +239,8 @@ describe("League with 4 teams", async () => {
         }
       );
       // check error for "PLAYER_NOT_FOUND"
-      expect(errors2).to.not.be.null;
+      expect(typeof errors2).to.be.equal("object");
+      expect(errors2?.length).to.not.equal(0);
       expect(errors2![0].message).to.equal("NO_GOALS_TO_REMOVE");
 
       // second team score a goal
@@ -303,17 +308,20 @@ describe("League with 4 teams", async () => {
     }
     const teamIds = Object.keys(match.scores).map((k) => parseInt(k));
     const team1Id = teamIds[0];
-    const players1 = machine.state.players.filter((p) => p.teamId === team1Id);
-    if (!players1) {
-      throw new Error("Player not found");
+    const teamOnePlayers = machine.state.players.filter(
+      (p) => p.teamId === team1Id
+    );
+    if (!teamOnePlayers.length) {
+      throw new Error("Players not found");
     }
 
     const { logs, errors } = await performAction("logGoal", {
       matchId: match.id,
-      playerId: players1[0].id,
+      playerId: teamOnePlayers[0].id,
     });
     // check error for "TOURNAMENT_ENDED"
-    expect(errors).to.not.be.null;
+    expect(typeof errors).to.be.equal("object");
+    expect(errors?.length).to.not.be.null;
     expect(errors![0].message).to.equal("TOURNAMENT_ENDED");
   });
 
