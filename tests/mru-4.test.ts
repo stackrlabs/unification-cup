@@ -12,7 +12,7 @@ import { League, LeagueState } from "../src/stackr/state";
 import { transitions } from "../src/stackr/transitions";
 import { stackrConfig } from "../stackr.config";
 
-import { expect } from "chai";
+import { expect, assert } from "chai";
 import { signAsOperator } from "../src/utils";
 
 const testConfig = {
@@ -164,10 +164,14 @@ describe("League with 4 teams", async () => {
       matchId: match.id,
       playerId: teamOnePlayers[0].id,
     });
+
+    if (!errors) {
+      throw new Error("Error not found");
+    }
     // check error for "MATCH_NOT_STARTED"
-    expect(typeof errors).to.be.equal("object");
+    assert.typeOf(errors, "array");
     expect(errors?.length).to.not.be.null;
-    expect(errors![0].message).to.equal("MATCH_NOT_STARTED");
+    expect(errors[0].message).to.equal("MATCH_NOT_STARTED");
   });
 
   it("should be able complete a round 2 (final)", async () => {
@@ -225,10 +229,14 @@ describe("League with 4 teams", async () => {
         matchId: match.id,
         playerId: playersNotPlaying[0].id,
       });
+
+      if (!errors1) {
+        throw new Error("Error not found");
+      }
       // check error for "PLAYER_NOT_FOUND"
-      expect(typeof errors1).to.be.equal("object");
+      assert.typeOf(errors1, "array");
       expect(errors1?.length).to.not.equal(0);
-      expect(errors1![0].message).to.equal("INVALID_TEAM");
+      expect(errors1[0].message).to.equal("INVALID_TEAM");
 
       // remove a goal when not scored
       const { logs: logs2, errors: errors2 } = await performAction(
@@ -238,10 +246,14 @@ describe("League with 4 teams", async () => {
           playerId: teamTwoPlayers[0].id,
         }
       );
+
+      if (!errors2) {
+        throw new Error("Error not found");
+      }
       // check error for "PLAYER_NOT_FOUND"
-      expect(typeof errors2).to.be.equal("object");
+      assert.typeOf(errors2, "array");
       expect(errors2?.length).to.not.equal(0);
-      expect(errors2![0].message).to.equal("NO_GOALS_TO_REMOVE");
+      expect(errors2[0].message).to.equal("NO_GOALS_TO_REMOVE");
 
       // second team score a goal
       await performAction("logGoal", {
@@ -319,10 +331,14 @@ describe("League with 4 teams", async () => {
       matchId: match.id,
       playerId: teamOnePlayers[0].id,
     });
+
+    if (!errors) {
+      throw new Error("Error not found");
+    }
     // check error for "TOURNAMENT_ENDED"
-    expect(typeof errors).to.be.equal("object");
+    assert.typeOf(errors, "array");
     expect(errors?.length).to.not.be.null;
-    expect(errors![0].message).to.equal("TOURNAMENT_ENDED");
+    expect(errors[0].message).to.equal("TOURNAMENT_ENDED");
   });
 
   it("should end the tournament", async () => {
