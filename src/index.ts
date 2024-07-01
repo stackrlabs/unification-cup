@@ -218,10 +218,10 @@ const main = async () => {
         inputs,
       });
       const ack = await mru.submitAction(reducerName, signedAction);
-      // const { errors } = await ack.waitFor(ActionConfirmationStatus.C1);
-      // if (errors?.length) {
-      //   throw new Error(errors[0].message);
-      // }
+      const { errors } = await ack.waitFor(ActionConfirmationStatus.C1);
+      if (errors?.length) {
+        throw new Error(errors[0].message);
+      }
       res.status(201).send({ ack });
     } catch (e: any) {
       res.status(400).send({ error: e.message });
