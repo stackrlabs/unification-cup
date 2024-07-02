@@ -267,7 +267,7 @@ describe("League with 4 teams", async () => {
       );
 
       // start a penalty shootout
-      await performAction("startPenaltyShootout", {
+      await performAction("penaltyShootout", {
         matchId,
       });
 

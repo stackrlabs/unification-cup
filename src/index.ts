@@ -33,12 +33,13 @@ export const stfSchemaMap = {
   logGoal: schemas.logGoal,
   logFoul: schemas.logGoal,
   logBlock: schemas.logGoal,
-  startPenaltyShootout: schemas.startMatch,
+  penaltyShootout: schemas.startMatch,
   logPenaltyHit: schemas.logGoal,
   logPenaltyMiss: schemas.logGoal,
-  removeGoal: schemas.logGoal,
   endMatch: schemas.endMatch,
   logByes: schemas.logByes,
+  addPlayer: schemas.addPlayer,
+  removeGoal: schemas.logGoal,
 };
 
 const main = async () => {
@@ -190,6 +191,12 @@ const main = async () => {
       }, {} as Record<string, any>),
     });
   });
+
+  if (process.env.NODE_ENV === "sandbox") {
+    app.get("/restart", () => {
+      process.exit(1);
+    });
+  }
 
   // TODO: Break this route into a separate routes and handle validation pre-STF only
   app.post("/:reducerName", async (req: Request, res: Response) => {

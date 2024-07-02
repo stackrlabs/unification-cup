@@ -274,7 +274,7 @@ const startMatch: STF<League, MatchRequest> = {
   },
 };
 
-const startPenaltyShootout: STF<League, MatchRequest> = {
+const penaltyShootout: STF<League, MatchRequest> = {
   handler: ({ state, inputs, block }) => {
     if (hasTournamentEnded(state)) {
       throw new Error("TOURNAMENT_ENDED");
@@ -440,9 +440,22 @@ const logByes: STF<League, TeamRequest> = {
   },
 };
 
+const addPlayer: STF<League, { teamId: number; playerName: string }> = {
+  handler: ({ state, inputs }) => {
+    const { teamId, playerName } = inputs;
+    state.players.push({
+      id: state.players.length + 1,
+      name: playerName,
+      teamId,
+    });
+
+    return state;
+  },
+};
+
 export const transitions: Transitions<League> = {
   startMatch,
-  startPenaltyShootout,
+  penaltyShootout,
   endMatch,
   logGoal,
   removeGoal,
@@ -452,4 +465,5 @@ export const transitions: Transitions<League> = {
   logFoul,
   logPenaltyHit,
   logPenaltyMiss,
+  addPlayer,
 };
