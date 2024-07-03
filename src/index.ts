@@ -39,6 +39,7 @@ export const stfSchemaMap = {
   endMatch: schemas.endMatch,
   logByes: schemas.logByes,
   addPlayer: schemas.addPlayer,
+  removePlayer: schemas.removePlayer,
   removeGoal: schemas.logGoal,
 };
 

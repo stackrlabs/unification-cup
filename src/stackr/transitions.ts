@@ -442,13 +442,44 @@ const logByes: STF<League, TeamRequest> = {
 
 const addPlayer: STF<League, { teamId: number; playerName: string }> = {
   handler: ({ state, inputs }) => {
+    const { logs } = state;
     const { teamId, playerName } = inputs;
+    const maxPlayerIdFromLogs = logs.reduce((acc, l) => {
+      if (l.playerId > acc) {
+        return l.playerId;
+      }
+      return acc;
+    }, 0);
+
+    const lastMaxId = Math.max(
+      state.players.at(-1)?.id || 0,
+      state.players.length,
+      maxPlayerIdFromLogs
+    );
+
     state.players.push({
-      id: state.players.length + 1,
+      id: lastMaxId + 1,
       name: playerName,
       teamId,
     });
 
+    return state;
+  },
+};
+
+const removePlayer: STF<League, { teamId: number; playerId: number }> = {
+  handler: ({ state, inputs }) => {
+    const { teamId, playerId } = inputs;
+    const player = state.players.find((p) => p.id === playerId);
+    if (!player) {
+      throw new Error("PLAYER_NOT_FOUND");
+    }
+
+    if (player.teamId !== teamId) {
+      throw new Error("INVALID_TEAM");
+    }
+
+    state.players = state.players.filter((p) => p.id !== playerId);
     return state;
   },
 };
@@ -466,4 +497,5 @@ export const transitions: Transitions<League> = {
   logPenaltyHit,
   logPenaltyMiss,
   addPlayer,
+  removePlayer,
 };
