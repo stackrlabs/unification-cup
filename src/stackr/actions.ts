@@ -30,6 +30,12 @@ const addPlayerSchema = new ActionSchema("addPlayer", {
   ...baseTimeStamp,
 });
 
+const removePlayerSchema = new ActionSchema("removePlayer", {
+  teamId: SolidityType.UINT,
+  playerId: SolidityType.UINT,
+  ...baseTimeStamp,
+});
+
 export const schemas = {
   startMatch: matchAction,
   endMatch: matchAction,
@@ -37,4 +43,5 @@ export const schemas = {
   startTournament: startTournamentSchema,
   logByes: teamActionSchema,
   addPlayer: addPlayerSchema,
+  removePlayer: removePlayerSchema,
 };
