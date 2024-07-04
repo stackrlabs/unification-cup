@@ -83,8 +83,8 @@ const main = async () => {
     }
     const { scores, ...rest } = match;
     const teamsWithInfo = Object.keys(scores).map((id) => ({
-      id: id,
-      name: teams.find((t) => t.id === +id)?.name,
+      id,
+      name: teams.find((t) => t.id === +id)?.name || "Not Found",
       score: scores[id],
     }));
     return {

@@ -29,7 +29,6 @@ export type LeaderboardEntry = {
   points: number;
   id: number;
   name: string;
-  captainId: number;
 };
 
 export const canAddressSubmitAction = (
@@ -56,28 +55,6 @@ const getPlayerToTeam = (state: LeagueState) => {
   }, {} as Record<number, number>);
 };
 
-const getMatchwisePenalties = (state: LeagueState) => {
-  const playerToTeamId = getPlayerToTeam(state);
-  return state.logs
-    .filter((l) => l.action === LogAction.PENALTY_HIT)
-    .reduce((acc, l) => {
-      if (!l.matchId) {
-        return acc;
-      }
-      if (!acc[l.matchId]) {
-        acc[l.matchId] = {};
-      }
-
-      const teamId = playerToTeamId[l.playerId];
-      if (!acc[l.matchId][teamId]) {
-        acc[l.matchId][teamId] = 0;
-      }
-
-      acc[l.matchId][teamId] += 1;
-      return acc;
-    }, {} as Record<number, Record<number, number>>);
-};
-
 export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
   const { teams, matches, meta } = state;
   const completedMatches = matches.filter((m) => m.endTime);
@@ -98,21 +75,15 @@ export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
     });
   }
 
-  const matchWiseTeamWisePenalties = getMatchwisePenalties(state);
   completedMatches.forEach((match) => {
-    const { scores, id } = match;
-    const [a, b] = Object.keys(scores);
+    const { winnerTeamId, scores } = match;
+    const loserTeamId = Object.keys(scores).find((k) => +k !== winnerTeamId);
+    if (!loserTeamId) {
+      return;
+    }
 
-    const finalScores = {
-      [a]: scores[a] + (matchWiseTeamWisePenalties?.[id]?.[+a] || 0),
-      [b]: scores[b] + (matchWiseTeamWisePenalties?.[id]?.[+b] || 0),
-    };
-
-    const winner = finalScores[a] > finalScores[b] ? a : b;
-    const loser = finalScores[a] > finalScores[b] ? b : a;
-
-    const winnerIndex = leaderboard.findIndex((l) => l.id === +winner);
-    const loserIndex = leaderboard.findIndex((l) => l.id === +loser);
+    const winnerIndex = leaderboard.findIndex((l) => l.id === +winnerTeamId);
+    const loserIndex = leaderboard.findIndex((l) => l.id === +loserTeamId);
 
     leaderboard[winnerIndex].won += 1;
     leaderboard[loserIndex].lost += 1;
@@ -120,7 +91,12 @@ export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
     leaderboard[winnerIndex].points += 3;
   });
 
-  return leaderboard.sort((a, b) => b.points - a.points);
+  return leaderboard.sort((a, b) => {
+    if (a.points === b.points) {
+      return a.won - b.won;
+    }
+    return b.points - a.points;
+  });
 };
 
 const getTopNTeams = (state: LeagueState, n?: number) => {
@@ -141,7 +117,14 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
   const totalTeams = teams.length;
   const teamsInCurrentRound = Math.ceil(totalTeams / Math.pow(2, meta.round));
 
-  const topTeams = getTopNTeams(state, teamsInCurrentRound);
+  // this is assuming that the bye will be given to the team with lower score, and they'll get a chance to play with the top 3 teams
+  const shouldIncludeOneBye =
+    teamsInCurrentRound % 2 === 1 && meta.byes.length === 1 ? 1 : 0;
+
+  const topTeams = getTopNTeams(
+    state,
+    teamsInCurrentRound + shouldIncludeOneBye
+  );
 
   if (teamsInCurrentRound === 1) {
     state.meta.winnerTeamId = topTeams[0].id;
@@ -149,7 +132,7 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
     return;
   }
 
-  if (teamsInCurrentRound % 2 !== 0) {
+  if (topTeams.length % 2 !== 0) {
     const allTeamsHaveSamePoints =
       topTeams[0].points === topTeams[teamsInCurrentRound - 1].points;
 
@@ -177,6 +160,7 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
       startTime: 0,
       endTime: 0,
       penaltyStartTime: 0,
+      winnerTeamId: 0,
     });
   }
 
@@ -356,7 +340,8 @@ const endMatch: STF<League, MatchRequest> = {
     }
 
     const { matchId } = inputs;
-    const match = state.matches.find((m) => m.id === matchId);
+    const { matches, logs } = state;
+    const match = matches.find((m) => m.id === matchId);
     if (!match) {
       throw new Error("MATCH_NOT_FOUND");
     }
@@ -370,6 +355,26 @@ const endMatch: STF<League, MatchRequest> = {
     }
 
     match.endTime = block.timestamp;
+
+    const teamScores = { ...match.scores };
+
+    if (match.penaltyStartTime) {
+      const playerIdToTeamId = getPlayerToTeam(state);
+
+      const penalties = logs.filter(
+        (l) => l.matchId === matchId && l.action === LogAction.PENALTY_HIT
+      );
+
+      for (const penalty of penalties) {
+        const teamId = playerIdToTeamId[penalty.playerId];
+        teamScores[teamId] += 1;
+      }
+    }
+
+    const [a, b] = Object.keys(teamScores);
+    const winner = teamScores[a] > teamScores[b] ? a : b;
+    match.winnerTeamId = +winner;
+
     computeMatchFixtures(state, block.timestamp);
     return state;
   },
