@@ -16,7 +16,6 @@ type TournamentMeta = {
 type Team = {
   id: number;
   name: string;
-  captainId: number;
 };
 
 type Match = {
@@ -25,6 +24,7 @@ type Match = {
   startTime: number;
   endTime: number;
   penaltyStartTime: number;
+  winnerTeamId: number;
 };
 
 export type Player = {
@@ -62,10 +62,7 @@ export class League extends State<LeagueState> {
     );
 
     const teamsMerkleTree = createMT(teams, (t) =>
-      solidityPacked(
-        ["uint256", "string", "uint256"],
-        [t.id, t.name, t.captainId]
-      )
+      solidityPacked(["uint256", "string"], [t.id, t.name])
     );
 
     const playersMerkleTree = createMT(players, (p) =>
@@ -88,6 +85,7 @@ export class League extends State<LeagueState> {
           "uint256",
           "uint256",
           "uint256",
+          "uint256",
         ],
         [
           m.id,
@@ -98,6 +96,7 @@ export class League extends State<LeagueState> {
           m.startTime || 0,
           m.endTime || 0,
           m.penaltyStartTime || 0,
+          m.winnerTeamId || 0,
         ]
       );
     });
