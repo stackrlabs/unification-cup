@@ -468,7 +468,7 @@ const addPlayer: STF<League, { teamId: number; playerName: string }> = {
 };
 
 const removePlayer: STF<League, { teamId: number; playerId: number }> = {
-  handler: ({ state, inputs }) => {
+  handler: ({ state, inputs, block }) => {
     const { teamId, playerId } = inputs;
     const player = state.players.find((p) => p.id === playerId);
     if (!player) {
@@ -479,7 +479,7 @@ const removePlayer: STF<League, { teamId: number; playerId: number }> = {
       throw new Error("INVALID_TEAM");
     }
 
-    state.players = state.players.filter((p) => p.id !== playerId);
+    player.removedAt = block.timestamp;
     return state;
   },
 };

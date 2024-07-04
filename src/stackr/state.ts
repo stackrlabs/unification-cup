@@ -31,6 +31,7 @@ export type Player = {
   id: number;
   name: string;
   teamId: number;
+  removedAt?: number;
 };
 
 export type Logs = {
@@ -68,7 +69,10 @@ export class League extends State<LeagueState> {
     );
 
     const playersMerkleTree = createMT(players, (p) =>
-      solidityPacked(["uint256", "string", "uint256"], [p.id, p.name, p.teamId])
+      solidityPacked(
+        ["uint256", "string", "uint256", "uint256"],
+        [p.id, p.name, p.teamId, p.removedAt || 0]
+      )
     );
 
     const matchesMMR = createMMR(matches, (m) => {
