@@ -140,7 +140,9 @@ const main = async () => {
       return acc;
     }, {} as Record<string, PlayerStats>);
 
-    const playerWithDetails = players.map((p) => getPlayerInfo(p.id));
+    const playerWithDetails = players
+      .filter((p) => !p.removedAt)
+      .map((p) => getPlayerInfo(p.id));
 
     const sortedPlayersWithDetails = playerWithDetails
       .map((playerInfo) => {
@@ -319,7 +321,7 @@ const main = async () => {
    */
   app.get("/players", (_req: Request, res: Response) => {
     const { players } = machine.state;
-    return res.send(players);
+    return res.send(players.filter((p) => !p.removedAt));
   });
 
   /**
