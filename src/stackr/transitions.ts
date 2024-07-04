@@ -119,14 +119,18 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
 
   // this is assuming that the bye will be given to the team with lower score, and they'll get a chance to play with the top 3 teams
   const shouldIncludeOneBye =
-    teamsInCurrentRound % 2 === 1 && meta.byes.length === 1 ? 1 : 0;
+    teamsInCurrentRound !== 1 &&
+    teamsInCurrentRound % 2 === 1 &&
+    meta.byes.length === 1
+      ? 1
+      : 0;
 
   const topTeams = getTopNTeams(
     state,
     teamsInCurrentRound + shouldIncludeOneBye
   );
 
-  if (teamsInCurrentRound === 1) {
+  if (topTeams.length === 1) {
     state.meta.winnerTeamId = topTeams[0].id;
     state.meta.endTime = blockTime;
     return;
@@ -354,8 +358,6 @@ const endMatch: STF<League, MatchRequest> = {
       throw new Error("MATCH_ALREADY_ENDED");
     }
 
-    match.endTime = block.timestamp;
-
     const teamScores = { ...match.scores };
 
     if (match.penaltyStartTime) {
@@ -374,6 +376,7 @@ const endMatch: STF<League, MatchRequest> = {
     const [a, b] = Object.keys(teamScores);
     const winner = teamScores[a] > teamScores[b] ? a : b;
     match.winnerTeamId = +winner;
+    match.endTime = block.timestamp;
 
     computeMatchFixtures(state, block.timestamp);
     return state;
