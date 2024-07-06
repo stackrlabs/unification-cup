@@ -365,23 +365,23 @@ const endMatch: STF<League, MatchRequest> = {
     }
 
     const teamScores = { ...match.scores };
-    const [a, b] = Object.keys(teamScores);
 
-    if (teamScores[a] === teamScores[b]) {
-      if (match.penaltyStartTime) {
-        const playerIdToTeamId = getPlayerToTeam(state);
-  
-        const penalties = logs.filter(
-          (l) => l.matchId === matchId && l.action === LogAction.PENALTY_HIT
-        );
-  
-        for (const penalty of penalties) {
-          const teamId = playerIdToTeamId[penalty.playerId];
-          teamScores[teamId] += 1;
-        }
-      } else {
-        throw new Error("MATCH_DRAWN");
+    if (match.penaltyStartTime) {
+      const playerIdToTeamId = getPlayerToTeam(state);
+
+      const penalties = logs.filter(
+        (l) => l.matchId === matchId && l.action === LogAction.PENALTY_HIT
+      );
+
+      for (const penalty of penalties) {
+        const teamId = playerIdToTeamId[penalty.playerId];
+        teamScores[teamId] += 1;
       }
+    }
+
+    const [a, b] = Object.keys(teamScores);
+    if (teamScores[a] === teamScores[b]) {
+      throw new Error("MATCH_DRAWN");
     }
 
     const winner = teamScores[a] > teamScores[b] ? a : b;
