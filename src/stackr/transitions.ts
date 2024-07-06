@@ -35,9 +35,7 @@ export const canAddressSubmitAction = (
   state: LeagueState,
   address: string
 ): boolean => {
-  // TODO: Implement this
-  // return state.admins.includes(address);
-  return true;
+  return state.admins.includes(address);
 };
 
 const areAllMatchesComplete = (state: LeagueState) => {
