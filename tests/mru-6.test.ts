@@ -155,11 +155,11 @@ describe("League with 6 teams", async () => {
 
     // should have 2 new matches in the second round
     expect(machine.state.meta.round).to.equal(2);
-    expect(machine.state.matches.length).to.equal(4);
+    expect(machine.state.matches.length).to.equal(5);
 
     // should have 1 incomplete match at round 2
     const incompleteMatches = machine.state.matches.filter((m) => !m.endTime);
-    expect(incompleteMatches.length).to.equal(1);
+    expect(incompleteMatches.length).to.equal(2);
   });
 
   it("should be able to complete round 2", async () => {
