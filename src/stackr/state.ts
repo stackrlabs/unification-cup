@@ -58,7 +58,7 @@ export class League extends State<LeagueState> {
   getRootHash(): string {
     const { admins, teams, players, matches, meta, logs } = this.state;
     const adminsMerkleTree = createMT(admins, (a) =>
-      solidityPacked(["string"], [a])
+      solidityPacked(["address"], [a])
     );
 
     const teamsMerkleTree = createMT(teams, (t) =>
