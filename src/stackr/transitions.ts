@@ -281,6 +281,12 @@ const penaltyShootout: STF<League, MatchRequest> = {
       throw new Error("SHOOTOUT_ALREADY_STARTED");
     }
 
+    const teamScores = { ...match.scores };
+    const [a, b] = Object.keys(teamScores);
+    if (teamScores[a] !== teamScores[b]) {
+      throw new Error("MATCH_NOT_DRAWN");
+    }
+
     match.penaltyStartTime = block.timestamp;
     return state;
   },
@@ -359,21 +365,25 @@ const endMatch: STF<League, MatchRequest> = {
     }
 
     const teamScores = { ...match.scores };
+    const [a, b] = Object.keys(teamScores);
 
-    if (match.penaltyStartTime) {
-      const playerIdToTeamId = getPlayerToTeam(state);
-
-      const penalties = logs.filter(
-        (l) => l.matchId === matchId && l.action === LogAction.PENALTY_HIT
-      );
-
-      for (const penalty of penalties) {
-        const teamId = playerIdToTeamId[penalty.playerId];
-        teamScores[teamId] += 1;
+    if (teamScores[a] === teamScores[b]) {
+      if (match.penaltyStartTime) {
+        const playerIdToTeamId = getPlayerToTeam(state);
+  
+        const penalties = logs.filter(
+          (l) => l.matchId === matchId && l.action === LogAction.PENALTY_HIT
+        );
+  
+        for (const penalty of penalties) {
+          const teamId = playerIdToTeamId[penalty.playerId];
+          teamScores[teamId] += 1;
+        }
+      } else {
+        throw new Error("MATCH_DRAWN");
       }
     }
 
-    const [a, b] = Object.keys(teamScores);
     const winner = teamScores[a] > teamScores[b] ? a : b;
     match.winnerTeamId = +winner;
     match.endTime = block.timestamp;
