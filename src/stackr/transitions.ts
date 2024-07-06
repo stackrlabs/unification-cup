@@ -279,10 +279,9 @@ const penaltyShootout: STF<League, MatchRequest> = {
       throw new Error("SHOOTOUT_ALREADY_STARTED");
     }
 
-    const teamScores = { ...match.scores };
-    const [a, b] = Object.keys(teamScores);
-    if (teamScores[a] !== teamScores[b]) {
-      throw new Error("MATCH_NOT_DRAWN");
+    const [a, b] = Object.keys(match.scores);
+    if (match.scores[a] !== match.scores[b]) {
+      throw new Error("SCORES_NOT_EQUAL");
     }
 
     match.penaltyStartTime = block.timestamp;
@@ -379,7 +378,7 @@ const endMatch: STF<League, MatchRequest> = {
 
     const [a, b] = Object.keys(teamScores);
     if (teamScores[a] === teamScores[b]) {
-      throw new Error("MATCH_DRAWN");
+      throw new Error("MATCH_NOT_CONCLUDED");
     }
 
     const winner = teamScores[a] > teamScores[b] ? a : b;
