@@ -16,6 +16,8 @@ import {
   transitions,
 } from "./stackr/transitions.ts";
 
+import oldActions from "../actions.json"
+
 dotenv.config();
 
 import {
@@ -432,7 +434,9 @@ const main = async () => {
       };
     });
 
-    return res.send(actions);
+    // console.log(typeof oldActions, oldActions)
+
+    return res.send([...actions, ...oldActions]);
   });
 
   app.get("/", (_req: Request, res: Response) => {

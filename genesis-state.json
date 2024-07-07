@@ -1,14 +1,150 @@
 {
   "state": {
-    "admins": [],
+    "admins": [
+      "0x3e280Aec63FAF66e3f33Edc197BB7ddF92A136b9",
+      "0x7fefB2dd17DC7eA97f0ABb6b589d0BdA35c0D573",
+      "0x7BCC581c7f56B8e92e693A4385577d813bD3b609",
+      "0x8EAF76E0692001fBa8480288009A565AF683ceEe",
+      "0x66E407bBAab65C98c0c7a55B5D5db3c09F6a8E6a",
+      "0x050D5D25848bC70F085195f14CEbABc414344aBf",
+      "0x344E2D6d7EcfE7C00870599d3a330e42cA29C4Fb",
+      "0x9E5e11C952b6e6CA4BcE174b6048251765e430A6"
+    ],
     "meta": {
-      "round": 0,
+      "round": 3,
       "winnerTeamId": 0,
-      "startTime": 0,
+      "startTime": 1720343718910,
       "endTime": 0,
-      "byes": []
+      "byes": [
+        {
+          "teamId": 6,
+          "round": 2
+        }
+      ]
     },
-    "matches": [],
+    "matches": [
+      {
+        "id": 1,
+        "scores": {
+          "1": 4,
+          "2": 6
+        },
+        "startTime": 1720343748935,
+        "endTime": 1720345976725,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 2
+      },
+      {
+        "id": 2,
+        "scores": {
+          "3": 7,
+          "4": 8
+        },
+        "startTime": 1720346390219,
+        "endTime": 1720348507825,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 4
+      },
+      {
+        "id": 3,
+        "scores": {
+          "5": 0,
+          "6": 1
+        },
+        "startTime": 1720351464256,
+        "endTime": 1720351477266,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 6
+      },
+      {
+        "id": 4,
+        "scores": {
+          "7": 9,
+          "8": 2
+        },
+        "startTime": 1720351945840,
+        "endTime": 1720354358858,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 7
+      },
+      {
+        "id": 5,
+        "scores": {
+          "9": 7,
+          "10": 2
+        },
+        "startTime": 1720355172203,
+        "endTime": 1720357020242,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 9
+      },
+      {
+        "id": 6,
+        "scores": {
+          "11": 2,
+          "12": 6
+        },
+        "startTime": 1720357413885,
+        "endTime": 1720358928728,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 12
+      },
+      {
+        "id": 7,
+        "scores": {
+          "2": 2,
+          "4": 4
+        },
+        "startTime": 1720359351843,
+        "endTime": 1720360686231,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 4
+      },
+      {
+        "id": 8,
+        "scores": {
+          "6": 0,
+          "7": 4
+        },
+        "startTime": 1720359647088,
+        "endTime": 1720362007967,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 7
+      },
+      {
+        "id": 9,
+        "scores": {
+          "9": 1,
+          "12": 2
+        },
+        "startTime": 1720361113825,
+        "endTime": 1720362811338,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 12
+      },
+      {
+        "id": 10,
+        "scores": {
+          "4": 0,
+          "12": 0
+        },
+        "startTime": 0,
+        "endTime": 0,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 0
+      },
+      {
+        "id": 11,
+        "scores": {
+          "6": 0,
+          "7": 0
+        },
+        "startTime": 0,
+        "endTime": 0,
+        "penaltyStartTime": 0,
+        "winnerTeamId": 0
+      }
+    ],
     "teams": [
       {
         "id": 1,
@@ -419,8 +555,776 @@
         "id": 72,
         "name": "Mati",
         "teamId": 12
+      },
+      {
+        "id": 73,
+        "name": "Ramsey",
+        "teamId": 1
+      },
+      {
+        "id": 74,
+        "name": "Eli Pearson",
+        "teamId": 1
+      },
+      {
+        "id": 75,
+        "name": "Marko",
+        "teamId": 4
+      },
+      {
+        "id": 76,
+        "name": "Chilla",
+        "teamId": 4
+      },
+      {
+        "id": 77,
+        "name": "Ilir",
+        "teamId": 6
+      },
+      {
+        "id": 78,
+        "name": "Stefan",
+        "teamId": 6
+      },
+      {
+        "id": 79,
+        "name": "Abi",
+        "teamId": 8
+      },
+      {
+        "id": 80,
+        "name": "Altan",
+        "teamId": 10
+      },
+      {
+        "id": 81,
+        "name": "Michael",
+        "teamId": 10
+      },
+      {
+        "id": 82,
+        "name": "Chandler",
+        "teamId": 11
+      },
+      {
+        "id": 83,
+        "name": "Vibhu",
+        "teamId": 11
+      },
+      {
+        "id": 84,
+        "name": "Fedecrypto",
+        "teamId": 11
+      },
+      {
+        "id": 85,
+        "name": "Chandler",
+        "teamId": 6
       }
     ],
-    "logs": []
+    "logs": [
+      {
+        "playerId": 73,
+        "matchId": 1,
+        "timestamp": 1720343950080,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 73,
+        "matchId": 1,
+        "timestamp": 1720344029137,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 73,
+        "matchId": 1,
+        "timestamp": 1720344067171,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 7,
+        "matchId": 1,
+        "timestamp": 1720344094191,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 11,
+        "matchId": 1,
+        "timestamp": 1720344163244,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 8,
+        "matchId": 1,
+        "timestamp": 1720344249305,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 6,
+        "matchId": 1,
+        "timestamp": 1720344281329,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 7,
+        "matchId": 1,
+        "timestamp": 1720344320361,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 6,
+        "matchId": 1,
+        "timestamp": 1720344373397,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 8,
+        "matchId": 1,
+        "timestamp": 1720344404421,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 73,
+        "matchId": 1,
+        "timestamp": 1720344580567,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 74,
+        "matchId": 1,
+        "timestamp": 1720345002906,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 7,
+        "matchId": 1,
+        "timestamp": 1720345061955,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 8,
+        "matchId": 1,
+        "timestamp": 1720345104988,
+        "action": "FOUL"
+      },
+      {
+        "playerId": 7,
+        "matchId": 1,
+        "timestamp": 1720345142018,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 7,
+        "matchId": 1,
+        "timestamp": 1720345157028,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 7,
+        "matchId": 1,
+        "timestamp": 1720345247094,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 6,
+        "matchId": 1,
+        "timestamp": 1720345267107,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 3,
+        "matchId": 1,
+        "timestamp": 1720345299130,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 7,
+        "matchId": 1,
+        "timestamp": 1720345436248,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 12,
+        "matchId": 1,
+        "timestamp": 1720345466276,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 12,
+        "matchId": 1,
+        "timestamp": 1720345544344,
+        "action": "FOUL"
+      },
+      {
+        "playerId": 73,
+        "matchId": 1,
+        "timestamp": 1720345584378,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 13,
+        "matchId": 1,
+        "timestamp": 1720345625412,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 73,
+        "matchId": 1,
+        "timestamp": 1720345654439,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 74,
+        "matchId": 1,
+        "timestamp": 1720345664448,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 7,
+        "matchId": 1,
+        "timestamp": 1720345750520,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 73,
+        "matchId": 1,
+        "timestamp": 1720345786549,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 9,
+        "matchId": 1,
+        "timestamp": 1720345890646,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 76,
+        "matchId": 2,
+        "timestamp": 1720346754726,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 25,
+        "matchId": 2,
+        "timestamp": 1720346773742,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 14,
+        "matchId": 2,
+        "timestamp": 1720346831784,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 16,
+        "matchId": 2,
+        "timestamp": 1720346907850,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 75,
+        "matchId": 2,
+        "timestamp": 1720346936870,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 20,
+        "matchId": 2,
+        "timestamp": 1720347047958,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 20,
+        "matchId": 2,
+        "timestamp": 1720347054963,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 20,
+        "matchId": 2,
+        "timestamp": 1720347079986,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 20,
+        "matchId": 2,
+        "timestamp": 1720347133251,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 16,
+        "matchId": 2,
+        "timestamp": 1720347252380,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 76,
+        "matchId": 2,
+        "timestamp": 1720347313426,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 14,
+        "matchId": 2,
+        "timestamp": 1720347336446,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 24,
+        "matchId": 2,
+        "timestamp": 1720347590663,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 22,
+        "matchId": 2,
+        "timestamp": 1720347639702,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 23,
+        "matchId": 2,
+        "timestamp": 1720347703755,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 24,
+        "matchId": 2,
+        "timestamp": 1720347972964,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 19,
+        "matchId": 2,
+        "timestamp": 1720348158236,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 23,
+        "matchId": 2,
+        "timestamp": 1720348190263,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 16,
+        "matchId": 2,
+        "timestamp": 1720348240302,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 15,
+        "matchId": 2,
+        "timestamp": 1720348404602,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 35,
+        "matchId": 3,
+        "timestamp": 1720351471262,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 79,
+        "matchId": 4,
+        "timestamp": 1720352279115,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 42,
+        "matchId": 4,
+        "timestamp": 1720352451251,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 43,
+        "matchId": 4,
+        "timestamp": 1720352612379,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 42,
+        "matchId": 4,
+        "timestamp": 1720352669424,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 45,
+        "matchId": 4,
+        "timestamp": 1720352727474,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 42,
+        "matchId": 4,
+        "timestamp": 1720352908618,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 48,
+        "matchId": 4,
+        "timestamp": 1720353510880,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 79,
+        "matchId": 4,
+        "timestamp": 1720353628980,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 79,
+        "matchId": 4,
+        "timestamp": 1720353639988,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 79,
+        "matchId": 4,
+        "timestamp": 1720353646992,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 79,
+        "matchId": 4,
+        "timestamp": 1720353652997,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 79,
+        "matchId": 4,
+        "timestamp": 1720353660003,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 50,
+        "matchId": 4,
+        "timestamp": 1720353691023,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 42,
+        "matchId": 4,
+        "timestamp": 1720353770089,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 42,
+        "matchId": 4,
+        "timestamp": 1720353776094,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 42,
+        "matchId": 4,
+        "timestamp": 1720354098356,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 47,
+        "matchId": 4,
+        "timestamp": 1720354142398,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 56,
+        "matchId": 5,
+        "timestamp": 1720355417530,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 59,
+        "matchId": 5,
+        "timestamp": 1720355477063,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 57,
+        "matchId": 5,
+        "timestamp": 1720355613278,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 59,
+        "matchId": 5,
+        "timestamp": 1720355659296,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 54,
+        "matchId": 5,
+        "timestamp": 1720355667299,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 54,
+        "matchId": 5,
+        "timestamp": 1720355739337,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 59,
+        "matchId": 5,
+        "timestamp": 1720355815600,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 59,
+        "matchId": 5,
+        "timestamp": 1720355848622,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 54,
+        "matchId": 5,
+        "timestamp": 1720355888648,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 54,
+        "matchId": 5,
+        "timestamp": 1720356581291,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 52,
+        "matchId": 5,
+        "timestamp": 1720356638509,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 54,
+        "matchId": 5,
+        "timestamp": 1720356647525,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 81,
+        "matchId": 5,
+        "timestamp": 1720356665538,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 56,
+        "matchId": 5,
+        "timestamp": 1720356802654,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 54,
+        "matchId": 5,
+        "timestamp": 1720356827680,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 59,
+        "matchId": 5,
+        "timestamp": 1720356863699,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 56,
+        "matchId": 5,
+        "timestamp": 1720356884717,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 59,
+        "matchId": 5,
+        "timestamp": 1720356971010,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 56,
+        "matchId": 5,
+        "timestamp": 1720356976023,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 59,
+        "matchId": 5,
+        "timestamp": 1720356996030,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 71,
+        "matchId": 6,
+        "timestamp": 1720357666085,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 83,
+        "matchId": 6,
+        "timestamp": 1720357769269,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 83,
+        "matchId": 6,
+        "timestamp": 1720357838329,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 83,
+        "matchId": 6,
+        "timestamp": 1720357981106,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 84,
+        "matchId": 6,
+        "timestamp": 1720358009130,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 82,
+        "matchId": 6,
+        "timestamp": 1720358052168,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 82,
+        "matchId": 6,
+        "timestamp": 1720358104211,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 69,
+        "matchId": 6,
+        "timestamp": 1720358206289,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 69,
+        "matchId": 6,
+        "timestamp": 1720358507519,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 69,
+        "matchId": 6,
+        "timestamp": 1720358540547,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 82,
+        "matchId": 6,
+        "timestamp": 1720358657327,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 84,
+        "matchId": 6,
+        "timestamp": 1720358666334,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 68,
+        "matchId": 6,
+        "timestamp": 1720358762077,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 68,
+        "matchId": 6,
+        "timestamp": 1720358789097,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 82,
+        "matchId": 6,
+        "timestamp": 1720358846080,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 23,
+        "matchId": 7,
+        "timestamp": 1720359572025,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 85,
+        "matchId": 8,
+        "timestamp": 1720359739171,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 23,
+        "matchId": 7,
+        "timestamp": 1720359824233,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 85,
+        "matchId": 8,
+        "timestamp": 1720359883282,
+        "action": "BLOCK"
+      },
+      {
+        "playerId": 9,
+        "matchId": 7,
+        "timestamp": 1720359968355,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 11,
+        "matchId": 7,
+        "timestamp": 1720359980366,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 47,
+        "matchId": 8,
+        "timestamp": 1720360474785,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 76,
+        "matchId": 7,
+        "timestamp": 1720360479803,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 42,
+        "matchId": 8,
+        "timestamp": 1720360484795,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 24,
+        "matchId": 7,
+        "timestamp": 1720360611899,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 42,
+        "matchId": 8,
+        "timestamp": 1720361126839,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 43,
+        "matchId": 8,
+        "timestamp": 1720361146856,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 54,
+        "matchId": 9,
+        "timestamp": 1720362199931,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 70,
+        "matchId": 9,
+        "timestamp": 1720362343100,
+        "action": "GOAL"
+      },
+      {
+        "playerId": 69,
+        "matchId": 9,
+        "timestamp": 1720362369121,
+        "action": "GOAL"
+      }
+    ]
   }
 }

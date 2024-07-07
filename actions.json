@@ -1,0 +1,3546 @@
+[
+    {
+        "name": "logByes",
+        "payload": {
+            "teamId": 6,
+            "timestamp": 1720363408124
+        },
+        "hash": "0x1fad4da958923b6a9d075db5378adc69fe91a7f8689a80d2812936a584044223",
+        "actionInfo": {
+            "teamName": "Avail"
+        },
+        "blockInfo": {
+            "height": 150,
+            "hash": "0x0e23650eba0ed3a4da19e239ee3ed3a094c9088d02f4f4e9d4567af44d974a6b",
+            "timestamp": 1720363409897,
+            "status": "l1_posted",
+            "daMetadata": {
+                "blockHeight": 435645,
+                "extIdx": 14
+            },
+            "l1TxHash": "0xaf5512e20f6cf53a52c2038ff3d8b5984006d0f7e9e3e3b4e76425cfb09cb015"
+        }
+    },
+    {
+        "name": "endMatch",
+        "payload": {
+            "matchId": 9,
+            "timestamp": 1720362807527
+        },
+        "hash": "0x80a7f9542d6f730c8484de281d83ce52f350db2992139688091494e4dc1ae3a1",
+        "actionInfo": {
+            "matchName": "#9 UpOnly FC vs Los Borbotones"
+        },
+        "blockInfo": {
+            "height": 149,
+            "hash": "0x6e54abd5d6e3fa36326d3c2837b73fd63432848f8e628cbacd2755f4043dab70",
+            "timestamp": 1720362811338,
+            "status": "l1_posted",
+            "daMetadata": {
+                "blockHeight": 435645,
+                "extIdx": 14
+            },
+            "l1TxHash": "0xaf5512e20f6cf53a52c2038ff3d8b5984006d0f7e9e3e3b4e76425cfb09cb015"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 9,
+            "playerId": 69,
+            "timestamp": 1720362367289
+        },
+        "hash": "0x9a3bed5d30d36a9736fc8d511c6408eb8763e4f78b06b11560f3191a8b4b57b7",
+        "actionInfo": {
+            "matchName": "#9 UpOnly FC vs Los Borbotones",
+            "playerName": "Nocolas"
+        },
+        "blockInfo": {
+            "height": 148,
+            "hash": "0x4e463bec7b5edba1c3a88936da79e7ddd978410e55dd7f513c3d82036c0f9140",
+            "timestamp": 1720362369121,
+            "status": "l1_posted",
+            "daMetadata": {
+                "blockHeight": 435645,
+                "extIdx": 14
+            },
+            "l1TxHash": "0xaf5512e20f6cf53a52c2038ff3d8b5984006d0f7e9e3e3b4e76425cfb09cb015"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 9,
+            "playerId": 70,
+            "timestamp": 1720362340531
+        },
+        "hash": "0xdb03c8222936220ae9af3bfbb0c373978d62f8360857c73c10be877e0c1e4eca",
+        "actionInfo": {
+            "matchName": "#9 UpOnly FC vs Los Borbotones",
+            "playerName": "Guido"
+        },
+        "blockInfo": {
+            "height": 147,
+            "hash": "0xb51a855b9e310610e9e2835b8f47365d16b9eba94c2dd14d53dededb9cc176c6",
+            "timestamp": 1720362343100,
+            "status": "l1_posted",
+            "daMetadata": {
+                "blockHeight": 435645,
+                "extIdx": 14
+            },
+            "l1TxHash": "0xaf5512e20f6cf53a52c2038ff3d8b5984006d0f7e9e3e3b4e76425cfb09cb015"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 9,
+            "playerId": 54,
+            "timestamp": 1720362196507
+        },
+        "hash": "0x3e2e3c40cd488c1b1e488a4f5cdaa7288620d51c8ca87348a936923b463d5808",
+        "actionInfo": {
+            "matchName": "#9 UpOnly FC vs Los Borbotones",
+            "playerName": "Halcyon Price"
+        },
+        "blockInfo": {
+            "height": 146,
+            "hash": "0xd5a22504c817f9c00fac7616b1075709b4ac2999194bc87f4fdea6df820ca1f7",
+            "timestamp": 1720362199931,
+            "status": "l1_posted",
+            "daMetadata": {
+                "blockHeight": 435645,
+                "extIdx": 14
+            },
+            "l1TxHash": "0xaf5512e20f6cf53a52c2038ff3d8b5984006d0f7e9e3e3b4e76425cfb09cb015"
+        }
+    },
+    {
+        "name": "endMatch",
+        "payload": {
+            "matchId": 8,
+            "timestamp": 1720362006220
+        },
+        "hash": "0xe7f514fed47dc63ddd31207bec00c9a99749d7b6d368090338b509000c7c0f08",
+        "actionInfo": {
+            "matchName": "#8 Avail vs BTC-R7"
+        },
+        "blockInfo": {
+            "height": 145,
+            "hash": "0x2c675cb5b150f620f779c6b19573470ee8e9b0b2e043571ced60c546c97c9638",
+            "timestamp": 1720362007967,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435546,
+                "extIdx": 15
+            },
+            "l1TxHash": "0x108381336084a5a124f25b1ee9b67adbd4a7bfc126cc9bbe6c873578db4e6d23"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 8,
+            "playerId": 43,
+            "timestamp": 1720361146687
+        },
+        "hash": "0xf0c706a7f4ffe366e73923d74bc05bf269742d8379027f3a8bfc5f243d9e7a9a",
+        "actionInfo": {
+            "matchName": "#8 Avail vs BTC-R7",
+            "playerName": "Player1Taco"
+        },
+        "blockInfo": {
+            "height": 144,
+            "hash": "0x141b58cb3b05d73006cd1cd7a824210bec568b74fe8cc31e93dfa7b5b0040de6",
+            "timestamp": 1720361146856,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435546,
+                "extIdx": 15
+            },
+            "l1TxHash": "0x108381336084a5a124f25b1ee9b67adbd4a7bfc126cc9bbe6c873578db4e6d23"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 8,
+            "playerId": 42,
+            "timestamp": 1720361126011
+        },
+        "hash": "0xf31b7e157003f4de89c4250dee1661d6676bba742ef29afe5ee689f34626c112",
+        "actionInfo": {
+            "matchName": "#8 Avail vs BTC-R7",
+            "playerName": "Paul Vacaru"
+        },
+        "blockInfo": {
+            "height": 143,
+            "hash": "0x2b8716f919af9e590b5e20db37ad2f6eb87da970465625cb296fb126401325cf",
+            "timestamp": 1720361126839,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435546,
+                "extIdx": 15
+            },
+            "l1TxHash": "0x108381336084a5a124f25b1ee9b67adbd4a7bfc126cc9bbe6c873578db4e6d23"
+        }
+    },
+    {
+        "name": "startMatch",
+        "payload": {
+            "matchId": 9,
+            "timestamp": 1720361112077
+        },
+        "hash": "0xd77c121649a8fcda50f790d6aba57bfd8e5459dcf7a2a637708de4914e870d7a",
+        "actionInfo": {
+            "matchName": "#9 UpOnly FC vs Los Borbotones"
+        },
+        "blockInfo": {
+            "height": 142,
+            "hash": "0x7e661f034a4d27ca98106e8a56051ef0acc384c4c62b6bd534912a0ad7f76931",
+            "timestamp": 1720361113825,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435546,
+                "extIdx": 15
+            },
+            "l1TxHash": "0x108381336084a5a124f25b1ee9b67adbd4a7bfc126cc9bbe6c873578db4e6d23"
+        }
+    },
+    {
+        "name": "endMatch",
+        "payload": {
+            "matchId": 7,
+            "timestamp": 1720360684103
+        },
+        "hash": "0x04e6127be1d40646dc6a77a72db9da4a7a104a3533506c5b583e24e379a29147",
+        "actionInfo": {
+            "matchName": "#7 StarKick vs PizzaPasta FC"
+        },
+        "blockInfo": {
+            "height": 141,
+            "hash": "0xd61f88272f1fdc09216efb49dd216f24a4663427c1132f098d7b9f844cd4ef51",
+            "timestamp": 1720360686231,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435546,
+                "extIdx": 15
+            },
+            "l1TxHash": "0x108381336084a5a124f25b1ee9b67adbd4a7bfc126cc9bbe6c873578db4e6d23"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 7,
+            "playerId": 24,
+            "timestamp": 1720360609360
+        },
+        "hash": "0xc826a793f32e88b8eec19e75c194890a0506356609d63a4863a0109374d65940",
+        "actionInfo": {
+            "matchName": "#7 StarKick vs PizzaPasta FC",
+            "playerName": "Altan Tutar"
+        },
+        "blockInfo": {
+            "height": 140,
+            "hash": "0x23120fb21d9c182325dedbe4d3229051c430348925d0e7b16a73ae999213d209",
+            "timestamp": 1720360611899,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435546,
+                "extIdx": 15
+            },
+            "l1TxHash": "0x108381336084a5a124f25b1ee9b67adbd4a7bfc126cc9bbe6c873578db4e6d23"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 8,
+            "playerId": 42,
+            "timestamp": 1720360484041
+        },
+        "hash": "0xf94c9b3af4a2e313b87420f087edd7a46047d907b9fde8195b60e1aecb7bef0d",
+        "actionInfo": {
+            "matchName": "#8 Avail vs BTC-R7",
+            "playerName": "Paul Vacaru"
+        },
+        "blockInfo": {
+            "height": 139,
+            "hash": "0xc935a318fa781af74248380d9053528788073a69225a86d4dcb28d0924ded376",
+            "timestamp": 1720360484795,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435546,
+                "extIdx": 15
+            },
+            "l1TxHash": "0x108381336084a5a124f25b1ee9b67adbd4a7bfc126cc9bbe6c873578db4e6d23"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 7,
+            "playerId": 76,
+            "timestamp": 1720360473041
+        },
+        "hash": "0x6a3b44d2a55143aa849673428ac730e686812ccb0422262f0f82ae341023e84a",
+        "actionInfo": {
+            "matchName": "#7 StarKick vs PizzaPasta FC",
+            "playerName": "Chilla"
+        },
+        "blockInfo": {
+            "height": 138,
+            "hash": "0x2dd83310432f38426569e8e4ec3d654b2226fb463d589bca593979b8e64ecf37",
+            "timestamp": 1720360479803,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435546,
+                "extIdx": 15
+            },
+            "l1TxHash": "0x108381336084a5a124f25b1ee9b67adbd4a7bfc126cc9bbe6c873578db4e6d23"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 8,
+            "playerId": 47,
+            "timestamp": 1720360473898
+        },
+        "hash": "0x52ea33b46440671eca09ad595042a279bede487858e59478638d871855768f3e",
+        "actionInfo": {
+            "matchName": "#8 Avail vs BTC-R7",
+            "playerName": "Juan Calderon"
+        },
+        "blockInfo": {
+            "height": 137,
+            "hash": "0x11101ff3f6e63d564f5451a58870bdd8b0f0cff94ed318334e3c449bb4e365a1",
+            "timestamp": 1720360474785,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435546,
+                "extIdx": 15
+            },
+            "l1TxHash": "0x108381336084a5a124f25b1ee9b67adbd4a7bfc126cc9bbe6c873578db4e6d23"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 7,
+            "playerId": 11,
+            "timestamp": 1720359978665
+        },
+        "hash": "0xba41598889c8e3c48d6b39252280d5ff3f0bee9a1cf52d4a1d0ce6ce1986b88e",
+        "actionInfo": {
+            "matchName": "#7 StarKick vs PizzaPasta FC",
+            "playerName": "Matthias Hallgren"
+        },
+        "blockInfo": {
+            "height": 136,
+            "hash": "0x0288f3fcc0f943383b4bfbdb9705f684a4b60b2d0c9b26a11e872a050d10cbbc",
+            "timestamp": 1720359980366,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 7,
+            "playerId": 9,
+            "timestamp": 1720359964767
+        },
+        "hash": "0x84bc0b5cbbb516cd290c669477c3ab640f7fb84cbd4709d8cf95160c00855c2d",
+        "actionInfo": {
+            "matchName": "#7 StarKick vs PizzaPasta FC",
+            "playerName": "Antiyro"
+        },
+        "blockInfo": {
+            "height": 135,
+            "hash": "0x8e86dfbdf2986cf040d5349ef2717ba4cbf3adcb6733f356de20d06289e12692",
+            "timestamp": 1720359968355,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 8,
+            "playerId": 85,
+            "timestamp": 1720359882735
+        },
+        "hash": "0x4fe5ef54eec6026f59f3c00888c2c036af1d1221e4b670cb34ccbf10a42318ca",
+        "actionInfo": {
+            "matchName": "#8 Avail vs BTC-R7",
+            "playerName": "Chandler"
+        },
+        "blockInfo": {
+            "height": 134,
+            "hash": "0x56e960cecb37f69c408b96e5c30c1294b5bfc93596fadc323a3a5da6fa4f9dd2",
+            "timestamp": 1720359883282,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 7,
+            "playerId": 23,
+            "timestamp": 1720359822255
+        },
+        "hash": "0x848e2d19c8c8caa97779cf25d0fe42df4460f4caca69514ee470e24eb81b17ea",
+        "actionInfo": {
+            "matchName": "#7 StarKick vs PizzaPasta FC",
+            "playerName": "Francesco Web3"
+        },
+        "blockInfo": {
+            "height": 133,
+            "hash": "0xd9339ab8bc3c76e8058354a99e0590de8e2d419d042bce5dec1479314dd6a46b",
+            "timestamp": 1720359824233,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 8,
+            "playerId": 85,
+            "timestamp": 1720359738161
+        },
+        "hash": "0xf1ee74013c30f72043eb3f2c45b41174cbd9ae9bf6421ed67786ca2c87dfdca3",
+        "actionInfo": {
+            "matchName": "#8 Avail vs BTC-R7",
+            "playerName": "Chandler"
+        },
+        "blockInfo": {
+            "height": 132,
+            "hash": "0xfb0f6be7f96019c90992608739a737b7a9edd0c9de28d4d48cf2f8936e824cd3",
+            "timestamp": 1720359739171,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 6,
+            "playerName": "Chandler",
+            "timestamp": 1720359731287
+        },
+        "hash": "0x2aa42b51a6572395094cc2f7b2bab46ec0af844d7e52dc5093cc66408fce2ce3",
+        "actionInfo": {
+            "teamName": "Avail"
+        },
+        "blockInfo": {
+            "height": 131,
+            "hash": "0x5a18a4bad357b2e67d744655f2f102ca470049a1cb1b053c7d6d88d1463f0664",
+            "timestamp": 1720359732166,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "startMatch",
+        "payload": {
+            "matchId": 8,
+            "timestamp": 1720359644497
+        },
+        "hash": "0x0548bbb83c826c7c17f21531b97015350f51870117402d372e8a3275ab8d2536",
+        "actionInfo": {
+            "matchName": "#8 Avail vs BTC-R7"
+        },
+        "blockInfo": {
+            "height": 130,
+            "hash": "0xaa97ca9ca32bcc20f71f11c431a4510288b365629906c2751fab0b64689d5d81",
+            "timestamp": 1720359647088,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 7,
+            "playerId": 23,
+            "timestamp": 1720359569359
+        },
+        "hash": "0xd2bd7e2327694ed22aabbe898b566153223bb2861f754f76d3bd30c017d5139f",
+        "actionInfo": {
+            "matchName": "#7 StarKick vs PizzaPasta FC",
+            "playerName": "Francesco Web3"
+        },
+        "blockInfo": {
+            "height": 129,
+            "hash": "0x6e93c3e92daeb4e4bc0094780467e5301f4febee22a7788f9d1a22d8f99029fd",
+            "timestamp": 1720359572025,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "startMatch",
+        "payload": {
+            "matchId": 7,
+            "timestamp": 1720359346695
+        },
+        "hash": "0x494cc8b0100f3fe28ccb96d2fcbe781685cdd10fed8f69d7fb0df5cb5cef3ba0",
+        "actionInfo": {
+            "matchName": "#7 StarKick vs PizzaPasta FC"
+        },
+        "blockInfo": {
+            "height": 128,
+            "hash": "0x5128b6ac1996ecdeeaa8cc22a6b3af61bc97dc52e3c5d0d0182d59ed00857c4c",
+            "timestamp": 1720359351843,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "endMatch",
+        "payload": {
+            "matchId": 6,
+            "timestamp": 1720358928612
+        },
+        "hash": "0x02465bdee97182558fa5c997ea934f01a6775518d20fe59b9aa27af370641ffa",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones"
+        },
+        "blockInfo": {
+            "height": 127,
+            "hash": "0xae28cc64b1a83bd2d61a0037820c1a2e28aee373dad0ced052eea94d19026347",
+            "timestamp": 1720358928728,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 6,
+            "playerId": 82,
+            "timestamp": 1720358846338
+        },
+        "hash": "0x2d54d68435159d70744ceb41c72a427bb4b907bb8a4b048dae2ab06cd17d6926",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Chandler"
+        },
+        "blockInfo": {
+            "height": 126,
+            "hash": "0x29b8080d05c98b13fc9b2e4cd2c0047f58f8e85cb02eebf2865fd30ca1168716",
+            "timestamp": 1720358846080,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 6,
+            "playerId": 68,
+            "timestamp": 1720358789187
+        },
+        "hash": "0x6e6819322280ac621713a9d5e709959c772cbd55158fc7a19bb8950e483061ea",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Martin"
+        },
+        "blockInfo": {
+            "height": 125,
+            "hash": "0x5ad850f8ef369d06f4b9d082bc47984be13b5762e9b42b5df49119e4866617d5",
+            "timestamp": 1720358789097,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 6,
+            "playerId": 68,
+            "timestamp": 1720358762194
+        },
+        "hash": "0xaf8650c059d130b6cfe803d652b91a2f9fa9d1822d89f6227abb36876f25e5cb",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Martin"
+        },
+        "blockInfo": {
+            "height": 124,
+            "hash": "0x4c7a595cfec59a28ff850a0204796d0b97b4b96cf7b18b9e26c41721b129f1df",
+            "timestamp": 1720358762077,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 6,
+            "playerId": 84,
+            "timestamp": 1720358666135
+        },
+        "hash": "0xcfe4a1fe3f83aebd23b3a242ba369d6689240eab34a232a1bd1e22a2b0eb3a73",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Fedecrypto"
+        },
+        "blockInfo": {
+            "height": 123,
+            "hash": "0xdf85087059ae2bd239c6ac8cc62d59efd2704cf8a8338a50662876a0a203a446",
+            "timestamp": 1720358666334,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 6,
+            "playerId": 82,
+            "timestamp": 1720358656784
+        },
+        "hash": "0x1999c38db7682fff06e43b5fa80bcfddf26b09bffa16a05b58e4c4a1fbd08aa8",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Chandler"
+        },
+        "blockInfo": {
+            "height": 122,
+            "hash": "0xdb594bb1b18d5f85ca2030678137212f7c44b93925a9be4bbe86813e1dd9e6d1",
+            "timestamp": 1720358657327,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 6,
+            "playerId": 69,
+            "timestamp": 1720358540386
+        },
+        "hash": "0xbf1f59d80408262ffef4406cb6d22a2e601a617a25cb80a06fa3bfb559916c7b",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Nocolas"
+        },
+        "blockInfo": {
+            "height": 121,
+            "hash": "0x43ec403477f37841050c9b217c142da8f36112c7a9d28a07af8bfee460fa68cc",
+            "timestamp": 1720358540547,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 6,
+            "playerId": 69,
+            "timestamp": 1720358507593
+        },
+        "hash": "0x7ae8572eaed4ee363f62e8a2d882c43a02e8b24b027ec8533376aac4b3b7bd7e",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Nocolas"
+        },
+        "blockInfo": {
+            "height": 120,
+            "hash": "0x63cc0a90d976ea5f26aafe693afbeb6b8f42e3cc4609b61a8cfe1a947e5b40d9",
+            "timestamp": 1720358507519,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 6,
+            "playerId": 69,
+            "timestamp": 1720358206575
+        },
+        "hash": "0xa27bb192a1e2853fca035de56cc85591a0cf29f3919bff0032631032ad271055",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Nocolas"
+        },
+        "blockInfo": {
+            "height": 119,
+            "hash": "0x6b5c1302d4aacf20d9f74a1993b391c66d32cb392230223cb4c1eb2de08426e1",
+            "timestamp": 1720358206289,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 6,
+            "playerId": 82,
+            "timestamp": 1720358104345
+        },
+        "hash": "0xa2abcc8697b054996671d77677ec2e87f6e58f09db33c8c259a3fef69d861354",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Chandler"
+        },
+        "blockInfo": {
+            "height": 118,
+            "hash": "0xaaef7e29b7bcaf8e9cb6a53b06fa84a90cef2c720be81155fe92b70bf92aa658",
+            "timestamp": 1720358104211,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 6,
+            "playerId": 82,
+            "timestamp": 1720358051916
+        },
+        "hash": "0x8a4724828f36b8a00ade5939baf0ce125ecb2409a816ee0ab0b92b8fd92c4fa0",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Chandler"
+        },
+        "blockInfo": {
+            "height": 117,
+            "hash": "0x42d4472a8a8125c843d5775f6befa19950fc0d592ba8f3e66fea212373d9769a",
+            "timestamp": 1720358052168,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435446,
+                "extIdx": 7
+            },
+            "l1TxHash": "0x02a98dc738b0c828d5819f0dc6fe59113e1b1b0709f58a95362c69559dd40b14"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 6,
+            "playerId": 84,
+            "timestamp": 1720358009622
+        },
+        "hash": "0x3b318f57782799f9856862aa874db36a3fc6889705031fe9818a0cf2ca44ad79",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Fedecrypto"
+        },
+        "blockInfo": {
+            "height": 116,
+            "hash": "0xaf58332e158100c14a2b6914f0f3683f073a2f7b105346850c8108b37353c270",
+            "timestamp": 1720358009130,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 11,
+            "playerName": "Fedecrypto",
+            "timestamp": 1720358002816
+        },
+        "hash": "0xeb2cc2639084454de2c6f186f5a601043803255440aa991ba70f9d0f051f9815",
+        "actionInfo": {
+            "teamName": "Her DAO"
+        },
+        "blockInfo": {
+            "height": 115,
+            "hash": "0xd35c87a3e5d29898cd44c504a4573b0a59031f9b24d8611e94aae464777c0675",
+            "timestamp": 1720358003126,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 6,
+            "playerId": 83,
+            "timestamp": 1720357981470
+        },
+        "hash": "0x4fc803cee1b9c591f7a86d435a00f9cfe549309a583873d75bb0f4447b5b2077",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Vibhu"
+        },
+        "blockInfo": {
+            "height": 114,
+            "hash": "0xec9b1a359f882e03d7ee4c4c57b67b8cf13ad253f8c0100ef2e47f668022e8f0",
+            "timestamp": 1720357981106,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 6,
+            "playerId": 83,
+            "timestamp": 1720357837983
+        },
+        "hash": "0xaba4d668463615c5f15f9709c2147140294cad11b8637abd8dd4663e736dcd01",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Vibhu"
+        },
+        "blockInfo": {
+            "height": 113,
+            "hash": "0x0168ae773922e5369a03940420b0464faa0fb9ec19caae914f9094929e343659",
+            "timestamp": 1720357838329,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 6,
+            "playerId": 83,
+            "timestamp": 1720357769469
+        },
+        "hash": "0x685585a4d8b94e7962b9f3385577ea184d051535e265c1da7c82c9b72e96c5d0",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "Vibhu"
+        },
+        "blockInfo": {
+            "height": 112,
+            "hash": "0xd5b4a7e8ce60ed329ac014595dc50f1581acd491a8fb990a7ff2d927a88b8095",
+            "timestamp": 1720357769269,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 6,
+            "playerId": 71,
+            "timestamp": 1720357666476
+        },
+        "hash": "0x222f7c2f594c1d73e5147cc7fdcc77aa24c58f21215112094c99f4bdbf0434c9",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones",
+            "playerName": "F"
+        },
+        "blockInfo": {
+            "height": 111,
+            "hash": "0x60a9655bf068a1810d4d193ec13c08874bd29b5325a9c82c23207dbeb0d2fec3",
+            "timestamp": 1720357666085,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 11,
+            "playerName": "Vibhu",
+            "timestamp": 1720357464752
+        },
+        "hash": "0xf7968e5e82b12a908fbcdc5bc4e5654b1df71438cb81959ca6ca00dd21e39ff6",
+        "actionInfo": {
+            "teamName": "Her DAO"
+        },
+        "blockInfo": {
+            "height": 110,
+            "hash": "0xeb12c6ce7e0c1d0b6d01cdd13120c545f21ec29e6a028f4363e6798459363460",
+            "timestamp": 1720357464924,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 11,
+            "playerName": "Chandler",
+            "timestamp": 1720357445009
+        },
+        "hash": "0x11d4644b452a34fa19857c7211c958f6bb6b103e9d5c358a9d17774222858083",
+        "actionInfo": {
+            "teamName": "Her DAO"
+        },
+        "blockInfo": {
+            "height": 109,
+            "hash": "0x48c9b557ce00c50f9339085f502927e68c03f5a1fc41a3b995694b900c4ae1fd",
+            "timestamp": 1720357444909,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "startMatch",
+        "payload": {
+            "matchId": 6,
+            "timestamp": 1720357413697
+        },
+        "hash": "0xe319c795624de2e11188c52d2e955de8a45c9b9f6ad5fd69daa89cfe2fcc2f7a",
+        "actionInfo": {
+            "matchName": "#6 Her DAO vs Los Borbotones"
+        },
+        "blockInfo": {
+            "height": 108,
+            "hash": "0x7ea81ba227d883a5d9ab62acf4036be4fa0ea18a5884853cab4041ae5192d927",
+            "timestamp": 1720357413885,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "endMatch",
+        "payload": {
+            "matchId": 5,
+            "timestamp": 1720357020134
+        },
+        "hash": "0xd6eb3e36dcb558cb6be0a4759a90ef515f73c5a0078ec0fa2dbcd33df7de34cf",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC"
+        },
+        "blockInfo": {
+            "height": 107,
+            "hash": "0x854ed3933173562ff0ff7bcd7a383ee581f8044a5dbfc2e4e17a8626b79f6339",
+            "timestamp": 1720357020242,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 59,
+            "timestamp": 1720356996470
+        },
+        "hash": "0x0d81ac87249ee512ccbc3881a06f4c5eca913a6491084e2bfe9ee0c6ee767c24",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Kraznik"
+        },
+        "blockInfo": {
+            "height": 106,
+            "hash": "0x36d1fb0b88480777d357463f30dc9bb761e09b66e0571b8dcf23148a75fd67d4",
+            "timestamp": 1720356996030,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 56,
+            "timestamp": 1720356976486
+        },
+        "hash": "0xac235853964bd66654d0faeed845578d518aeac3bf604376ac8aa2d5a7935610",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Anirudh Suresh"
+        },
+        "blockInfo": {
+            "height": 105,
+            "hash": "0x00ff79250dd1458c2199c4eac74f4db52797658cc4e97cfadc0049a48cf1edbe",
+            "timestamp": 1720356976023,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 59,
+            "timestamp": 1720356970733
+        },
+        "hash": "0x93416f7adefc1deb98bdd127f935580623390a1fa3887fab81e1c27c152d05b5",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Kraznik"
+        },
+        "blockInfo": {
+            "height": 104,
+            "hash": "0x0d1fc6f1627ea95e537671b495ca10f6294eb11324ffe8fec365cf6319352daf",
+            "timestamp": 1720356971010,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 56,
+            "timestamp": 1720356884541
+        },
+        "hash": "0x125950a6a3038347f66ee04f96a278372f9b8923e45afa2c49ea3db947d07917",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Anirudh Suresh"
+        },
+        "blockInfo": {
+            "height": 103,
+            "hash": "0xbc6b01e6c3703862001467667d3e301abb455cc9e4c5c3fef8f2897426d9a26b",
+            "timestamp": 1720356884717,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 59,
+            "timestamp": 1720356863528
+        },
+        "hash": "0x46629073b2fa2561956cbf261bd33088ec6d22bf7adf8bdbad175bad9b7f6fcd",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Kraznik"
+        },
+        "blockInfo": {
+            "height": 102,
+            "hash": "0xe772666cede5b1fa9483ed6bf5698291fe1e5c1eaed3cf43c939643c4e4c991e",
+            "timestamp": 1720356863699,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 5,
+            "playerId": 54,
+            "timestamp": 1720356828249
+        },
+        "hash": "0x1547125540f5b83f280a17980595eb6aece756ed80c463e6865d628060bd70f7",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Halcyon Price"
+        },
+        "blockInfo": {
+            "height": 101,
+            "hash": "0xd9029becd697745f1a0593d721dd7d907d0d9b64ed1e279fb7a2c64a54cf3cda",
+            "timestamp": 1720356827680,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 56,
+            "timestamp": 1720356802492
+        },
+        "hash": "0x1c3a0f55dfcf2f17e43f88aae4d8d6324725293ee8ed0251a418be653bc2f767",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Anirudh Suresh"
+        },
+        "blockInfo": {
+            "height": 100,
+            "hash": "0xeda1d69c8c80a237e79ff7ca3ea903599be75b89fc4f0551541d3e1a81d10b88",
+            "timestamp": 1720356802654,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 5,
+            "playerId": 81,
+            "timestamp": 1720356665539
+        },
+        "hash": "0x7ba4511bca74ffd7a8ad7b57e3ddd3ac68b1a8b2a416d09dc1393607b5999c00",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Michael"
+        },
+        "blockInfo": {
+            "height": 99,
+            "hash": "0x08705bef5f8518baf9eda8c1c99266e97bf9f7a41e1fa588bfd33fe348f6f831",
+            "timestamp": 1720356665538,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 5,
+            "playerId": 54,
+            "timestamp": 1720356647621
+        },
+        "hash": "0xd4f491bc6d7c80ce6d0f011a63912a87ddd9abc7402d5d6e22c4c304a73623fc",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Halcyon Price"
+        },
+        "blockInfo": {
+            "height": 98,
+            "hash": "0x0745db785ecf10190cbd6fd7719fded7a0c9a9408e41d5015779af68fc16bb5f",
+            "timestamp": 1720356647525,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 5,
+            "playerId": 52,
+            "timestamp": 1720356639004
+        },
+        "hash": "0x86b5f9353364114763cd30eef830bd6712d27a66a05bd3975f243774e71825df",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Mike Mendes"
+        },
+        "blockInfo": {
+            "height": 97,
+            "hash": "0x8d770d47e667a799ed7eeb8a3ccea95cf78ddbcab3b8fc533e4faf295fa7d89a",
+            "timestamp": 1720356638509,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 5,
+            "playerId": 54,
+            "timestamp": 1720356581389
+        },
+        "hash": "0x2467af710026713106935a9d22b36ac8ffbbdaf0855d5b3edba7832031a39cfd",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Halcyon Price"
+        },
+        "blockInfo": {
+            "height": 96,
+            "hash": "0x4eb3ecad71fe33ecdb69c810a5c7de6610a85c1054f18dfdb15f93cebb678385",
+            "timestamp": 1720356581291,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 10,
+            "playerName": "Michael",
+            "timestamp": 1720356181221
+        },
+        "hash": "0x636cb556d63c5852479cfbd4b0c37c4efc0f45cb830bbdbb5ed34c21e1fddd12",
+        "actionInfo": {
+            "teamName": "Whitehats FC"
+        },
+        "blockInfo": {
+            "height": 95,
+            "hash": "0x0a83eb84114f55ae3f02ae7ed809f5acca0a67ef0de4735aca1f42cb4d1ad2a8",
+            "timestamp": 1720356180830,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 10,
+            "playerName": "Altan",
+            "timestamp": 1720356165145
+        },
+        "hash": "0xb1a33b3d6f227e0e10c4baad5e343586f178dc2d0395b78a811d8c40ec8a1420",
+        "actionInfo": {
+            "teamName": "Whitehats FC"
+        },
+        "blockInfo": {
+            "height": 94,
+            "hash": "0x3ace582db710ec287df93ba81f46d8144ddb7fbdbe2c7cd19e9dbc8a8434cbc5",
+            "timestamp": 1720356164822,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435346,
+                "extIdx": 12
+            },
+            "l1TxHash": "0xbf5151c1a00f356f0a279eecadb20260005f8ce5898924845e441cf80c709fdb"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 5,
+            "playerId": 54,
+            "timestamp": 1720355888103
+        },
+        "hash": "0x77f0fbc80f76954d7831c53c251f3649d7f938e38d401dd2ea77843881f9e367",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Halcyon Price"
+        },
+        "blockInfo": {
+            "height": 93,
+            "hash": "0x44c03c9599e075faf8fc666f8e089dea00cbcb6c647069187d2cfdc19f91db15",
+            "timestamp": 1720355888648,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 59,
+            "timestamp": 1720355848296
+        },
+        "hash": "0x339474adc05df085a50eb959d092d556c0348e84148878a2e31e02960d143767",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Kraznik"
+        },
+        "blockInfo": {
+            "height": 92,
+            "hash": "0x5448c8da65eb27facb4f5a17887dd6b037f1e970e3583f388707f9a8f12e900c",
+            "timestamp": 1720355848622,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 59,
+            "timestamp": 1720355815461
+        },
+        "hash": "0xce73636d0471d53cee3d5a0d5f89588f3bf64e6c8e570f39e15cddc405ee36e0",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Kraznik"
+        },
+        "blockInfo": {
+            "height": 91,
+            "hash": "0xe6fe41c1692b1f094c8d02fb726e28c8301c98f11d459a67ca9a29e4f5c4eff1",
+            "timestamp": 1720355815600,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 5,
+            "playerId": 54,
+            "timestamp": 1720355739006
+        },
+        "hash": "0xee0aad4e080d7ade1ad2566dd83f21d81f0e5d98692f62218aec4178da5123fc",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Halcyon Price"
+        },
+        "blockInfo": {
+            "height": 90,
+            "hash": "0xcbb1d6e8223662a662bb78937fb4ca0ca78415bcb72a0cc9038874d6fdcb1da5",
+            "timestamp": 1720355739337,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 5,
+            "playerId": 54,
+            "timestamp": 1720355667581
+        },
+        "hash": "0x177b76cc372fa13f181e1dd6697f75c9a06360f75d5e108f4ba6968c80650aab",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Halcyon Price"
+        },
+        "blockInfo": {
+            "height": 89,
+            "hash": "0x7e40f46f2ad67a2fbaf4991efc22a87c86006887beeb54b9cda2001f6dff293e",
+            "timestamp": 1720355667299,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 59,
+            "timestamp": 1720355659040
+        },
+        "hash": "0x7b697f39cdea37fd6ccc5cba0edcb449a8dbdcab221da68a6f0c286103e9d713",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Kraznik"
+        },
+        "blockInfo": {
+            "height": 88,
+            "hash": "0x5139b4052b92d6d7f5ddd7d9cb6124376504453bfac601e4a1a209a2c23e1fc4",
+            "timestamp": 1720355659296,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 5,
+            "playerId": 57,
+            "timestamp": 1720355613340
+        },
+        "hash": "0xb11f8b5426ba54113794e9e65fe03f108984b5f8acb7ef96bdfba413cec70695",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Will"
+        },
+        "blockInfo": {
+            "height": 87,
+            "hash": "0x69857ab8fc3340287d0b1690f6f5467efd721968d9c5865711ed36393a34e62a",
+            "timestamp": 1720355613278,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 59,
+            "timestamp": 1720355476752
+        },
+        "hash": "0xb909d90a420f1d9ac1b21cc58bfe2f1903f887a666d1605db2145a36e3ca59f7",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Kraznik"
+        },
+        "blockInfo": {
+            "height": 86,
+            "hash": "0x1424d1412b7e0b20d383e107d731d08ee91147e91b7d1d125497dc5618ec04d8",
+            "timestamp": 1720355477063,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 5,
+            "playerId": 56,
+            "timestamp": 1720355416937
+        },
+        "hash": "0xc934540402b2e83a34bf6289e63347cb5441e65d7509bf9763ef582c3bb9e85f",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC",
+            "playerName": "Anirudh Suresh"
+        },
+        "blockInfo": {
+            "height": 85,
+            "hash": "0x74de988c8cd51c4a3b0985659fbba7e7af74d803d95275d9529bbd277d2e223e",
+            "timestamp": 1720355417530,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "startMatch",
+        "payload": {
+            "matchId": 5,
+            "timestamp": 1720355171888
+        },
+        "hash": "0x8b257d91dff5461e71811db790c1e9cec58e704523386abe1c9c3886b355b2a3",
+        "actionInfo": {
+            "matchName": "#5 UpOnly FC vs Whitehats FC"
+        },
+        "blockInfo": {
+            "height": 84,
+            "hash": "0x39216c2044c67cfc2cb76ae5a3fa66b34d52599857528b0bc0a266d8e255d131",
+            "timestamp": 1720355172203,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "endMatch",
+        "payload": {
+            "matchId": 4,
+            "timestamp": 1720354358637
+        },
+        "hash": "0x3cebec61022a05f853fc0dc4f026d4ea994a0d9e620ba332c003b1151613e320",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club"
+        },
+        "blockInfo": {
+            "height": 83,
+            "hash": "0x6232eef632c112fd18de8c625e8eadef5c954aeaecc85ea2409d47981365b66a",
+            "timestamp": 1720354358858,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 47,
+            "timestamp": 1720354141597
+        },
+        "hash": "0xd7888c0c6bb98603d4001b7562487989f0e3ee5b5c0799801d29734bb83f9d25",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Juan Calderon"
+        },
+        "blockInfo": {
+            "height": 82,
+            "hash": "0x047c615a19586534d360edec29e0e94c6510b4d9481ca422240719c15b96b8be",
+            "timestamp": 1720354142398,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 42,
+            "timestamp": 1720354097873
+        },
+        "hash": "0x94d1a42aaa2f81050b7dc06fa548fdbc0131481be24bf319b52b8abc00ef9116",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Paul Vacaru"
+        },
+        "blockInfo": {
+            "height": 81,
+            "hash": "0xb7346c8a4c924d0b88a12580b62ed3129375990d441507a2d1c2ccb26c6ea0fc",
+            "timestamp": 1720354098356,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435246,
+                "extIdx": 22
+            },
+            "l1TxHash": "0x40dfcc8329c6ea7631a071bd1fd8d53db1ca623fcbb7515c388c8e38c1b4665d"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 42,
+            "timestamp": 1720353775705
+        },
+        "hash": "0x689f6295d5dd1253b8c0cf1dbd221e76e64f3941732665abc94e7b3dcf2fe1f5",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Paul Vacaru"
+        },
+        "blockInfo": {
+            "height": 80,
+            "hash": "0xa7c39b91a409377046a610632ff2f496b5fbdc9b9be57cb94488f011185903f1",
+            "timestamp": 1720353776094,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 42,
+            "timestamp": 1720353770168
+        },
+        "hash": "0xc89690a14198f09090700616b81c983660bb2b830c6a14b2b993befa15d2a89f",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Paul Vacaru"
+        },
+        "blockInfo": {
+            "height": 79,
+            "hash": "0x122f32853d326aeec0d7976b313104c87f89a3370eae89c9cde60728ed3ae22d",
+            "timestamp": 1720353770089,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 50,
+            "timestamp": 1720353690454
+        },
+        "hash": "0x63b0a923969e11a9e9fbae2a6505503518b6b8aea56365ada7c00672a6e3f9d9",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Christian Narvaez"
+        },
+        "blockInfo": {
+            "height": 78,
+            "hash": "0x107d63dba0147219c5720f7d78d2c78353283d8ebb43c345ea4b3e7ccde25085",
+            "timestamp": 1720353691023,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 4,
+            "playerId": 79,
+            "timestamp": 1720353659535
+        },
+        "hash": "0x1a52e7add068cd4e676a4b10458f7e859989b67903e0f13e632b96c8cebfb4a5",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Abi"
+        },
+        "blockInfo": {
+            "height": 77,
+            "hash": "0xb6ef552f0579347c407b3a8436529264ba7dce07a459a222989387b9b5af85f7",
+            "timestamp": 1720353660003,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 4,
+            "playerId": 79,
+            "timestamp": 1720353652910
+        },
+        "hash": "0x0b5301d74e42a6ee67413153f891820350e48778ec2c3cb089b38558d78768b7",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Abi"
+        },
+        "blockInfo": {
+            "height": 76,
+            "hash": "0x1eb180061d8414f0da6f7cb0307f4ac98c7fbf1b8f3448f8db7e3e9bcc1691fc",
+            "timestamp": 1720353652997,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 4,
+            "playerId": 79,
+            "timestamp": 1720353646839
+        },
+        "hash": "0xac865e89d400ddb3b2c90922a608f17bb35ed2e5c2ef2e18bfce83f9bd15919c",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Abi"
+        },
+        "blockInfo": {
+            "height": 75,
+            "hash": "0x98abe1498af5d5e4d2b3894bf901bc5c0aaa40434fb2fc0f1b1a43b074f18ea2",
+            "timestamp": 1720353646992,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 4,
+            "playerId": 79,
+            "timestamp": 1720353639525
+        },
+        "hash": "0xf173312145e9a7643e82613e2f63bef8869798c5c24f47ebd8e62dc6e5f2605b",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Abi"
+        },
+        "blockInfo": {
+            "height": 74,
+            "hash": "0xd3f078217ba84c2d8d860dddb7a493d3b5755e2eceb47aa7233948ba0a017973",
+            "timestamp": 1720353639988,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 4,
+            "playerId": 79,
+            "timestamp": 1720353628351
+        },
+        "hash": "0x4486c159e4788b866f4e660b5470c2c97cbb183ad69e3ce4d622dcc6ac47d33c",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Abi"
+        },
+        "blockInfo": {
+            "height": 73,
+            "hash": "0xc49e9ab6e17d2f7c3b2b75c4bb54ad319aa2bc75deb14db22875c8d0d367e272",
+            "timestamp": 1720353628980,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 48,
+            "timestamp": 1720353509974
+        },
+        "hash": "0x263cffdbf6b142d731169fb335aa17ef021ac61421e66dbc57ce9a949e6f785a",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Mel"
+        },
+        "blockInfo": {
+            "height": 72,
+            "hash": "0x7e60fcfe9635490237a8a3e59e6381ab67e99f433e711f6af3a4b3fc12bb61d6",
+            "timestamp": 1720353510880,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 42,
+            "timestamp": 1720352908348
+        },
+        "hash": "0x838144f209de6fb0337627cb2aa1f041b2dc10478c44bc6783b96c257e4e1477",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Paul Vacaru"
+        },
+        "blockInfo": {
+            "height": 71,
+            "hash": "0xc9586be1e4c840cf421367638f3fcaeee39b14b0fe920027826133d98c6dbaf0",
+            "timestamp": 1720352908618,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 45,
+            "timestamp": 1720352727312
+        },
+        "hash": "0x2fa1f74b7e2e52660d149e1aa94bb7d447fe93fa5b6bd9eb0e725f1a00471992",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Tomer Cohen"
+        },
+        "blockInfo": {
+            "height": 70,
+            "hash": "0x1692f48e307260142fd101b53f724a17cf2ec22feec4da4e5c29a1903cbda768",
+            "timestamp": 1720352727474,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 42,
+            "timestamp": 1720352669697
+        },
+        "hash": "0x15b74339297ef67bcca2e81f7003477fe2d3d1b9891a7fdc7c93f8cc3c2893df",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Paul Vacaru"
+        },
+        "blockInfo": {
+            "height": 69,
+            "hash": "0x7e8eb25ccbd8afbd166dca6a8d93a46637231708e8250a658bd0fe1c23e7f5d8",
+            "timestamp": 1720352669424,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 43,
+            "timestamp": 1720352612606
+        },
+        "hash": "0x440e9e1734ca75d117c141b3bb526b1c87f6bf1a9a8b939fa6842e729516c288",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Player1Taco"
+        },
+        "blockInfo": {
+            "height": 68,
+            "hash": "0x2011594119e2b7f5ffcfeff27829509760eeb74968a6fe7136fb0654180c978a",
+            "timestamp": 1720352612379,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 4,
+            "playerId": 42,
+            "timestamp": 1720352451531
+        },
+        "hash": "0x6775cda569b9b281f149579fe7ec85ae6e26e4ba2b79b8c0cfe333e91057daf7",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Paul Vacaru"
+        },
+        "blockInfo": {
+            "height": 67,
+            "hash": "0x1a7140432d4403caa9193f987e2f6bad1a6847152b2becd9cbabff3314567ca7",
+            "timestamp": 1720352451251,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 4,
+            "playerId": 79,
+            "timestamp": 1720352279194
+        },
+        "hash": "0xdaf62ea41ef62ec675aac0ae061f7d7a2ed61b54a6c1c2e2c38fffbc291d7215",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club",
+            "playerName": "Abi"
+        },
+        "blockInfo": {
+            "height": 66,
+            "hash": "0xe10b5e93485aae2611465e82970ce977bb5732f83d40376dad5692860f581c85",
+            "timestamp": 1720352279115,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 8,
+            "playerName": "Abi",
+            "timestamp": 1720352272605
+        },
+        "hash": "0x7c8bc9018b1b8e1f506e9c76c769090d4a2472b3694b2f8b1d944e00b40f446b",
+        "actionInfo": {
+            "teamName": "Dabl Club"
+        },
+        "blockInfo": {
+            "height": 65,
+            "hash": "0xfa65313999c83c41f45ceeeeb19d9eb0bef86ed15609552675c24f6de5b78691",
+            "timestamp": 1720352273108,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "startMatch",
+        "payload": {
+            "matchId": 4,
+            "timestamp": 1720351944996
+        },
+        "hash": "0x386ffc955677f1824e22dfdd88fe637bcf5e848cb06579f23dcffa298872ea4f",
+        "actionInfo": {
+            "matchName": "#4 BTC-R7 vs Dabl Club"
+        },
+        "blockInfo": {
+            "height": 64,
+            "hash": "0xbbd8f9e5e609a1ca1ea01e4632c3a51dbfe239a4bf0559f82fcd00dd193ebbad",
+            "timestamp": 1720351945840,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "endMatch",
+        "payload": {
+            "matchId": 3,
+            "timestamp": 1720351476506
+        },
+        "hash": "0x48d4bd34e13c525578e2a9f2f46013977b7e6ab72fb175c586ab85701247c140",
+        "actionInfo": {
+            "matchName": "#3 Decentralize Feet vs Avail"
+        },
+        "blockInfo": {
+            "height": 63,
+            "hash": "0x0f3cacea36a31331e6befdc2efea09694c7828c7bcfc4198689802042c5035fb",
+            "timestamp": 1720351477266,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 3,
+            "playerId": 35,
+            "timestamp": 1720351470648
+        },
+        "hash": "0x2d3843ddf2892fb352b6b2801a6f9add25631b52b8a099bbf64668f7d54336b1",
+        "actionInfo": {
+            "matchName": "#3 Decentralize Feet vs Avail",
+            "playerName": "Prabal"
+        },
+        "blockInfo": {
+            "height": 62,
+            "hash": "0xafe07341d8a4f3a2af3d4ba279c1e59f33289f78633887925326e25b226f0bc7",
+            "timestamp": 1720351471262,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "startMatch",
+        "payload": {
+            "matchId": 3,
+            "timestamp": 1720351461626
+        },
+        "hash": "0xe745b28c06c995404d0dd11c4e33fc431a9e0622baee0bc9a60ecf8e92f6686d",
+        "actionInfo": {
+            "matchName": "#3 Decentralize Feet vs Avail"
+        },
+        "blockInfo": {
+            "height": 61,
+            "hash": "0x284d30a7e11f77736c938ba4bfa4fdef7f969c7996f2cf7776ffecfd9b17bd8c",
+            "timestamp": 1720351464256,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 435147,
+                "extIdx": 11
+            },
+            "l1TxHash": "0x7d62245770d205b795672507bc3e771962980341a57fa998686e01e6c7902b28"
+        }
+    },
+    {
+        "name": "endMatch",
+        "payload": {
+            "matchId": 2,
+            "timestamp": 1720348505105
+        },
+        "hash": "0x81f936d3da9a84489bdbe6d34d25c7aa9e867adf4a3da9d88115f94d0d378b0e",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC"
+        },
+        "blockInfo": {
+            "height": 60,
+            "hash": "0xd1cc69e232f2419bdfecf8a8cff24d68c742e42bcd070f735ebf85194edfea30",
+            "timestamp": 1720348507825,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434947,
+                "extIdx": 10
+            },
+            "l1TxHash": "0xeef761c0d79fd95e80d04f10b68369855e0bebbd1e5161b9e1a6da81b592f857"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 15,
+            "timestamp": 1720348403534
+        },
+        "hash": "0x021304d57bde2406cdcc3a3e24ed635dc602329434c2065bc392664cb7566ced",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Marouen Zelleg"
+        },
+        "blockInfo": {
+            "height": 59,
+            "hash": "0x2cdd44f3921f0427052b81c04f5f5dc848eb6b2996b7513861eb5db95319ecf9",
+            "timestamp": 1720348404602,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434947,
+                "extIdx": 10
+            },
+            "l1TxHash": "0xeef761c0d79fd95e80d04f10b68369855e0bebbd1e5161b9e1a6da81b592f857"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 16,
+            "timestamp": 1720348239459
+        },
+        "hash": "0x920d4f010d29d46b3fa2009014cae2774f562d706a08584bbcb7332b0687391a",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Robbie Liu"
+        },
+        "blockInfo": {
+            "height": 58,
+            "hash": "0x88d67b70a406b8a00b4d22ff1045b41641f6ac867b58e8d914840abbba8e4098",
+            "timestamp": 1720348240302,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434947,
+                "extIdx": 10
+            },
+            "l1TxHash": "0xeef761c0d79fd95e80d04f10b68369855e0bebbd1e5161b9e1a6da81b592f857"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 23,
+            "timestamp": 1720348188824
+        },
+        "hash": "0xca640db2a7604db4a047ce16580949ccd47813b5e34c3754dbda1ab8f45d4f40",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Francesco Web3"
+        },
+        "blockInfo": {
+            "height": 57,
+            "hash": "0x89cd024d8856965176f6979fb6f3ec65230254c8f576bb56edd426c28c6c1d52",
+            "timestamp": 1720348190263,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434947,
+                "extIdx": 10
+            },
+            "l1TxHash": "0xeef761c0d79fd95e80d04f10b68369855e0bebbd1e5161b9e1a6da81b592f857"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 19,
+            "timestamp": 1720348157691
+        },
+        "hash": "0xf80d816096890a85dbe3ea6141eb8142dfb0c0263f1af8752c2de9a9f8a9d4f7",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "redrum"
+        },
+        "blockInfo": {
+            "height": 56,
+            "hash": "0x2555b52f7cbaf34a02cac7a9d4ba195f502c6f7ff053774824ba731bfb7c3130",
+            "timestamp": 1720348158236,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434947,
+                "extIdx": 10
+            },
+            "l1TxHash": "0xeef761c0d79fd95e80d04f10b68369855e0bebbd1e5161b9e1a6da81b592f857"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 24,
+            "timestamp": 1720347972050
+        },
+        "hash": "0x5688087b364f1be61c7eafa301887769b0e0ebe6fed036de496993093788539d",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Altan Tutar"
+        },
+        "blockInfo": {
+            "height": 55,
+            "hash": "0x6b4cf816407772d4d8de7aeecfd0448f4b153e7b3c15fbcf5ed6cf9b81e94235",
+            "timestamp": 1720347972964,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 6,
+            "playerName": "Stefan",
+            "timestamp": 1720347751088
+        },
+        "hash": "0x6cd72492021739a073cf57f487e373bdd92e5be0ef1a4ee6878e1d8b51a41df7",
+        "actionInfo": {
+            "teamName": "Avail"
+        },
+        "blockInfo": {
+            "height": 54,
+            "hash": "0x6e3563a43fab44048783e3f9b61ec2b1e95f9c74d84cf717aba94b863dbbf156",
+            "timestamp": 1720347751796,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 6,
+            "playerName": "Ilir",
+            "timestamp": 1720347740123
+        },
+        "hash": "0x4d5d96b22f3cdd28ed8f397a67b004aa82b1908fb968cc2a07b722b74fcbbdb1",
+        "actionInfo": {
+            "teamName": "Avail"
+        },
+        "blockInfo": {
+            "height": 53,
+            "hash": "0xf6bc20ce2bd8c14d74cb47af8d09920f750bbd1924f9fa0db1f0c8898a05018d",
+            "timestamp": 1720347740788,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 23,
+            "timestamp": 1720347703049
+        },
+        "hash": "0x0da492727e17a1d0268edfadb6ed06d8150e8fe4248d8b2c8d5036cd9118fdb4",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Francesco Web3"
+        },
+        "blockInfo": {
+            "height": 52,
+            "hash": "0x2af54357535d89c9d8ba7909df163c2e39ba7400e2f8d18b1a893ae4be43ca6c",
+            "timestamp": 1720347703755,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 22,
+            "timestamp": 1720347638510
+        },
+        "hash": "0xe8e2e04a7d07d8ffcac5fa20ff7271171db7bb7bffeed7b41cf808bb45fa53e4",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Biaf"
+        },
+        "blockInfo": {
+            "height": 51,
+            "hash": "0x9ab589a675b758573d0d04d4fc28fdd70f656884c38b974da610a5b476df2ce0",
+            "timestamp": 1720347639702,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 24,
+            "timestamp": 1720347590172
+        },
+        "hash": "0x3cc15343643e170dafe031ccc5ed520104d8458358c04ad658d293235792e9b7",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Altan Tutar"
+        },
+        "blockInfo": {
+            "height": 50,
+            "hash": "0x8440a476594f494c793fe8ca21fcd8628dc0b76db8d539eb9a9986fc391c6470",
+            "timestamp": 1720347590663,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 14,
+            "timestamp": 1720347335081
+        },
+        "hash": "0xdfffe946b57c2b6d3224b87f1b21e0a6248cb32ec4663dcbf4eec6c2ed85e881",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "forrest"
+        },
+        "blockInfo": {
+            "height": 49,
+            "hash": "0x69d31794b627ce4d37c1fb08e600259495509b7d7320505647048df853c234f7",
+            "timestamp": 1720347336446,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 76,
+            "timestamp": 1720347312171
+        },
+        "hash": "0xbf88544b7ba8b519223f10949bfcd19351b90177c17cf1520d32ea7dccc714eb",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Chilla"
+        },
+        "blockInfo": {
+            "height": 48,
+            "hash": "0x479717c4d12042cb356a8e2eca651a7247ea70370d5af4cbfa2b4b9a3379f69d",
+            "timestamp": 1720347313426,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 16,
+            "timestamp": 1720347250931
+        },
+        "hash": "0xeeea61c05614f8c80fd24158d3c230839d68f03c713c4eb75ef7d6c566f4cc52",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Robbie Liu"
+        },
+        "blockInfo": {
+            "height": 47,
+            "hash": "0xe03452f23407c6369e681063b6dd37a64cbd67aa451837e08f3ca2cefc1d33ac",
+            "timestamp": 1720347252380,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 2,
+            "playerId": 20,
+            "timestamp": 1720347132455
+        },
+        "hash": "0x24b695247fe91698387321695ebef110007cfcbf83182b10d999e24a068214d1",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Bennett Davis"
+        },
+        "blockInfo": {
+            "height": 46,
+            "hash": "0x52d00b00631ae68d948fbd185eeede0ca352e4c403806656fc8cea07450f93ac",
+            "timestamp": 1720347133251,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 2,
+            "playerId": 20,
+            "timestamp": 1720347078781
+        },
+        "hash": "0xbbd8c1f54e37396101248186f365a147c67685fc52f2bfc519eed97d4aa4b35c",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Bennett Davis"
+        },
+        "blockInfo": {
+            "height": 45,
+            "hash": "0x862cf73a502596c77f1fe1f1deb5143c3e7d3af8ba48530ece0e8ea93c7a9e41",
+            "timestamp": 1720347079986,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 2,
+            "playerId": 20,
+            "timestamp": 1720347053972
+        },
+        "hash": "0xefae3e0563f11d138327ce50e88b3ea2f4481a9033f2b5ae0e0ef29306b7a2f1",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Bennett Davis"
+        },
+        "blockInfo": {
+            "height": 44,
+            "hash": "0xbf6d88a280e4b729daed8d4318012a64353789c13279bf79fead5b2a875413dd",
+            "timestamp": 1720347054963,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 2,
+            "playerId": 20,
+            "timestamp": 1720347046189
+        },
+        "hash": "0x3b0d877b7138ea2df5be9965a045d50279a5dad503ff124d6444ecc63f553c2d",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Bennett Davis"
+        },
+        "blockInfo": {
+            "height": 43,
+            "hash": "0x9cf2d416007c774c7261496c968c7db426ba85c3876bf9904841ecbaa3bf6ba9",
+            "timestamp": 1720347047958,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 2,
+            "playerId": 75,
+            "timestamp": 1720346935706
+        },
+        "hash": "0xa28752235eca73834d205cce83cc6017c372d76eae79a7dcebf5410960c39010",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Marko"
+        },
+        "blockInfo": {
+            "height": 42,
+            "hash": "0xd796d4ccbd9cdd15a6cdb4ff200eedc8f21ffe1168a36d95dc98a8a3898c234e",
+            "timestamp": 1720346936870,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 16,
+            "timestamp": 1720346906989
+        },
+        "hash": "0xc6a5fc9bb78c35c0e16b4d9ae80e0ed9a64a8accafcc37b13d32053b6e030c58",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Robbie Liu"
+        },
+        "blockInfo": {
+            "height": 41,
+            "hash": "0xe1581a953a4b213c85db9faa034dc9e275fa30302dcc0999a19b8b77831f2771",
+            "timestamp": 1720346907850,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 14,
+            "timestamp": 1720346831091
+        },
+        "hash": "0xaa70629bc65e8e088821f04f7ce79e6a74cbf1f0bf5c8dbb0354bc0eede2a8dd",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "forrest"
+        },
+        "blockInfo": {
+            "height": 40,
+            "hash": "0x78af8038c61d7ced943f22c86647a27935a9d59c83a480ad78a21f39f8b03e4c",
+            "timestamp": 1720346831784,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 25,
+            "timestamp": 1720346772984
+        },
+        "hash": "0xf1057956f69ba8a5c146898cfa58d6aa65d904a03b6535435ba0da676b487c1b",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Abi"
+        },
+        "blockInfo": {
+            "height": 39,
+            "hash": "0x8cbd2a618a1e6034869940a28de36431f151aa24c35e0003ba0509c69f10322b",
+            "timestamp": 1720346773742,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 2,
+            "playerId": 76,
+            "timestamp": 1720346753972
+        },
+        "hash": "0xf8dddbdd00477c58adb5566999bab9b492e100afa709a72024ceab38c1c0adfd",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC",
+            "playerName": "Chilla"
+        },
+        "blockInfo": {
+            "height": 38,
+            "hash": "0xc5eb47bc2c49a8ae39508507580bb28d9f65aace0d846383f4e6825c5803c9c4",
+            "timestamp": 1720346754726,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 4,
+            "playerName": "Chilla",
+            "timestamp": 1720346720838
+        },
+        "hash": "0xc013b50d824a8beb95a97e5cbea957dc7d2c9f5d561f2fd05bc0e4dcf892c7b0",
+        "actionInfo": {
+            "teamName": "PizzaPasta FC"
+        },
+        "blockInfo": {
+            "height": 37,
+            "hash": "0x754d732e8b661f9119b08e00c5bdc1942a05689f9e57b0cd09e660295a6e1463",
+            "timestamp": 1720346721587,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 4,
+            "playerName": "Marko",
+            "timestamp": 1720346464835
+        },
+        "hash": "0x106c3e8ef26a3b97a5cf7157fa4fcf8fc32bb96e85d2570038cec8694edd1d5a",
+        "actionInfo": {
+            "teamName": "PizzaPasta FC"
+        },
+        "blockInfo": {
+            "height": 36,
+            "hash": "0xb2e6214048f43cf9bc562d5e22c29f91505a9ed57fcad13b34c6dbb99b7ee057",
+            "timestamp": 1720346466273,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "startMatch",
+        "payload": {
+            "matchId": 2,
+            "timestamp": 1720346388675
+        },
+        "hash": "0x437cfff6378a70d3558c1ce22eeb6817e15141ce0a62501705b3a20a9c3a0dc7",
+        "actionInfo": {
+            "matchName": "#2 Movement vs PizzaPasta FC"
+        },
+        "blockInfo": {
+            "height": 35,
+            "hash": "0xf5a9d8d50cd140164171bd44dba37f15ede8fd786b5361243cc991b050f33596",
+            "timestamp": 1720346390219,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434849,
+                "extIdx": 6
+            },
+            "l1TxHash": "0xd571f8353f2a102c2f06934cfd4c1bec74c557ea14d393e3896e8f43cce5c165"
+        }
+    },
+    {
+        "name": "endMatch",
+        "payload": {
+            "matchId": 1,
+            "timestamp": 1720345975305
+        },
+        "hash": "0x4eed5e842d385203c34547291fdee1372eab422b5af65bb13acbfe0bcbaf5971",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick"
+        },
+        "blockInfo": {
+            "height": 34,
+            "hash": "0x8c953011352077dbd4da11b2bba8a60b66e6c43e1a232f81e4397213b3b9b2f7",
+            "timestamp": 1720345976725,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 1,
+            "playerId": 9,
+            "timestamp": 1720345889708
+        },
+        "hash": "0x28bc9724329749a3e6434afe8c8d77dd58524b75fa5559fccd6529f0fd5cd3b9",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Antiyro"
+        },
+        "blockInfo": {
+            "height": 33,
+            "hash": "0x689cb014ac658440fd6418293c5a4a210b3e42eb480fdc43e331041ce51f6662",
+            "timestamp": 1720345890646,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 73,
+            "timestamp": 1720345785575
+        },
+        "hash": "0x666aa40921db6ed99247094aed3d87296665fd6c75abc2ce22d810a68248ed2a",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Ramsey"
+        },
+        "blockInfo": {
+            "height": 32,
+            "hash": "0x2c5441a02fde54eb4f31dd1a784675f33438049108fc39e0c26a8750f6994d9e",
+            "timestamp": 1720345786549,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 7,
+            "timestamp": 1720345748973
+        },
+        "hash": "0x556ac6182ab4ce64cbbe77e15b50a11572b3cd73a3971b6e9f21e78215cbfd05",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Matteo Georges"
+        },
+        "blockInfo": {
+            "height": 31,
+            "hash": "0x72c4b2ef2af2012b4c8e7f7c4ecf402a47f4f9c9ac8e2b099f8d15d7f9bcf71e",
+            "timestamp": 1720345750520,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 1,
+            "playerId": 74,
+            "timestamp": 1720345663331
+        },
+        "hash": "0x4c3f5142be86efc21ff05f3cb579db096bfcf123ad2fa9f23b04fe9b093494eb",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Eli Pearson"
+        },
+        "blockInfo": {
+            "height": 30,
+            "hash": "0xa992ea33f1ce912149b6b616854babd756e4f4aba1f6a89c446010141522fe71",
+            "timestamp": 1720345664448,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 73,
+            "timestamp": 1720345653319
+        },
+        "hash": "0xe954d50b8bfdcf4f96ca69dab88abe3524c52fa6d0cd3372d0d289e9628d627d",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Ramsey"
+        },
+        "blockInfo": {
+            "height": 29,
+            "hash": "0xa152afb5673e013d3a2bdf5b292852dc114f5a961c513968a44a86c1ccc5d289",
+            "timestamp": 1720345654439,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 1,
+            "playerId": 13,
+            "timestamp": 1720345624374
+        },
+        "hash": "0x01f2581c6c98a514621b010ff93a14e48ede385c00214e9649c2b7fb036ad9cb",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Trinity"
+        },
+        "blockInfo": {
+            "height": 28,
+            "hash": "0x41c62673261ffb008321af574587b82bb74fa1fb940dc5213d05b006e5fe10df",
+            "timestamp": 1720345625412,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 73,
+            "timestamp": 1720345583632
+        },
+        "hash": "0xff7fbed97737f41d070ad19b1a4f32997bd4b6866d23d1ca829b686f9d6ba66c",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Ramsey"
+        },
+        "blockInfo": {
+            "height": 27,
+            "hash": "0xfbe3c55ae8ace16b1040c995abcd8b9f3b0cf997a6ef50b9501a4bcb2c0b31d2",
+            "timestamp": 1720345584378,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logFoul",
+        "payload": {
+            "matchId": 1,
+            "playerId": 12,
+            "timestamp": 1720345543449
+        },
+        "hash": "0x13a8df28ec97bc058afd7595832dbc17f7f72e0abe8e6014faf71945019bffff",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Paul-Henry"
+        },
+        "blockInfo": {
+            "height": 26,
+            "hash": "0xf6e453794874afff63fc89a8755555996e7ab4f287f1acf51b44343bb9ff9ed6",
+            "timestamp": 1720345544344,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 1,
+            "playerId": 12,
+            "timestamp": 1720345464912
+        },
+        "hash": "0x5674176463ac834bd6c0090518dc558787ae2db982c8a5886389e32a16087b52",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Paul-Henry"
+        },
+        "blockInfo": {
+            "height": 25,
+            "hash": "0x7fc999d3f2efac0cce4e03b84edad204be7e67a42e1a8eea8ac5ec9e49783458",
+            "timestamp": 1720345466276,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 7,
+            "timestamp": 1720345434861
+        },
+        "hash": "0x59fbb63dc33b3c83c5710c0aed0c7096e4561d3786d10a45922dee6ce3f42770",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Matteo Georges"
+        },
+        "blockInfo": {
+            "height": 24,
+            "hash": "0x1e6a8a528efe5282e37f30ed2e7d27ce9d06fa33c4fc9197a37a2514989d6254",
+            "timestamp": 1720345436248,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 1,
+            "playerId": 3,
+            "timestamp": 1720345297637
+        },
+        "hash": "0xa5fc13687ca64cf966c10e0af5c6fdac4ffa1499bc86e55a1d8d256dacc96316",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Pawan Bajaj"
+        },
+        "blockInfo": {
+            "height": 23,
+            "hash": "0x6f0c2df2b1450568d4db7f4a0f65fa2d3225deb9fe9c842098b9b864c0b94346",
+            "timestamp": 1720345299130,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 6,
+            "timestamp": 1720345266396
+        },
+        "hash": "0x12ba0ea1a55d2fe64a3e2838afeac0f56bb347c7cc0a121bcacda5d80bb5826d",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Cryptofede"
+        },
+        "blockInfo": {
+            "height": 22,
+            "hash": "0x3b332947d214c091c3d8d2512e46b144e4ea196dac32769fcb7d278580e0fb9a",
+            "timestamp": 1720345267107,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 7,
+            "timestamp": 1720345245998
+        },
+        "hash": "0x9ab95970632a101e0cc82ea9023cfbae064c8511c4fd38b70e20a4be25a16752",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Matteo Georges"
+        },
+        "blockInfo": {
+            "height": 21,
+            "hash": "0x0ddce89cb3428aa9dc8d32c53541d005bdd332eb2cb1a7ea0da7b6ad2a955dc3",
+            "timestamp": 1720345247094,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 7,
+            "timestamp": 1720345155644
+        },
+        "hash": "0xfef62cc4a4ec3fc2075e91b570d207e8ac30395932ec5785dcbc170cd16ba7b6",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Matteo Georges"
+        },
+        "blockInfo": {
+            "height": 20,
+            "hash": "0xc2630358ef2afbf4b571cfa7e3d0b0f1d836764fc44ba05f888bb67b07d05730",
+            "timestamp": 1720345157028,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 7,
+            "timestamp": 1720345140433
+        },
+        "hash": "0xad6284f995b804d3ec3b0a4804ac2d49482ae7cfef6cb7fd026100399881ef66",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Matteo Georges"
+        },
+        "blockInfo": {
+            "height": 19,
+            "hash": "0x5eda818f6d2161ca41d9a71267fb3ca78746dcb6d30d217bb42b5cce30b8f988",
+            "timestamp": 1720345142018,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logFoul",
+        "payload": {
+            "matchId": 1,
+            "playerId": 8,
+            "timestamp": 1720345103922
+        },
+        "hash": "0x08449bf436631e89460bbca2c9f4f1a1bdaa08f2851e0120c5df836ca2352d31",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Benjamin Flores"
+        },
+        "blockInfo": {
+            "height": 18,
+            "hash": "0xc82d7b8a386d712e1a5c91f6547529970bc5f34f3e296eb7176fd9321dfaaeb5",
+            "timestamp": 1720345104988,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 7,
+            "timestamp": 1720345061106
+        },
+        "hash": "0xd42c1defb60572ab84faa7ea1f1a1751c804d5fd82eb8a77f065013ffe77fe05",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Matteo Georges"
+        },
+        "blockInfo": {
+            "height": 17,
+            "hash": "0xe88a74bd23d46c5bbb5787248a0d120c4c892ac487677fcf9484bb65ae3ae28e",
+            "timestamp": 1720345061955,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 1,
+            "playerId": 74,
+            "timestamp": 1720345001634
+        },
+        "hash": "0x9a87f5429e54688dcfec21a24a0f7f5d268308da6614df4b685b1f59d37e18ce",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Eli Pearson"
+        },
+        "blockInfo": {
+            "height": 16,
+            "hash": "0x3c31b9cd4afd77c481145aea14bf61db67c13928c7370db67e8400ef0b867f3a",
+            "timestamp": 1720345002906,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 1,
+            "playerId": 73,
+            "timestamp": 1720344579249
+        },
+        "hash": "0x6ec9f065e18978aaef8dcfb4f450b4e28e45b41fa8c84f2f8689372d096f092c",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Ramsey"
+        },
+        "blockInfo": {
+            "height": 15,
+            "hash": "0x95171ee5747a6e20dc0afa090f283a78f86260a95f37ee17718eb522dbdf556e",
+            "timestamp": 1720344580567,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 1,
+            "playerId": 8,
+            "timestamp": 1720344403440
+        },
+        "hash": "0x1d1b5ea59fe6516eb1da16d7dcfb93901ec68ec5fc066b06098ce01a33226e12",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Benjamin Flores"
+        },
+        "blockInfo": {
+            "height": 14,
+            "hash": "0x968e790bd2877f65a5092592d45255b2e4f02d2f14ffee7b4d8161cc8f25e7a1",
+            "timestamp": 1720344404421,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 6,
+            "timestamp": 1720344372128
+        },
+        "hash": "0x44a10405de390a1c0d2d681befc624f25d762ba1407407316e25af6f7085b92f",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Cryptofede"
+        },
+        "blockInfo": {
+            "height": 13,
+            "hash": "0xa501d5740c067e018a6c7f227697b0dc1b0cbd694cc2955b9f58b31cab88c890",
+            "timestamp": 1720344373397,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 7,
+            "timestamp": 1720344319284
+        },
+        "hash": "0x9a992516145792dd2812205a8cbdafc5d5f991ddd99ab097a250fdd0e0974b34",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Matteo Georges"
+        },
+        "blockInfo": {
+            "height": 12,
+            "hash": "0x6a345b8109f59e72491acf86764ee389f112c2f778404a1b691fd43f013a4781",
+            "timestamp": 1720344320361,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 6,
+            "timestamp": 1720344280140
+        },
+        "hash": "0xbadcad1c36f4b50898523903a426b3fb7066c076873c0c838c6ff69d5d8a557f",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Cryptofede"
+        },
+        "blockInfo": {
+            "height": 11,
+            "hash": "0x9a820e942ce103bc58dfa8bee71774464aada64d076ab727757e2b00013c31f1",
+            "timestamp": 1720344281329,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 1,
+            "playerId": 8,
+            "timestamp": 1720344248181
+        },
+        "hash": "0xabf8385a096b03d23fb4f33e9b6cf4e5e6e40a99afecf7a6f447985b9e7eaac2",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Benjamin Flores"
+        },
+        "blockInfo": {
+            "height": 10,
+            "hash": "0x5549bd195a0cb538a0c90660b118938ee9e0aa6dfa08fba2306778ad959a9900",
+            "timestamp": 1720344249305,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logGoal",
+        "payload": {
+            "matchId": 1,
+            "playerId": 11,
+            "timestamp": 1720344162172
+        },
+        "hash": "0x785d164549bbcb3cb178ff00fa86698f198cb268f5336fc7128240e06e79ae1b",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Matthias Hallgren"
+        },
+        "blockInfo": {
+            "height": 9,
+            "hash": "0xf0cb13c28270928197bbc973cf9f80f430463156f710824e50c0d544f21fc876",
+            "timestamp": 1720344163244,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 7,
+            "timestamp": 1720344092636
+        },
+        "hash": "0x646dc335871b5963de3b4f5d3bd2d23064720435b0cfd4a732087fee6cdae88f",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Matteo Georges"
+        },
+        "blockInfo": {
+            "height": 8,
+            "hash": "0x5c59552579407d17df9a57ac68cc56594b7c8fd7f8a40f1134ecf5e82c17663a",
+            "timestamp": 1720344094191,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 73,
+            "timestamp": 1720344066533
+        },
+        "hash": "0x411781a596a548ba521bbd5937c49ff035e15193a9da0fa4d84acfedf0fffc15",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Ramsey"
+        },
+        "blockInfo": {
+            "height": 7,
+            "hash": "0x3268774a817e2031bcbbb8381aa6baa8e93e3a78244a626ba2bb159abcbfcb6e",
+            "timestamp": 1720344067171,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 73,
+            "timestamp": 1720344028431
+        },
+        "hash": "0xaef5e93dd27df5f82fa78e7bb29ca93c5582b7eac7c527cc34c625fc80698109",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Ramsey"
+        },
+        "blockInfo": {
+            "height": 6,
+            "hash": "0x92a4ae631269989d06a915f0575ceca68cfcbb824c3e7b3367ff9426dad0edf7",
+            "timestamp": 1720344029137,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "logBlock",
+        "payload": {
+            "matchId": 1,
+            "playerId": 73,
+            "timestamp": 1720343949338
+        },
+        "hash": "0xf0bc70f3090a6d6ecf307f8b9452a5471b08c3d55394b8c4de2a20edd3833f86",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick",
+            "playerName": "Ramsey"
+        },
+        "blockInfo": {
+            "height": 5,
+            "hash": "0xfc6d3e872f506859c14bf60372d7b0932025dab725f602f9bf5c0a33f5610585",
+            "timestamp": 1720343950080,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "startMatch",
+        "payload": {
+            "matchId": 1,
+            "timestamp": 1720343747749
+        },
+        "hash": "0xd06071e23f1007162149f388f28aca0e5470f83555fa4555671a0607eb8295e7",
+        "actionInfo": {
+            "matchName": "#1 CryptoKickers vs StarKick"
+        },
+        "blockInfo": {
+            "height": 4,
+            "hash": "0xc91525fb6bc49b78ff9e4266593c0a4333cef2df96407ba02be36ac3cf77c961",
+            "timestamp": 1720343748935,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "startTournament",
+        "payload": {
+            "timestamp": 1720343717759
+        },
+        "hash": "0x6e031631bf4d2fbcff3b8d3dd7cf40d74c647cc35b3b1c2a607685d6f6134270",
+        "actionInfo": {},
+        "blockInfo": {
+            "height": 3,
+            "hash": "0x1be1d8fd63d18c0b4d1e1fed9b1f16facc2cbd576dd6561a671887dc0c9610a8",
+            "timestamp": 1720343718910,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 1,
+            "playerName": "Eli Pearson",
+            "timestamp": 1720343546469
+        },
+        "hash": "0x3e48d77dcd89c28c3b9c983967067ff039c815ac8c615a97f13a07843a67cd12",
+        "actionInfo": {
+            "teamName": "CryptoKickers"
+        },
+        "blockInfo": {
+            "height": 2,
+            "hash": "0xe09ab57cc4f40a112ef854118f9783d097c599b327822f6608929c19f9524795",
+            "timestamp": 1720343547781,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    },
+    {
+        "name": "addPlayer",
+        "payload": {
+            "teamId": 1,
+            "playerName": "Ramsey",
+            "timestamp": 1720343523421
+        },
+        "hash": "0xad3d6b7ef1e235581454bb93072dd1ea715194b58a277dc2fe3d176ff0723ac3",
+        "actionInfo": {
+            "teamName": "CryptoKickers"
+        },
+        "blockInfo": {
+            "height": 1,
+            "hash": "0x14458dc7e17fde71c305112a026021f182db92e7ebb9c8679e22b6af44b1ef2e",
+            "timestamp": 1720343526767,
+            "status": "l1_finalized",
+            "daMetadata": {
+                "blockHeight": 434749,
+                "extIdx": 6
+            },
+            "l1TxHash": "0x0a0350bb246c279f4a4c805f0074cff2b490c729e94cd26e9856cf18d539f2f5"
+        }
+    }
+]
