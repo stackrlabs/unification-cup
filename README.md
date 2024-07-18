@@ -1,6 +1,65 @@
-# unification-league
+# Unification Cup
 
-Initialized using [@stackr/sdk](https://www.stackrlabs.xyz/)
+Micro-rollup for [Avail's Unification Cup 2024](https://lu.ma/tffffuwf)
+
+## State Structure
+
+```ts
+type LeagueState = {
+  admins: string[];
+  meta: { // metadata about the tournament
+    round: number;
+    startTime: number;
+    endTime: number;
+    winnerTeamId: number;
+    byes: {
+      teamId: number;
+      round: number;
+    }[];
+  };
+  teams: {
+    id: number;
+    name: string;
+  }[];
+  matches: {
+    id: number;
+    scores: Record<string, number>;
+    startTime: number;
+    endTime: number;
+    penaltyStartTime: number;
+    winnerTeamId: number;
+  }[];
+  players: {
+    id: number;
+    name: string;
+    teamId: number;
+    removedAt?: number;
+  }[];
+  logs: { // logs of all the actions performed in the tournament
+    playerId: number;
+    matchId?: number;
+    timestamp: number;
+    action: string;
+  }[];
+};
+
+```
+
+## Transition Functions
+
+- startTournament: Start the tournament
+- startMatch: Start a match with `matchId`
+- penaltyShootout: Start a penalty shootout for a match with `matchId`
+- endMatch: End a match with `matchId`
+- logGoal: Log a goal for a player with `playerId` in a match with `matchId`
+- logBlock: Log a block for a player with `playerId` in a match with `matchId`
+- logFoul: Log a foul for a player with `playerId` in a match with `matchId`
+- logPenaltyHit: Log a penalty hit for a player with `playerId` in a match with `matchId`
+- logPenaltyMiss: Log a penalty miss for a player with `playerId` in a match with `matchId`
+- addPlayer: Add a player with `playerId` to a team with `teamId`
+- removePlayer: Remove a player with `playerId` from a team with `teamId`
+- logByes: Log a bye for a team with `teamId`. (Used in case of odd number of teams)
+- removeGoal: Remove a goal for a player with `playerId` in a match with `matchId`
 
 ## How to run?
 
