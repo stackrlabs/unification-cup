@@ -1,3 +1,5 @@
+![banner]("assets/cover.jpg")
+
 # Unification Cup
 
 Micro-rollup for [Avail's Unification Cup 2024](https://lu.ma/tffffuwf)
@@ -7,7 +9,8 @@ Micro-rollup for [Avail's Unification Cup 2024](https://lu.ma/tffffuwf)
 ```ts
 type LeagueState = {
   admins: string[];
-  meta: { // metadata about the tournament
+  meta: {
+    // metadata about the tournament
     round: number;
     startTime: number;
     endTime: number;
@@ -35,14 +38,14 @@ type LeagueState = {
     teamId: number;
     removedAt?: number;
   }[];
-  logs: { // logs of all the actions performed in the tournament
+  logs: {
+    // logs of all the actions performed in the tournament
     playerId: number;
     matchId?: number;
     timestamp: number;
     action: string;
   }[];
 };
-
 ```
 
 ## Transition Functions
