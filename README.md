@@ -1,4 +1,4 @@
-![banner]("assets/cover.jpg")
+![banner](assets/cover.jpg)
 
 # Unification Cup
 
