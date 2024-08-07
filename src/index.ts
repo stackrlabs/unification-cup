@@ -1,5 +1,9 @@
 import express, { Request, Response } from "express";
-
+import {
+  ActionConfirmationStatus,
+  ActionExecutionStatus,
+  MicroRollup,
+} from "@stackr/sdk";
 import dotenv from "dotenv";
 import { stackrConfig } from "../stackr.config.ts";
 import { schemas } from "./stackr/actions.ts";
@@ -15,17 +19,11 @@ import {
   LogAction,
   transitions,
 } from "./stackr/transitions.ts";
-
-dotenv.config();
-
-import {
-  ActionConfirmationStatus,
-  ActionExecutionStatus,
-  MicroRollup,
-} from "@stackr/sdk";
 import { Logs, Player } from "./stackr/state.ts";
 import { PlayerStats } from "./types.ts";
 import { getActionInfo } from "./utils.ts";
+
+dotenv.config();
 
 export const stfSchemaMap = {
   startTournament: schemas.startTournament,
@@ -52,10 +50,14 @@ const main = async () => {
     actionSchemas: Object.values(schemas),
     stateMachines: [leagueMachine],
     stfSchemaMap,
-    isSandbox: process.env.NODE_ENV === "sandbox",
   });
 
   await mru.init();
+  const machine = mru.stateMachines.get<LeagueMachine>(STATE_MACHINES.LEAGUE);
+
+  if (!machine) {
+    throw new Error("League machine not initialized yet");
+  }
 
   const app = express();
   app.use(express.json());
@@ -69,11 +71,6 @@ const main = async () => {
     next();
   });
 
-  const machine = mru.stateMachines.get<LeagueMachine>(STATE_MACHINES.LEAGUE);
-
-  if (!machine) {
-    throw new Error("League machine not initialized yet");
-  }
 
   const getMatchInfo = (matchId: number) => {
     const { teams, matches } = machine.state;
