@@ -1,4 +1,5 @@
 *.sqlite
+*.sqlite*
 node_modules/
 build/
 bun.lockb

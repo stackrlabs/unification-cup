@@ -1,4 +1,5 @@
-import { STF, Transitions } from "@stackr/sdk/machine";
+import { SolidityType, Transitions } from "@stackr/sdk/machine";
+
 import { League, LeagueState } from "./state";
 
 export enum LogAction {
@@ -9,19 +10,6 @@ export enum LogAction {
   PENALTY_MISS = "PENALTY_MISS", // in case of a overtime (penalty shootout)
   FOUL = "FOUL",
 }
-
-type MatchRequest = {
-  matchId: number;
-};
-
-type TeamRequest = {
-  teamId: number;
-};
-
-type GoalRequest = {
-  matchId: number;
-  playerId: number;
-};
 
 export type LeaderboardEntry = {
   won: number;
@@ -118,8 +106,8 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
   // this is assuming that the bye will be given to the team with lower score, and they'll get a chance to play with the top 3 teams
   const shouldIncludeOneBye =
     teamsInCurrentRound !== 1 &&
-    teamsInCurrentRound % 2 === 1 &&
-    meta.byes.length === 1
+      teamsInCurrentRound % 2 === 1 &&
+      meta.byes.length === 1
       ? 1
       : 0;
 
@@ -224,7 +212,10 @@ const logPlayerAction = (
 };
 
 // State Transition Functions
-const startTournament: STF<League, MatchRequest> = {
+const startTournament = League.STF({
+  schema: {
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, block }) => {
     if (hasTournamentEnded(state)) {
       throw new Error("TOURNAMENT_ALREADY_ENDED");
@@ -238,9 +229,13 @@ const startTournament: STF<League, MatchRequest> = {
     state.meta.startTime = block.timestamp;
     return state;
   },
-};
+});
 
-const startMatch: STF<League, MatchRequest> = {
+const startMatch = League.STF({
+  schema: {
+    matchId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     if (hasTournamentEnded(state)) {
       throw new Error("TOURNAMENT_ENDED");
@@ -258,9 +253,13 @@ const startMatch: STF<League, MatchRequest> = {
     match.startTime = block.timestamp;
     return state;
   },
-};
+});
 
-const penaltyShootout: STF<League, MatchRequest> = {
+const penaltyShootout = League.STF({
+  schema: {
+    matchId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     if (hasTournamentEnded(state)) {
       throw new Error("TOURNAMENT_ENDED");
@@ -287,9 +286,14 @@ const penaltyShootout: STF<League, MatchRequest> = {
     match.penaltyStartTime = block.timestamp;
     return state;
   },
-};
+});
 
-const logGoal: STF<League, GoalRequest> = {
+const logGoal = League.STF({
+  schema: {
+    matchId: SolidityType.UINT,
+    playerId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
     if (hasTournamentEnded(state)) {
@@ -308,9 +312,14 @@ const logGoal: STF<League, GoalRequest> = {
 
     return state;
   },
-};
+});
 
-const removeGoal: STF<League, GoalRequest> = {
+const removeGoal = League.STF({
+  schema: {
+    matchId: SolidityType.UINT,
+    playerId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
     const { match, teamId } = getValidMatchAndTeam(state, matchId, playerId);
@@ -338,9 +347,13 @@ const removeGoal: STF<League, GoalRequest> = {
 
     return state;
   },
-};
+});
 
-const endMatch: STF<League, MatchRequest> = {
+const endMatch = League.STF({
+  schema: {
+    matchId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     if (hasTournamentEnded(state)) {
       throw new Error("TOURNAMENT_ENDED");
@@ -388,9 +401,14 @@ const endMatch: STF<League, MatchRequest> = {
     computeMatchFixtures(state, block.timestamp);
     return state;
   },
-};
+});
 
-const logPenaltyHit: STF<League, GoalRequest> = {
+const logPenaltyHit = League.STF({
+  schema: {
+    matchId: SolidityType.UINT,
+    playerId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
 
@@ -408,9 +426,14 @@ const logPenaltyHit: STF<League, GoalRequest> = {
 
     return state;
   },
-};
+});
 
-const logPenaltyMiss: STF<League, GoalRequest> = {
+const logPenaltyMiss = League.STF({
+  schema: {
+    matchId: SolidityType.UINT,
+    playerId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
 
@@ -428,34 +451,53 @@ const logPenaltyMiss: STF<League, GoalRequest> = {
 
     return state;
   },
-};
+});
 
-const logBlock: STF<League, GoalRequest> = {
+const logBlock = League.STF({
+  schema: {
+    matchId: SolidityType.UINT,
+    playerId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
     logPlayerAction(state, matchId, playerId, LogAction.BLOCK, block.timestamp);
     return state;
   },
-};
+});
 
-const logFoul: STF<League, GoalRequest> = {
+const logFoul = League.STF({
+  schema: {
+    matchId: SolidityType.UINT,
+    playerId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
     logPlayerAction(state, matchId, playerId, LogAction.FOUL, block.timestamp);
     return state;
   },
-};
+});
 
-const logByes: STF<League, TeamRequest> = {
+const logByes = League.STF({
+  schema: {
+    teamId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     const { teamId } = inputs;
     state.meta.byes.push({ teamId, round: state.meta.round });
     computeMatchFixtures(state, block.timestamp);
     return state;
   },
-};
+});
 
-const addPlayer: STF<League, { teamId: number; playerName: string }> = {
+const addPlayer = League.STF({
+  schema: {
+    teamId: SolidityType.UINT,
+    playerName: SolidityType.STRING,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs }) => {
     const { logs } = state;
     const { teamId, playerName } = inputs;
@@ -480,9 +522,14 @@ const addPlayer: STF<League, { teamId: number; playerName: string }> = {
 
     return state;
   },
-};
+});
 
-const removePlayer: STF<League, { teamId: number; playerId: number }> = {
+const removePlayer = League.STF({
+  schema: {
+    teamId: SolidityType.UINT,
+    playerId: SolidityType.UINT,
+    timestamp: SolidityType.UINT, // nonce
+  },
   handler: ({ state, inputs, block }) => {
     const { teamId, playerId } = inputs;
     const player = state.players.find((p) => p.id === playerId);
@@ -497,7 +544,7 @@ const removePlayer: STF<League, { teamId: number; playerId: number }> = {
     player.removedAt = block.timestamp;
     return state;
   },
-};
+});
 
 export const transitions: Transitions<League> = {
   startMatch,
