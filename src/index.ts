@@ -1,17 +1,16 @@
-import express, { Request, Response } from "express";
 import {
   ActionConfirmationStatus,
   ActionExecutionStatus,
   MicroRollup,
 } from "@stackr/sdk";
-import dotenv from "dotenv";
+import express, { Request, Response } from "express";
 import { stackrConfig } from "../stackr.config.ts";
-import { schemas } from "./stackr/actions.ts";
 import {
   leagueMachine,
   LeagueMachine,
   STATE_MACHINES,
 } from "./stackr/machines.ts";
+import { Logs, Player } from "./stackr/state.ts";
 import {
   canAddressSubmitAction,
   getLeaderboard,
@@ -19,27 +18,8 @@ import {
   LogAction,
   transitions,
 } from "./stackr/transitions.ts";
-import { Logs, Player } from "./stackr/state.ts";
 import { PlayerStats } from "./types.ts";
 import { getActionInfo } from "./utils.ts";
-
-dotenv.config();
-
-export const stfSchemaMap = {
-  startTournament: schemas.startTournament,
-  startMatch: schemas.startMatch,
-  logGoal: schemas.logGoal,
-  logFoul: schemas.logGoal,
-  logBlock: schemas.logGoal,
-  penaltyShootout: schemas.startMatch,
-  logPenaltyHit: schemas.logGoal,
-  logPenaltyMiss: schemas.logGoal,
-  endMatch: schemas.endMatch,
-  logByes: schemas.logByes,
-  addPlayer: schemas.addPlayer,
-  removePlayer: schemas.removePlayer,
-  removeGoal: schemas.logGoal,
-};
 
 const main = async () => {
   /**
@@ -47,14 +27,12 @@ const main = async () => {
    */
   const mru = await MicroRollup({
     config: stackrConfig,
-    actionSchemas: Object.values(schemas),
     stateMachines: [leagueMachine],
-    stfSchemaMap,
   });
 
   await mru.init();
-  const machine = mru.stateMachines.get<LeagueMachine>(STATE_MACHINES.LEAGUE);
 
+  const machine = mru.stateMachines.get<LeagueMachine>(STATE_MACHINES.LEAGUE);
   if (!machine) {
     throw new Error("League machine not initialized yet");
   }
@@ -70,7 +48,6 @@ const main = async () => {
     );
     next();
   });
-
 
   const getMatchInfo = (matchId: number) => {
     const { teams, matches } = machine.state;
@@ -180,15 +157,8 @@ const main = async () => {
     const transitionToSchema = mru.getStfSchemaMap();
     res.send({
       signingInstructions: "signTypedData(domain, schema.types, inputs)",
-      domain: stackrConfig.domain,
+      domain: mru.config.domain,
       transitionToSchema,
-      schemas: Object.values(schemas).reduce((acc, schema) => {
-        acc[schema.identifier] = {
-          primaryType: schema.EIP712TypedData.primaryType,
-          types: schema.EIP712TypedData.types,
-        };
-        return acc;
-      }, {} as Record<string, any>),
     });
   });
 
@@ -217,14 +187,14 @@ const main = async () => {
         return;
       }
 
-      const actionSchema = stfSchemaMap[reducerName as keyof typeof schemas];
-      // const signedAction = await signAsOperator(reducerName, inputs);
-      const signedAction = actionSchema.actionFrom({
-        msgSender,
+      const actionParams = {
+        name: reducerName,
         signature,
         inputs,
-      });
-      const ack = await mru.submitAction(reducerName, signedAction);
+        msgSender,
+      };
+      const ack = await mru.submitAction(actionParams);
+      
       const { errors } = await ack.waitFor(ActionConfirmationStatus.C1);
       if (errors?.length) {
         throw new Error(errors[0].message);
@@ -414,17 +384,17 @@ const main = async () => {
         actionInfo,
         blockInfo: block
           ? {
-              height: block.height,
-              hash: block.hash,
-              timestamp: block.timestamp,
-              status: block.status,
-              daMetadata: {
-                blockHeight:
-                  block.batchInfo?.daMetadata?.avail?.blockHeight || null,
-                extIdx: block.batchInfo?.daMetadata?.avail?.extIdx || null,
-              },
-              l1TxHash: block.batchInfo?.l1TransactionHash || null,
-            }
+            height: block.height,
+            hash: block.hash,
+            timestamp: block.timestamp,
+            status: block.status,
+            daMetadata: {
+              blockHeight:
+                block.batchInfo?.daMetadata?.avail?.blockHeight || null,
+              extIdx: block.batchInfo?.daMetadata?.avail?.extIdx || null,
+            },
+            l1TxHash: block.batchInfo?.l1TransactionHash || null,
+          }
           : null,
       };
     });

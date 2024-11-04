@@ -1,32 +1,17 @@
-import { ethers } from "ethers";
-import { schemas } from "./stackr/actions";
-import { stackrConfig } from "../stackr.config";
-import { stfSchemaMap } from ".";
+import { Domain } from "@stackr/sdk";
+import { AllowedInputTypes, EIP712Types } from "@stackr/sdk/machine";
+import { Wallet } from "ethers";
+
 import { LeagueState } from "./stackr/state";
-import { AllowedInputTypes } from "@stackr/sdk";
 
-/**
- * Sign and submit action as operator
- * @param transitionName
- * @param inputs
- * @returns signed action
- */
-const signAsOperator = async (schemaName: string, inputs: any) => {
-  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY as string);
-  const actionSchema = stfSchemaMap[schemaName as keyof typeof schemas];
-
-  const msgSender = wallet.address;
-  const signature = await wallet.signTypedData(
-    stackrConfig.domain,
-    actionSchema.EIP712TypedData.types,
-    inputs
-  );
-
-  return actionSchema.actionFrom({
-    msgSender,
-    signature,
-    inputs,
-  });
+const signByOperator = async (
+  domain: Domain,
+  types: EIP712Types,
+  payload: { name: string, inputs: AllowedInputTypes }
+) => {
+  const wallet = new Wallet(process.env.PRIVATE_KEY as string);
+  const signature = await wallet.signTypedData(domain, types, payload);
+  return { msgSender: wallet.address, signature };
 };
 
 type ActionInfo = {
@@ -81,4 +66,4 @@ const getActionInfo = (
   return actionInfo;
 };
 
-export { signAsOperator, getActionInfo };
+export { signByOperator, getActionInfo };
