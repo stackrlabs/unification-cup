@@ -1,6 +1,6 @@
 import { State } from "@stackr/sdk/machine";
-import { solidityPacked, solidityPackedKeccak256 } from "ethers";
-import { createMT } from "./utils";
+import { keccak256, solidityPacked } from "ethers";
+import { createMMR, createMT } from "./utils";
 
 type TournamentMeta = {
   round: number;
@@ -73,7 +73,7 @@ export class League extends State<LeagueState> {
       )
     );
 
-    const matchesMMR = createMT(matches, (m) => {
+    const matchesMMR = createMMR(matches, (m) => {
       const teamIds = Object.keys(m.scores).map((k) => parseInt(k));
       const scores = teamIds.map((id) => m.scores[id]);
       return solidityPacked(
@@ -102,23 +102,25 @@ export class League extends State<LeagueState> {
       );
     });
 
-    const logsMMR = createMT(logs, (l) =>
+    const logsMMR = createMMR(logs, (l) =>
       solidityPacked(
         ["uint256", "uint256", "string", "uint256"],
         [l.playerId, l.timestamp, l.action, l.matchId || 0]
       )
     );
 
-    const metaHash = solidityPackedKeccak256(
-      ["uint256", "uint256", "uint256", "uint256", "string"],
-      Object.values(meta).map((v) => {
-        if (typeof v === "number") {
-          return v;
-        }
-        return Object.entries(v)
-          .map(([k, v]) => `${k}:${v}`)
-          .join(",");
-      })
+    const metaHash = keccak256(
+      solidityPacked(
+        ["uint256", "uint256", "uint256", "uint256", "string"],
+        Object.values(meta).map((v) => {
+          if (typeof v === "number") {
+            return v;
+          }
+          return Object.entries(v)
+            .map(([k, v]) => `${k}:${v}`)
+            .join(",");
+        })
+      )
     );
 
     const finalMerkleTree = createMT([
