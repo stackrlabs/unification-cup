@@ -1,26 +1,27 @@
+import { assert, expect } from "chai";
+
 import {
   ActionConfirmationStatus,
   MicroRollup,
   StackrConfig,
 } from "@stackr/sdk";
 import { StateMachine } from "@stackr/sdk/machine";
-import genesisState6 from "../genesis/genesis-state.6.json";
-import { stfSchemaMap } from "../src";
-import { schemas } from "../src/stackr/actions";
+
 import { STATE_MACHINES } from "../src/stackr/machines";
 import { League, LeagueState } from "../src/stackr/state";
 import { transitions } from "../src/stackr/transitions";
+import { signByOperator } from "../src/utils";
 import { stackrConfig } from "../stackr.config";
 
-import { assert, expect } from "chai";
-import { signAsOperator } from "../src/utils";
+import genesisState6 from "../genesis/genesis-state.6.json";
 
 const testConfig = {
   ...stackrConfig,
+  isSandbox: true,
   logLevel: "error",
   sequencer: {
     ...stackrConfig.sequencer,
-    blockTime: 100,
+    blockTime: 10,
   },
 } as StackrConfig;
 
@@ -38,10 +39,7 @@ describe("League with 6 teams", async () => {
   // setup MicroRollup
   const mru = await MicroRollup({
     config: testConfig,
-    actionSchemas: Object.values(schemas),
     stateMachines: [leagueMachine],
-    stfSchemaMap: stfSchemaMap,
-    isSandbox: true,
   });
 
   await mru.init();
@@ -54,13 +52,22 @@ describe("League with 6 teams", async () => {
   }
   machine = _machine;
 
-  const performAction = async (schemaName: string, inputs: any) => {
-    const signedAction1 = await signAsOperator(schemaName, {
-      ...inputs,
+  const performAction = async (name: string, _inputs: any) => {
+    const inputs = {
+      ..._inputs,
       timestamp: Date.now(),
-    });
-    const ack1 = await mru.submitAction(schemaName, signedAction1);
-    const action = await ack1.waitFor(ActionConfirmationStatus.C1);
+    };
+    const domain = mru.config.domain;
+    const types = mru.getStfSchemaMap()[name];
+    const {msgSender, signature} = await signByOperator(domain, types, { name, inputs });
+    const actionParams = {
+      name,
+      inputs,
+      msgSender,
+      signature,
+    }
+    const ack = await mru.submitAction(actionParams);
+    const action = await ack.waitFor(ActionConfirmationStatus.C1);
     return action;
   };
 
@@ -257,8 +264,8 @@ describe("League with 6 teams", async () => {
     }
     // check error for "MATCH_NOT_STARTED"
     assert.typeOf(errors, "array");
-    expect(errors.length).to.not.equal(0);
-    expect(errors[0].message).to.equal("MATCH_NOT_STARTED");
+    expect(errors.length).to.equal(1);
+    expect(errors[0].message).to.equal("Transition logGoal failed to execute: MATCH_NOT_STARTED");
   });
 
   it("should be able complete a round 3", async () => {
@@ -319,10 +326,10 @@ describe("League with 6 teams", async () => {
       if (!errors1) {
         throw new Error("Error not found");
       }
-      // check error for "PLAYER_NOT_FOUND"
+      // check error for "INVALID_TEAM"
       assert.typeOf(errors1, "array");
-      expect(errors1.length).to.not.equal(0);
-      expect(errors1[0].message).to.equal("INVALID_TEAM");
+      expect(errors1.length).to.equal(1);
+      expect(errors1[0].message).to.equal("Transition logGoal failed to execute: INVALID_TEAM");
 
       // remove a goal when not scored
       const { errors: errors2 } = await performAction("removeGoal", {
@@ -333,10 +340,10 @@ describe("League with 6 teams", async () => {
       if (!errors2) {
         throw new Error("Error not found");
       }
-      // check error for "PLAYER_NOT_FOUND"
+      // check error for "NO_GOALS_TO_REMOVE"
       assert.typeOf(errors2, "array");
-      expect(errors2?.length).to.not.equal(0);
-      expect(errors2[0].message).to.equal("NO_GOALS_TO_REMOVE");
+      expect(errors2.length).to.equal(1);
+      expect(errors2[0].message).to.equal("Transition removeGoal failed to execute: NO_GOALS_TO_REMOVE");
 
       // second team score a goal
       await performAction("logGoal", {
@@ -420,8 +427,8 @@ describe("League with 6 teams", async () => {
     }
     // check error for "TOURNAMENT_ENDED"
     assert.typeOf(errors, "array");
-    expect(errors.length).to.not.equal(0);
-    expect(errors[0].message).to.equal("TOURNAMENT_ENDED");
+    expect(errors.length).to.equal(1);
+    expect(errors[0].message).to.equal("Transition logGoal failed to execute: TOURNAMENT_ENDED");
   });
 
   it("should end the tournament", async () => {
