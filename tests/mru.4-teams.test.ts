@@ -59,13 +59,16 @@ describe("League with 4 teams", async () => {
     };
     const domain = mru.config.domain;
     const types = mru.getStfSchemaMap()[name];
-    const {msgSender, signature} = await signByOperator(domain, types, { name, inputs });
+    const { msgSender, signature } = await signByOperator(domain, types, {
+      name,
+      inputs,
+    });
     const actionParams = {
       name,
       inputs,
       msgSender,
       signature,
-    }
+    };
     const ack = await mru.submitAction(actionParams);
     const action = await ack.waitFor(ActionConfirmationStatus.C1);
     return action;
@@ -152,7 +155,7 @@ describe("League with 4 teams", async () => {
     expect(machine.state.meta.round).to.equal(2);
     expect(machine.state.matches.length).to.equal(3);
 
-    // should have 1 incomplete match at round 2
+    // should have 1 new (incomplete) match at round 2
     const incompleteMatches = machine.state.matches.filter((m) => !m.endTime);
     expect(incompleteMatches.length).to.equal(1);
   });
@@ -179,7 +182,9 @@ describe("League with 4 teams", async () => {
     // check error for "MATCH_NOT_STARTED"
     assert.typeOf(errors, "array");
     expect(errors.length).to.equal(1);
-    expect(errors[0].message).to.equal("Transition logGoal failed to execute: MATCH_NOT_STARTED");
+    expect(errors[0].message).to.equal(
+      "Transition logGoal failed to execute: MATCH_NOT_STARTED"
+    );
   });
 
   it("should be able complete a round 2 (final)", async () => {
@@ -244,7 +249,9 @@ describe("League with 4 teams", async () => {
       // check error for "PLAYER_NOT_FOUND"
       assert.typeOf(errors1, "array");
       expect(errors1.length).to.equal(1);
-      expect(errors1[0].message).to.equal("Transition logGoal failed to execute: INVALID_TEAM");
+      expect(errors1[0].message).to.equal(
+        "Transition logGoal failed to execute: INVALID_TEAM"
+      );
 
       // remove a goal when not scored
       const { logs: logs2, errors: errors2 } = await performAction(
@@ -261,7 +268,9 @@ describe("League with 4 teams", async () => {
       // check error for "PLAYER_NOT_FOUND"
       assert.typeOf(errors2, "array");
       expect(errors2?.length).to.equal(1);
-      expect(errors2[0].message).to.equal("Transition removeGoal failed to execute: NO_GOALS_TO_REMOVE");
+      expect(errors2[0].message).to.equal(
+        "Transition removeGoal failed to execute: NO_GOALS_TO_REMOVE"
+      );
 
       // second team score a goal
       await performAction("logGoal", {
@@ -346,7 +355,9 @@ describe("League with 4 teams", async () => {
     // check error for "TOURNAMENT_ENDED"
     assert.typeOf(errors, "array");
     expect(errors.length).to.equal(1);
-    expect(errors[0].message).to.equal("Transition logGoal failed to execute: TOURNAMENT_ENDED");
+    expect(errors[0].message).to.equal(
+      "Transition logGoal failed to execute: TOURNAMENT_ENDED"
+    );
   });
 
   it("should end the tournament", async () => {
