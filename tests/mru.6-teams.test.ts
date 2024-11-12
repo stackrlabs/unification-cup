@@ -9,7 +9,7 @@ import { StateMachine } from "@stackr/sdk/machine";
 
 import { STATE_MACHINES } from "../src/stackr/machines";
 import { League, LeagueState } from "../src/stackr/state";
-import { transitions } from "../src/stackr/transitions";
+import { getLeaderboard, transitions } from "../src/stackr/transitions";
 import { signByOperator } from "../src/utils";
 import { stackrConfig } from "../stackr.config";
 
@@ -59,13 +59,16 @@ describe("League with 6 teams", async () => {
     };
     const domain = mru.config.domain;
     const types = mru.getStfSchemaMap()[name];
-    const {msgSender, signature} = await signByOperator(domain, types, { name, inputs });
+    const { msgSender, signature } = await signByOperator(domain, types, {
+      name,
+      inputs,
+    });
     const actionParams = {
       name,
       inputs,
       msgSender,
       signature,
-    }
+    };
     const ack = await mru.submitAction(actionParams);
     const action = await ack.waitFor(ActionConfirmationStatus.C1);
     return action;
@@ -78,9 +81,27 @@ describe("League with 6 teams", async () => {
   it("should be able to start a tournament", async () => {
     await performAction("startTournament", {});
 
-    // should have 2 matches in the first round
+    // should have 3 matches in the first round
     expect(machine.state.meta.round).to.equal(1);
     expect(machine.state.matches.length).to.equal(3);
+  });
+
+  it("should not be able to log a bye since not required in round 1", async () => {
+    const team0 = machine.state.teams[0];
+
+    const { errors } = await performAction("logByes", {
+      teamId: team0.id,
+    });
+
+    if (!errors) {
+      throw new Error("Error not found");
+    }
+    // check error for "BYE_NOT_REQUIRED_IN_THIS_ROUND"
+    assert.typeOf(errors, "array");
+    expect(errors.length).to.equal(1);
+    expect(errors[0].message).to.equal(
+      "Transition logByes failed to execute: BYE_NOT_REQUIRED_IN_THIS_ROUND"
+    );
   });
 
   it("should be able to complete round 1", async () => {
@@ -146,30 +167,33 @@ describe("League with 6 teams", async () => {
       expect(_match?.scores[team1Id]).to.greaterThan(_match?.scores[team2Id]!);
     }
 
-    // no new match scheduled for odd teams
-    // should have 0 incomplete match at round 2
+    // no new round and no new match scheduled since odd teams w eq points
+    // should have 0 new (incomplete) match at round 1
+    expect(machine.state.meta.round).to.equal(1);
     const incompleteMatches = machine.state.matches.filter((m) => !m.endTime);
     expect(incompleteMatches.length).to.equal(0);
   });
 
-  it("should be able to give a bye to team 5", async () => {
+  it("should be able to give a bye to a team not in round", async () => {
     expect(machine.state.meta.round).to.equal(1);
 
-    // give bye to the team 5
+    const leaderboard = getLeaderboard(machine.state);
+
+    // give bye to the team at 4th position in the leaderboard
     await performAction("logByes", {
-      teamId: 5,
+      teamId: leaderboard[3].id,
     });
 
-    // should have 2 new matches in the second round
+    // should have 5 total matches at round 2
     expect(machine.state.meta.round).to.equal(2);
     expect(machine.state.matches.length).to.equal(5);
 
-    // should have 1 incomplete match at round 2
+    // should have 2 new (incomplete) matches at round 2
     const incompleteMatches = machine.state.matches.filter((m) => !m.endTime);
     expect(incompleteMatches.length).to.equal(2);
   });
 
-  it("should be able to complete round 2", async () => {
+  it("should be able to complete round 2", async () => {   
     for (const match of machine.state.matches) {
       const matchId = match.id;
       if (match.endTime) {
@@ -239,7 +263,10 @@ describe("League with 6 teams", async () => {
       expect(_match?.scores[team1Id]).to.greaterThan(_match?.scores[team2Id]!);
     }
 
-    // should have 1 incomplete match at round 3
+    // should have 6 total matches at round 3
+    expect(machine.state.meta.round).to.equal(3);
+    expect(machine.state.matches.length).to.equal(6);
+    // should have 1 new (incomplete) match at round 3
     const incompleteMatches = machine.state.matches.filter((m) => !m.endTime);
     expect(incompleteMatches.length).to.equal(1);
   });
@@ -265,7 +292,9 @@ describe("League with 6 teams", async () => {
     // check error for "MATCH_NOT_STARTED"
     assert.typeOf(errors, "array");
     expect(errors.length).to.equal(1);
-    expect(errors[0].message).to.equal("Transition logGoal failed to execute: MATCH_NOT_STARTED");
+    expect(errors[0].message).to.equal(
+      "Transition logGoal failed to execute: MATCH_NOT_STARTED"
+    );
   });
 
   it("should be able complete a round 3", async () => {
@@ -329,7 +358,9 @@ describe("League with 6 teams", async () => {
       // check error for "INVALID_TEAM"
       assert.typeOf(errors1, "array");
       expect(errors1.length).to.equal(1);
-      expect(errors1[0].message).to.equal("Transition logGoal failed to execute: INVALID_TEAM");
+      expect(errors1[0].message).to.equal(
+        "Transition logGoal failed to execute: INVALID_TEAM"
+      );
 
       // remove a goal when not scored
       const { errors: errors2 } = await performAction("removeGoal", {
@@ -343,7 +374,9 @@ describe("League with 6 teams", async () => {
       // check error for "NO_GOALS_TO_REMOVE"
       assert.typeOf(errors2, "array");
       expect(errors2.length).to.equal(1);
-      expect(errors2[0].message).to.equal("Transition removeGoal failed to execute: NO_GOALS_TO_REMOVE");
+      expect(errors2[0].message).to.equal(
+        "Transition removeGoal failed to execute: NO_GOALS_TO_REMOVE"
+      );
 
       // second team score a goal
       await performAction("logGoal", {
@@ -428,11 +461,13 @@ describe("League with 6 teams", async () => {
     // check error for "TOURNAMENT_ENDED"
     assert.typeOf(errors, "array");
     expect(errors.length).to.equal(1);
-    expect(errors[0].message).to.equal("Transition logGoal failed to execute: TOURNAMENT_ENDED");
+    expect(errors[0].message).to.equal(
+      "Transition logGoal failed to execute: TOURNAMENT_ENDED"
+    );
   });
 
   it("should end the tournament", async () => {
     expect(machine.state.meta.endTime).to.not.equal(0);
-    expect(machine.state.meta.winnerTeamId).to.equal(5);
+    expect(machine.state.meta.winnerTeamId).to.equal(2);
   });
 });
