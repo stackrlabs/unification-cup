@@ -14,6 +14,7 @@ export enum LogAction {
 export type LeaderboardEntry = {
   won: number;
   lost: number;
+  byes: number;
   points: number;
   id: number;
   name: string;
@@ -45,21 +46,20 @@ export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
   const { teams, matches, meta } = state;
   const completedMatches = matches.filter((m) => m.endTime);
 
-  const leaderboard = teams.map((team) => {
-    return {
-      ...team,
-      won: 0,
-      lost: 0,
-      points: 0,
-    };
-  });
+  const leaderboard = teams.map((team) => ({
+    ...team,
+    won: 0,
+    lost: 0,
+    byes: 0,
+    points: 0,
+  }));
 
-  if (meta.byes.length) {
-    meta.byes.forEach((bye) => {
-      const teamIndex = leaderboard.findIndex((l) => l.id === bye.teamId);
-      leaderboard[teamIndex].points += 1;
-    });
-  }
+  // a bye is given 1 point
+  meta.byes.forEach((bye) => {
+    const teamIndex = leaderboard.findIndex((l) => l.id === bye.teamId);
+    leaderboard[teamIndex].byes += 1;
+    leaderboard[teamIndex].points += 1;
+  });
 
   completedMatches.forEach((match) => {
     const { winnerTeamId, scores } = match;
@@ -79,9 +79,12 @@ export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
 
   return leaderboard.sort((a, b) => {
     if (a.points === b.points) {
-      return a.won - b.won;
+      if (a.won === b.won) {
+        return a.byes - b.byes; // Sort by most byes last
+      }
+      return b.won - a.won; // Sort by most wins first
     }
-    return b.points - a.points;
+    return b.points - a.points; // Sort by most points first
   });
 };
 
@@ -94,20 +97,63 @@ const getTopNTeams = (state: LeagueState, n?: number) => {
   return leaderboard.slice(0, n);
 };
 
+const getTeamsInCurrentRound = (state: LeagueState) => {
+  const { meta, teams } = state;
+  const totalTeams = teams.length;
+  // Calculate the number of teams in the current round by halving the teams each round
+  const numTeamsInCurrentRound = Math.ceil(
+    totalTeams / Math.pow(2, meta.round)
+  );
+  const topTeams = getTopNTeams(state, numTeamsInCurrentRound);
+  return topTeams;
+};
+
+const isByeRequiredInCurrentRound = (state: LeagueState): boolean => {
+  const { meta } = state;
+
+  // If the tournament has ended or not all matches are complete, return false
+  if (!areAllMatchesComplete(state) || !!meta.endTime) {
+    return false;
+  }
+
+  const teamsInCurrentRound = getTeamsInCurrentRound(state);
+
+  // If only one team is left, return false
+  if (teamsInCurrentRound.length === 1) {
+    return false;
+  }
+
+  // If the number of remaining teams is odd, check if a bye is required
+  if (teamsInCurrentRound.length % 2 !== 0) {
+    const allTeamsHaveSamePoints = teamsInCurrentRound.every(
+      (t, _, arr) => t.points === arr[0].points
+    );
+
+    // If all teams have the same points, return true
+    if (allTeamsHaveSamePoints) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
 const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
   const { meta, teams } = state;
+  // If the tournament has ended, return without scheduling matches
   if (!areAllMatchesComplete(state) || !!meta.endTime) {
     return;
   }
 
   const totalTeams = teams.length;
+  // Calculate the number of teams in the current round by halving the teams each round
   const teamsInCurrentRound = Math.ceil(totalTeams / Math.pow(2, meta.round));
 
   // this is assuming that the bye will be given to the team with lower score, and they'll get a chance to play with the top 3 teams
   const shouldIncludeOneBye =
     teamsInCurrentRound !== 1 &&
-      teamsInCurrentRound % 2 === 1 &&
-      meta.byes.length === 1
+    teamsInCurrentRound % 2 === 1 &&
+    meta.byes.filter(({ round }) => round === meta.round).length === 1
       ? 1
       : 0;
 
@@ -116,16 +162,20 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
     teamsInCurrentRound + shouldIncludeOneBye
   );
 
+  // If only one team is left, declare it the winner and end the tournament
   if (topTeams.length === 1) {
     state.meta.winnerTeamId = topTeams[0].id;
     state.meta.endTime = blockTime;
     return;
   }
 
+  // If the number of top teams is odd, handle the odd team out
   if (topTeams.length % 2 !== 0) {
     const allTeamsHaveSamePoints =
       topTeams[0].points === topTeams[teamsInCurrentRound - 1].points;
 
+    // If all teams have the same points, return without scheduling matches
+    // This situation requires a bye to be given in current round
     if (allTeamsHaveSamePoints) {
       return;
     }
@@ -133,7 +183,9 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
     const oneTeamHasHigherPoints =
       topTeams[0].points > topTeams[1].points &&
       topTeams[0].points > topTeams[2].points;
-    // plan the match the rest of even teams
+
+    // Remove the team with the highest points to ensure competitive balance
+    // Otherwise, remove the team with the lowest points
     if (oneTeamHasHigherPoints) {
       topTeams.shift();
     } else {
@@ -141,6 +193,7 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
     }
   }
 
+  // Generate match fixtures for the remaining teams
   for (let i = 0; i < topTeams.length; i += 2) {
     const team1 = topTeams[i];
     const team2 = topTeams[i + 1];
@@ -296,9 +349,6 @@ const logGoal = League.STF({
   },
   handler: ({ state, inputs, block }) => {
     const { matchId, playerId } = inputs;
-    if (hasTournamentEnded(state)) {
-      throw new Error("TOURNAMENT_ENDED");
-    }
 
     const { match, teamId } = getValidMatchAndTeam(state, matchId, playerId);
 
@@ -486,6 +536,15 @@ const logByes = League.STF({
   },
   handler: ({ state, inputs, block }) => {
     const { teamId } = inputs;
+    if (hasTournamentEnded(state)) {
+      throw new Error("TOURNAMENT_ENDED");
+    }
+
+    // Is Bye required in the current round?
+    if (!isByeRequiredInCurrentRound(state)) {
+      throw new Error("BYE_NOT_REQUIRED_IN_THIS_ROUND");
+    }
+
     state.meta.byes.push({ teamId, round: state.meta.round });
     computeMatchFixtures(state, block.timestamp);
     return state;
