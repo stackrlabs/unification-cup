@@ -54,11 +54,11 @@ export const getLeaderboard = (state: LeagueState): LeaderboardEntry[] => {
     points: 0,
   }));
 
-  // a bye is given 1 point
+  // a bye is equivalent to a win so 3 points
   meta.byes.forEach((bye) => {
     const teamIndex = leaderboard.findIndex((l) => l.id === bye.teamId);
     leaderboard[teamIndex].byes += 1;
-    leaderboard[teamIndex].points += 1;
+    leaderboard[teamIndex].points += 3;
   });
 
   completedMatches.forEach((match) => {
@@ -146,21 +146,10 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
   }
 
   const totalTeams = teams.length;
+  const leaderboard = getLeaderboard(state);
   // Calculate the number of teams in the current round by halving the teams each round
   const teamsInCurrentRound = Math.ceil(totalTeams / Math.pow(2, meta.round));
-
-  // this is assuming that the bye will be given to the team with lower score, and they'll get a chance to play with the top 3 teams
-  const shouldIncludeOneBye =
-    teamsInCurrentRound !== 1 &&
-    teamsInCurrentRound % 2 === 1 &&
-    meta.byes.filter(({ round }) => round === meta.round).length === 1
-      ? 1
-      : 0;
-
-  const topTeams = getTopNTeams(
-    state,
-    teamsInCurrentRound + shouldIncludeOneBye
-  );
+  let topTeams = leaderboard.slice(0, teamsInCurrentRound);
 
   // If only one team is left, declare it the winner and end the tournament
   if (topTeams.length === 1) {
@@ -174,22 +163,31 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
     const allTeamsHaveSamePoints =
       topTeams[0].points === topTeams[teamsInCurrentRound - 1].points;
 
-    // If all teams have the same points, return without scheduling matches
-    // This situation requires a bye to be given in current round
+    // If all teams have the same points,
+    // see if we can use byes or just return without scheduling matches
     if (allTeamsHaveSamePoints) {
-      return;
-    }
-
-    const oneTeamHasHigherPoints =
-      topTeams[0].points > topTeams[1].points &&
-      topTeams[0].points > topTeams[2].points;
-
-    // Remove the team with the highest points to ensure competitive balance
-    // Otherwise, remove the team with the lowest points
-    if (oneTeamHasHigherPoints) {
-      topTeams.shift();
+      const teamIdWithByeCurrentRound = meta.byes
+        .filter(({ round }) => round === meta.round)
+        .map(({ teamId }) => teamId)[0];
+      if (teamIdWithByeCurrentRound === undefined) {
+        return;
+      }
+      const nPlus1thTeam = leaderboard[teamsInCurrentRound];
+      if (nPlus1thTeam.id === teamIdWithByeCurrentRound) {
+        topTeams.push(nPlus1thTeam);
+      }
     } else {
-      topTeams.pop();
+      const oneTeamHasHigherPoints =
+        topTeams[0].points > topTeams[1].points &&
+        topTeams[0].points > topTeams[2].points;
+
+      // Remove the team with the highest points to ensure competitive balance
+      // Otherwise, remove the team with the lowest points
+      if (oneTeamHasHigherPoints) {
+        topTeams.shift();
+      } else {
+        topTeams.pop();
+      }
     }
   }
 
@@ -543,6 +541,12 @@ const logByes = League.STF({
     // Is Bye required in the current round?
     if (!isByeRequiredInCurrentRound(state)) {
       throw new Error("BYE_NOT_REQUIRED_IN_THIS_ROUND");
+    }
+
+    // Can only give byes to teams not already in current round
+    const teamsInCurrentRound = getTeamsInCurrentRound(state);
+    if (teamsInCurrentRound.map(({ id }) => id).includes(teamId)) {
+      throw new Error("TEAM_NOT_ELIGIBLE_FOR_BYE");
     }
 
     state.meta.byes.push({ teamId, round: state.meta.round });
