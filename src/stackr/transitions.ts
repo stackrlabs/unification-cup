@@ -182,10 +182,11 @@ const computeMatchFixtures = (state: LeagueState, blockTime: number) => {
         topTeams[0].points > topTeams[2].points;
 
       // Remove the team with the highest points to ensure competitive balance
+      // Otherwise, remove the team with the lowest points
       if (oneTeamHasHigherPoints) {
-        topTeams.shift(); // Remove the first team (highest points)
+        topTeams.shift();
       } else {
-        topTeams.pop(); // Remove the last team (lowest points among the top teams)
+        topTeams.pop();
       }
     }
   }
